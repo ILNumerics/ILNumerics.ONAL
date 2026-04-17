@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ILNumerics.Computing\ILNumerics.ONAL.csproj" />
+    <ProjectReference Include="..\ILNumerics.ONAL\ILNumerics.ONAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
