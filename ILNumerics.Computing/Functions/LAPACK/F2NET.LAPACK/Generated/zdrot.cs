@@ -1,0 +1,207 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b ZDROT 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE ZDROT( N, CX, INCX, CY, INCY, C, S ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       INTEGER            INCX, INCY, N 
+//*       DOUBLE PRECISION   C, S 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       COMPLEX*16         CX( * ), CY( * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> Applies a plane rotation, where the cos and sin (c and s) are real 
+//*> and the vectors cx and cy are complex. 
+//*> jack dongarra, linpack, 3/11/78. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>           On entry, N specifies the order of the vectors cx and cy. 
+//*>           N must be at least zero. 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] CX 
+//*> \verbatim 
+//*>          CX is COMPLEX*16 array, dimension at least 
+//*>           ( 1 + ( N - 1 )*abs( INCX ) ). 
+//*>           Before entry, the incremented array CX must contain the n 
+//*>           element vector cx. On exit, CX is overwritten by the updated 
+//*>           vector cx. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCX 
+//*> \verbatim 
+//*>          INCX is INTEGER 
+//*>           On entry, INCX specifies the increment for the elements of 
+//*>           CX. INCX must not be zero. 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] CY 
+//*> \verbatim 
+//*>          CY is COMPLEX*16 array, dimension at least 
+//*>           ( 1 + ( N - 1 )*abs( INCY ) ). 
+//*>           Before entry, the incremented array CY must contain the n 
+//*>           element vector cy. On exit, CY is overwritten by the updated 
+//*>           vector cy. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCY 
+//*> \verbatim 
+//*>          INCY is INTEGER 
+//*>           On entry, INCY specifies the increment for the elements of 
+//*>           CY. INCY must not be zero. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] C 
+//*> \verbatim 
+//*>          C is DOUBLE PRECISION 
+//*>           On entry, C specifies the cosine, cos. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] S 
+//*> \verbatim 
+//*>          S is DOUBLE PRECISION 
+//*>           On entry, S specifies the sine, sin. 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup complex16_blas_level1 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _yl1tlikm(ref Int32 _dxpq0xkr, complex* _c9wzt3lw, ref Int32 _1eqjusqc, complex* _8czizhxc, ref Int32 _bbrxgmj7, ref Double _3crf0qn3, ref Double _irk8i6qr)
+	{
+#region variable declarations
+Int32 _b5p6od9s =  default;
+Int32 _b69ritwm =  default;
+Int32 _821h5yui =  default;
+complex _r0ocrtbh =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- Reference BLAS level1 routine (version 3.7.0) -- 
+		//*  -- Reference BLAS is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//* ===================================================================== 
+		//* 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		if (_dxpq0xkr <= (int)0)
+		return;
+		if ((_1eqjusqc == (int)1) & (_bbrxgmj7 == (int)1))
+		{
+			//* 
+			//*        code for both increments equal to 1 
+			//* 
+			
+			{
+				System.Int32 __81fgg2dlsvn1432 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step1432 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1432;
+				for (__81fgg2count1432 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1432 + __81fgg2step1432) / __81fgg2step1432)), _b5p6od9s = __81fgg2dlsvn1432; __81fgg2count1432 != 0; __81fgg2count1432--, _b5p6od9s += (__81fgg2step1432)) {
+
+				{
+					
+					_r0ocrtbh = ((_3crf0qn3 * *(_c9wzt3lw+(_b5p6od9s - 1))) + (_irk8i6qr * *(_8czizhxc+(_b5p6od9s - 1))));
+					*(_8czizhxc+(_b5p6od9s - 1)) = ((_3crf0qn3 * *(_8czizhxc+(_b5p6od9s - 1))) - (_irk8i6qr * *(_c9wzt3lw+(_b5p6od9s - 1))));
+					*(_c9wzt3lw+(_b5p6od9s - 1)) = _r0ocrtbh;
+				}
+								}			}
+		}
+		else
+		{
+			//* 
+			//*        code for unequal increments or equal increments not equal 
+			//*          to 1 
+			//* 
+			
+			_b69ritwm = (int)1;
+			_821h5yui = (int)1;
+			if (_1eqjusqc < (int)0)
+			_b69ritwm = ((((-(_dxpq0xkr)) + (int)1) * _1eqjusqc) + (int)1);
+			if (_bbrxgmj7 < (int)0)
+			_821h5yui = ((((-(_dxpq0xkr)) + (int)1) * _bbrxgmj7) + (int)1);
+			{
+				System.Int32 __81fgg2dlsvn1433 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step1433 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1433;
+				for (__81fgg2count1433 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1433 + __81fgg2step1433) / __81fgg2step1433)), _b5p6od9s = __81fgg2dlsvn1433; __81fgg2count1433 != 0; __81fgg2count1433--, _b5p6od9s += (__81fgg2step1433)) {
+
+				{
+					
+					_r0ocrtbh = ((_3crf0qn3 * *(_c9wzt3lw+(_b69ritwm - 1))) + (_irk8i6qr * *(_8czizhxc+(_821h5yui - 1))));
+					*(_8czizhxc+(_821h5yui - 1)) = ((_3crf0qn3 * *(_8czizhxc+(_821h5yui - 1))) - (_irk8i6qr * *(_c9wzt3lw+(_b69ritwm - 1))));
+					*(_c9wzt3lw+(_b69ritwm - 1)) = _r0ocrtbh;
+					_b69ritwm = (_b69ritwm + _1eqjusqc);
+					_821h5yui = (_821h5yui + _bbrxgmj7);
+				}
+								}			}
+		}
+		
+		return;
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

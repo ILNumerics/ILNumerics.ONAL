@@ -1,0 +1,189 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b IZAMAX 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       INTEGER FUNCTION IZAMAX(N,ZX,INCX) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       INTEGER INCX,N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       COMPLEX*16 ZX(*) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*>    IZAMAX finds the index of the first element having maximum |Re(.)| + |Im(.)| 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>         number of elements in input vector(s) 
+//*> \endverbatim 
+//*> 
+//*> \param[in] ZX 
+//*> \verbatim 
+//*>          ZX is COMPLEX*16 array, dimension ( 1 + ( N - 1 )*abs( INCX ) ) 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCX 
+//*> \verbatim 
+//*>          INCX is INTEGER 
+//*>         storage spacing between elements of ZX 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date November 2017 
+//* 
+//*> \ingroup aux_blas 
+//* 
+//*> \par Further Details: 
+//*  ===================== 
+//*> 
+//*> \verbatim 
+//*> 
+//*>     jack dongarra, 1/15/85. 
+//*>     modified 3/93 to return if incx .le. 0. 
+//*>     modified 12/3/93, array(1) declarations changed to array(*) 
+//*> \endverbatim 
+//*> 
+//*  ===================================================================== 
+
+	 
+	public static Int32 _b8lt7tux(ref Int32 _dxpq0xkr, complex* _kb1qxpu5, ref Int32 _1eqjusqc)
+	{
+#region variable declarations
+Int32 _b8lt7tux = default;
+Double _49t2npjg =  default;
+Int32 _b5p6od9s =  default;
+Int32 _b69ritwm =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- Reference BLAS level1 routine (version 3.8.0) -- 
+		//*  -- Reference BLAS is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     November 2017 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//*  ===================================================================== 
+		//* 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		
+		_b8lt7tux = (int)0;
+		if ((_dxpq0xkr < (int)1) | (_1eqjusqc <= (int)0))
+		return _b8lt7tux;
+		_b8lt7tux = (int)1;
+		if (_dxpq0xkr == (int)1)
+		return _b8lt7tux;
+		if (_1eqjusqc == (int)1)
+		{
+			//* 
+			//*        code for increment equal to 1 
+			//* 
+			
+			_49t2npjg = _xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+((int)1 - 1))) );
+			{
+				System.Int32 __81fgg2dlsvn1793 = (System.Int32)((int)2);
+				const System.Int32 __81fgg2step1793 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1793;
+				for (__81fgg2count1793 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1793 + __81fgg2step1793) / __81fgg2step1793)), _b5p6od9s = __81fgg2dlsvn1793; __81fgg2count1793 != 0; __81fgg2count1793--, _b5p6od9s += (__81fgg2step1793)) {
+
+				{
+					
+					if (_xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+(_b5p6od9s - 1))) ) > _49t2npjg)
+					{
+						
+						_b8lt7tux = _b5p6od9s;
+						_49t2npjg = _xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+(_b5p6od9s - 1))) );
+					}
+					
+				}
+								}			}
+		}
+		else
+		{
+			//* 
+			//*        code for increment not equal to 1 
+			//* 
+			
+			_b69ritwm = (int)1;
+			_49t2npjg = _xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+((int)1 - 1))) );
+			_b69ritwm = (_b69ritwm + _1eqjusqc);
+			{
+				System.Int32 __81fgg2dlsvn1794 = (System.Int32)((int)2);
+				const System.Int32 __81fgg2step1794 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1794;
+				for (__81fgg2count1794 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1794 + __81fgg2step1794) / __81fgg2step1794)), _b5p6od9s = __81fgg2dlsvn1794; __81fgg2count1794 != 0; __81fgg2count1794--, _b5p6od9s += (__81fgg2step1794)) {
+
+				{
+					
+					if (_xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+(_b69ritwm - 1))) ) > _49t2npjg)
+					{
+						
+						_b8lt7tux = _b5p6od9s;
+						_49t2npjg = _xut7i178(ref Unsafe.AsRef(*(_kb1qxpu5+(_b69ritwm - 1))) );
+					}
+					
+					_b69ritwm = (_b69ritwm + _1eqjusqc);
+				}
+								}			}
+		}
+		
+		return _b8lt7tux;
+	}
+	
+	return _b8lt7tux;
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

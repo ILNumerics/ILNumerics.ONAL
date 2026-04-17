@@ -1,0 +1,762 @@
+//////////////////////////////////////////////////////////////////
+//                                                              //
+//  This is an auto - manipulated source file.                  //
+//  Edits inside regions of HYCALPER AUTO GENERATED CODE        //
+//  will be lost and overwritten on the next build!             //
+//                                                              //
+//////////////////////////////////////////////////////////////////
+using ILNumerics.Core.Arrays;
+using ILNumerics.Core.Global;
+using ILNumerics.Core.StorageLayer;
+using System;
+using System.Security;
+using System.Threading;
+
+/*!HC:TYPELIST:
+<hycalper>
+    <type>
+    <source locate="here">
+        double
+    </source>
+        <destination>double</destination>
+        <destination>float</destination>
+        <destination>int</destination>
+        <destination>uint</destination>
+        <destination>short</destination>
+        <destination>ushort</destination>
+        <destination>sbyte</destination>
+        <destination>byte</destination>
+        <destination>complex</destination>
+        <destination>fcomplex</destination>
+    </type>
+    <type>
+    <source locate="after">
+        outArr
+    </source>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+        <destination>ulong</destination>
+    </type>
+    <type>
+    <source locate="here">
+        Double
+    </source>
+        <destination>Double</destination>
+        <destination>Single</destination>
+        <destination>Int32</destination>
+        <destination>UInt32</destination>
+        <destination>Int16</destination>
+        <destination>UInt16</destination>
+        <destination>SByte</destination>
+        <destination>Byte</destination>
+        <destination>Complex</destination>
+        <destination>FComplex</destination>
+    </type>
+    <type>
+        <source locate="after">
+            funcname
+        </source>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+        <destination>touint64</destination>
+    </type>
+    <type>
+        <source locate="after" endmark=" ()">
+            operatorfunc
+        </source>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+        <destination>(ulong)</destination>
+    </type>
+    <type>
+        <source locate="after" endmark=" :,*.()">
+            innerloopname
+        </source>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+        <destination>ToUInt64</destination>
+    </type>
+    <type>
+        <source locate="nextline">
+            implacedisabled
+        </source>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+    </type>
+    <type>
+        <source locate="comment">
+            summary
+        </source>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+        <destination>Convert elements to UInt64.</destination>
+    </type>
+    <type>
+        <source locate="comment">
+            returns
+        </source>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array{ulong} of the same shape as <paramref name="A"/>]]>.</destination>
+    </type>
+</hycalper>
+*/
+
+namespace ILNumerics.Core.Functions.Builtin {
+
+    #region HYCALPER LOOPSTART UNARY_OPERATOR_TEMPLATE@Functions\Builtin\UnaryOperators\Sin.cs
+
+    #endregion HYCALPER LOOPEND
+#region HYCALPER AUTO GENERATED CODE
+// DO NOT EDIT INSIDE THIS REGION !! CHANGES WILL BE LOST !! 
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<fcomplex> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.FComplex.Instance.operate(A as ConcreteArray<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class FComplex :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>>
+#else
+            UnaryBaseOutOfPlace<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static FComplex Instance = new FComplex();
+
+                
+                public unsafe override void Strided64(Storage<fcomplex> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    fcomplex* inP = (fcomplex*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<complex> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Complex.Instance.operate(A as ConcreteArray<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Complex :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>>
+#else
+            UnaryBaseOutOfPlace<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Complex Instance = new Complex();
+
+                
+                public unsafe override void Strided64(Storage<complex> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    complex* inP = (complex*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<byte> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Byte.Instance.operate(A as ConcreteArray<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Byte :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>>
+#else
+            UnaryBaseOutOfPlace<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Byte Instance = new Byte();
+
+                
+                public unsafe override void Strided64(Storage<byte> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    byte* inP = (byte*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<sbyte> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.SByte.Instance.operate(A as ConcreteArray<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class SByte :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>>
+#else
+            UnaryBaseOutOfPlace<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static SByte Instance = new SByte();
+
+                
+                public unsafe override void Strided64(Storage<sbyte> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    sbyte* inP = (sbyte*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<ushort> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.UInt16.Instance.operate(A as ConcreteArray<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class UInt16 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>>
+#else
+            UnaryBaseOutOfPlace<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static UInt16 Instance = new UInt16();
+
+                
+                public unsafe override void Strided64(Storage<ushort> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    ushort* inP = (ushort*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<short> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Int16.Instance.operate(A as ConcreteArray<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Int16 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>>
+#else
+            UnaryBaseOutOfPlace<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Int16 Instance = new Int16();
+
+                
+                public unsafe override void Strided64(Storage<short> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    short* inP = (short*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<uint> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.UInt32.Instance.operate(A as ConcreteArray<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class UInt32 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>>
+#else
+            UnaryBaseOutOfPlace<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static UInt32 Instance = new UInt32();
+
+                
+                public unsafe override void Strided64(Storage<uint> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    uint* inP = (uint*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<int> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Int32.Instance.operate(A as ConcreteArray<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Int32 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>>
+#else
+            UnaryBaseOutOfPlace<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Int32 Instance = new Int32();
+
+                
+                public unsafe override void Strided64(Storage<int> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    int* inP = (int*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<float> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Single.Instance.operate(A as ConcreteArray<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Single :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>>
+#else
+            UnaryBaseOutOfPlace<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Single Instance = new Single();
+
+                
+                public unsafe override void Strided64(Storage<float> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    float* inP = (float*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>Convert elements to UInt64.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{ulong} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<double> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.ToUInt64.Double.Instance.operate(A as ConcreteArray<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace ToUInt64 {
+
+            
+            internal sealed class Double :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>>
+#else
+            UnaryBaseOutOfPlace<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static Double Instance = new Double();
+
+                
+                public unsafe override void Strided64(Storage<double> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    double* inP = (double*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = (ulong)(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+
+#endregion HYCALPER AUTO GENERATED CODE
+
+    internal static partial class MathInternal {
+
+        /// <summary>
+        /// NOP. Converts numeric array from ulong to <see cref="ulong"/> elements. This is provided for convenience reasons. No element values are copied.
+        /// </summary>
+        /// <param name="A">Source array.</param>
+        /// <returns>New array.</returns>
+        internal static Array<ulong> touint64(BaseArray<ulong> A) {
+            return A?.ToArray<ulong>();
+        }
+        
+        /// <summary>
+        /// Convert numeric array of unknown type to an ILNumerics array with <see cref="System.UInt64"/> elements.
+        /// </summary>
+        /// <param name="A">Source array.</param>
+        /// <returns>New array.</returns>
+        internal static Array<ulong> touint64(BaseArray A) {
+            if (object.Equals(A, null) || A is BaseArray<ulong>) {
+                return A?.ToArray<ulong>(); // safe the null check 
+            } else if (A is BaseArray<float>) {
+                return touint64(A.ToArray<float>());
+            } else if (A is BaseArray<long>) {
+                return touint64(A.ToArray<long>());
+            } else if (A is BaseArray<double>) {
+                return touint64(A.ToArray<double>());
+            } else if (A is BaseArray<int>) {
+                return touint64(A.ToArray<int>());
+            } else if (A is BaseArray<uint>) {
+                return touint64(A.ToArray<uint>());
+            } else if (A is BaseArray<short>) {
+                return touint64(A.ToArray<short>());
+            } else if (A is BaseArray<ushort>) {
+                return touint64(A.ToArray<ushort>());
+            } else if (A is BaseArray<sbyte>) {
+                return touint64(A.ToArray<sbyte>());
+            } else if (A is BaseArray<byte>) {
+                return touint64(A.ToArray<byte>());
+            } else if (A is BaseArray<complex>) {
+                return touint64(A.ToArray<complex>());
+            } else if (A is BaseArray<fcomplex>) {
+                return touint64(A.ToArray<fcomplex>());
+            } else {
+                throw new InvalidCastException($"Unable to convert BaseArray of type {A.GetType().Name} to Array<ulong>."); 
+            }
+        }
+        /// <summary>(Reinterpret) cast array of unsigned elements to signed elements.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array{short} of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed without copying any elements. The returned array 
+        /// has the same storage order and the same size as A.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> touint64(BaseArray<long> A) {
+            //TODO: this + int8, uint64..8 (all int types) !
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var storage = (A as ConcreteArray<long, Array<long>, InArray<long>, OutArray<long>, Array<long>, Storage<long>>).Storage;
+            var ret = Storage<ulong>.Create();
+            ret.S.SetAll(storage.S);
+            ret.Handles = storage.Handles;
+            ret.Handles.Retain();
+            return ret.RetArray;
+        }
+
+    }
+
+}

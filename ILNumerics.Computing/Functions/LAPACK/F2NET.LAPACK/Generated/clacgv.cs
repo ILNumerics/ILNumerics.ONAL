@@ -1,0 +1,173 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b CLACGV conjugates a complex vector. 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download CLACGV + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/clacgv.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/clacgv.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/clacgv.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE CLACGV( N, X, INCX ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       INTEGER            INCX, N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       COMPLEX            X( * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> CLACGV conjugates a complex vector of length N. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The length of the vector X.  N >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] X 
+//*> \verbatim 
+//*>          X is COMPLEX array, dimension 
+//*>                         (1+(N-1)*abs(INCX)) 
+//*>          On entry, the vector of length N to be conjugated. 
+//*>          On exit, X is overwritten with conjg(X). 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCX 
+//*> \verbatim 
+//*>          INCX is INTEGER 
+//*>          The spacing between successive elements of X. 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup complexOTHERauxiliary 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _png2g84j(ref Int32 _dxpq0xkr, fcomplex* _ta7zuy9k, ref Int32 _1eqjusqc)
+	{
+#region variable declarations
+Int32 _b5p6od9s =  default;
+Int32 _kk45tx7l =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- LAPACK auxiliary routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//* ===================================================================== 
+		//* 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		if (_1eqjusqc == (int)1)
+		{
+			
+			{
+				System.Int32 __81fgg2dlsvn923 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step923 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count923;
+				for (__81fgg2count923 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn923 + __81fgg2step923) / __81fgg2step923)), _b5p6od9s = __81fgg2dlsvn923; __81fgg2count923 != 0; __81fgg2count923--, _b5p6od9s += (__81fgg2step923)) {
+
+				{
+					
+					*(_ta7zuy9k+(_b5p6od9s - 1)) = ILNumerics.F2NET.Intrinsics.CONJG(*(_ta7zuy9k+(_b5p6od9s - 1)) );
+Mark10:;
+					// continue
+				}
+								}			}
+		}
+		else
+		{
+			
+			_kk45tx7l = (int)1;
+			if (_1eqjusqc < (int)0)
+			_kk45tx7l = ((int)1 - ((_dxpq0xkr - (int)1) * _1eqjusqc));
+			{
+				System.Int32 __81fgg2dlsvn924 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step924 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count924;
+				for (__81fgg2count924 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn924 + __81fgg2step924) / __81fgg2step924)), _b5p6od9s = __81fgg2dlsvn924; __81fgg2count924 != 0; __81fgg2count924--, _b5p6od9s += (__81fgg2step924)) {
+
+				{
+					
+					*(_ta7zuy9k+(_kk45tx7l - 1)) = ILNumerics.F2NET.Intrinsics.CONJG(*(_ta7zuy9k+(_kk45tx7l - 1)) );
+					_kk45tx7l = (_kk45tx7l + _1eqjusqc);
+Mark20:;
+					// continue
+				}
+								}			}
+		}
+		
+		return;//* 
+		//*     End of CLACGV 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

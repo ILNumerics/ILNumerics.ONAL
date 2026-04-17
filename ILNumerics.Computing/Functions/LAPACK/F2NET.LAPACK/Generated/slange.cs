@@ -1,0 +1,373 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b SLANGE returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of a general rectangular matrix. 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download SLANGE + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/slange.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/slange.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/slange.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       REAL             FUNCTION SLANGE( NORM, M, N, A, LDA, WORK ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       CHARACTER          NORM 
+//*       INTEGER            LDA, M, N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       REAL               A( LDA, * ), WORK( * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> SLANGE  returns the value of the one norm,  or the Frobenius norm, or 
+//*> the  infinity norm,  or the  element of  largest absolute value  of a 
+//*> real matrix A. 
+//*> \endverbatim 
+//*> 
+//*> \return SLANGE 
+//*> \verbatim 
+//*> 
+//*>    SLANGE = ( max(abs(A(i,j))), NORM = 'M' or 'm' 
+//*>             ( 
+//*>             ( norm1(A),         NORM = '1', 'O' or 'o' 
+//*>             ( 
+//*>             ( normI(A),         NORM = 'I' or 'i' 
+//*>             ( 
+//*>             ( normF(A),         NORM = 'F', 'f', 'E' or 'e' 
+//*> 
+//*> where  norm1  denotes the  one norm of a matrix (maximum column sum), 
+//*> normI  denotes the  infinity norm  of a matrix  (maximum row sum) and 
+//*> normF  denotes the  Frobenius norm of a matrix (square root of sum of 
+//*> squares).  Note that  max(abs(A(i,j)))  is not a consistent matrix norm. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] NORM 
+//*> \verbatim 
+//*>          NORM is CHARACTER*1 
+//*>          Specifies the value to be returned in SLANGE as described 
+//*>          above. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] M 
+//*> \verbatim 
+//*>          M is INTEGER 
+//*>          The number of rows of the matrix A.  M >= 0.  When M = 0, 
+//*>          SLANGE is set to zero. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The number of columns of the matrix A.  N >= 0.  When N = 0, 
+//*>          SLANGE is set to zero. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] A 
+//*> \verbatim 
+//*>          A is REAL array, dimension (LDA,N) 
+//*>          The m by n matrix A. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDA 
+//*> \verbatim 
+//*>          LDA is INTEGER 
+//*>          The leading dimension of the array A.  LDA >= max(M,1). 
+//*> \endverbatim 
+//*> 
+//*> \param[out] WORK 
+//*> \verbatim 
+//*>          WORK is REAL array, dimension (MAX(1,LWORK)), 
+//*>          where LWORK >= M when NORM = 'I'; otherwise, WORK is not 
+//*>          referenced. 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup realGEauxiliary 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static Single _f7jo0cle(FString _gq71rsgu, ref Int32 _ev4xhht5, ref Int32 _dxpq0xkr, Single* _vxfgpup9, ref Int32 _ocv8fk5c, Single* _apig8meb)
+	{
+#region variable declarations
+MemoryHandle lMemoryHandle4892347812399457sjkdflwerls9123lkuahleui = null;
+
+try {
+lMemoryHandle4892347812399457sjkdflwerls9123lkuahleui = ILNumerics.Core.DeviceManagement.DeviceManager.GetDevice(0).New<byte>((ulong)(((int)16 + (int)0)));
+byte* lMemoryCounter4892347812399457sjkdflwerls9123lkuahleui = (byte*)lMemoryHandle4892347812399457sjkdflwerls9123lkuahleui.Pointer;
+Single _f7jo0cle = default;
+Single _kxg5drh2 =  1f;
+Single _d0547bi2 =  0f;
+Int32 _b5p6od9s =  default;
+Int32 _znpjgsef =  default;
+Single _6j9l5fwy =  default;
+Single _lwoxlbje =  default;
+Single _1ajfmh55 =  default;
+Single* _8l4yph2p =  (Single*)lMemoryCounter4892347812399457sjkdflwerls9123lkuahleui; lMemoryCounter4892347812399457sjkdflwerls9123lkuahleui += sizeof(Single) * ((int)2);
+Single* _70n56i0m =  (Single*)lMemoryCounter4892347812399457sjkdflwerls9123lkuahleui; lMemoryCounter4892347812399457sjkdflwerls9123lkuahleui += sizeof(Single) * ((int)2);
+string fLanavab = default;
+#endregion  variable declarations
+_gq71rsgu = _gq71rsgu.Convert(1);
+
+	{
+		//* 
+		//*  -- LAPACK auxiliary routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//* ===================================================================== 
+		//* 
+		//*     .. Parameters .. 
+		//*     .. 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. Local Arrays .. 
+		//*     .. 
+		//*     .. External Subroutines .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		if (ILNumerics.F2NET.Intrinsics.MIN(_ev4xhht5 ,_dxpq0xkr ) == (int)0)
+		{
+			
+			_lwoxlbje = _d0547bi2;
+		}
+		else
+		if (_w8y2rzgy(_gq71rsgu ,"M" ))
+		{
+			//* 
+			//*        Find max(abs(A(i,j))). 
+			//* 
+			
+			_lwoxlbje = _d0547bi2;
+			{
+				System.Int32 __81fgg2dlsvn903 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step903 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count903;
+				for (__81fgg2count903 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn903 + __81fgg2step903) / __81fgg2step903)), _znpjgsef = __81fgg2dlsvn903; __81fgg2count903 != 0; __81fgg2count903--, _znpjgsef += (__81fgg2step903)) {
+
+				{
+					
+					{
+						System.Int32 __81fgg2dlsvn904 = (System.Int32)((int)1);
+						const System.Int32 __81fgg2step904 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count904;
+						for (__81fgg2count904 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn904 + __81fgg2step904) / __81fgg2step904)), _b5p6od9s = __81fgg2dlsvn904; __81fgg2count904 != 0; __81fgg2count904--, _b5p6od9s += (__81fgg2step904)) {
+
+						{
+							
+							_1ajfmh55 = ILNumerics.F2NET.Intrinsics.ABS(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)) );
+							if ((_lwoxlbje < _1ajfmh55) | _lilv8egi(ref _1ajfmh55 ))
+							_lwoxlbje = _1ajfmh55;
+Mark10:;
+							// continue
+						}
+												}					}
+Mark20:;
+					// continue
+				}
+								}			}
+		}
+		else
+		if ((_w8y2rzgy(_gq71rsgu ,"O" )) | (_gq71rsgu == "1"))
+		{
+			//* 
+			//*        Find norm1(A). 
+			//* 
+			
+			_lwoxlbje = _d0547bi2;
+			{
+				System.Int32 __81fgg2dlsvn905 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step905 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count905;
+				for (__81fgg2count905 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn905 + __81fgg2step905) / __81fgg2step905)), _znpjgsef = __81fgg2dlsvn905; __81fgg2count905 != 0; __81fgg2count905--, _znpjgsef += (__81fgg2step905)) {
+
+				{
+					
+					_6j9l5fwy = _d0547bi2;
+					{
+						System.Int32 __81fgg2dlsvn906 = (System.Int32)((int)1);
+						const System.Int32 __81fgg2step906 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count906;
+						for (__81fgg2count906 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn906 + __81fgg2step906) / __81fgg2step906)), _b5p6od9s = __81fgg2dlsvn906; __81fgg2count906 != 0; __81fgg2count906--, _b5p6od9s += (__81fgg2step906)) {
+
+						{
+							
+							_6j9l5fwy = (_6j9l5fwy + ILNumerics.F2NET.Intrinsics.ABS(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)) ));
+Mark30:;
+							// continue
+						}
+												}					}
+					if ((_lwoxlbje < _6j9l5fwy) | _lilv8egi(ref _6j9l5fwy ))
+					_lwoxlbje = _6j9l5fwy;
+Mark40:;
+					// continue
+				}
+								}			}
+		}
+		else
+		if (_w8y2rzgy(_gq71rsgu ,"I" ))
+		{
+			//* 
+			//*        Find normI(A). 
+			//* 
+			
+			{
+				System.Int32 __81fgg2dlsvn907 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step907 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count907;
+				for (__81fgg2count907 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn907 + __81fgg2step907) / __81fgg2step907)), _b5p6od9s = __81fgg2dlsvn907; __81fgg2count907 != 0; __81fgg2count907--, _b5p6od9s += (__81fgg2step907)) {
+
+				{
+					
+					*(_apig8meb+(_b5p6od9s - 1)) = _d0547bi2;
+Mark50:;
+					// continue
+				}
+								}			}
+			{
+				System.Int32 __81fgg2dlsvn908 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step908 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count908;
+				for (__81fgg2count908 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn908 + __81fgg2step908) / __81fgg2step908)), _znpjgsef = __81fgg2dlsvn908; __81fgg2count908 != 0; __81fgg2count908--, _znpjgsef += (__81fgg2step908)) {
+
+				{
+					
+					{
+						System.Int32 __81fgg2dlsvn909 = (System.Int32)((int)1);
+						const System.Int32 __81fgg2step909 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count909;
+						for (__81fgg2count909 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn909 + __81fgg2step909) / __81fgg2step909)), _b5p6od9s = __81fgg2dlsvn909; __81fgg2count909 != 0; __81fgg2count909--, _b5p6od9s += (__81fgg2step909)) {
+
+						{
+							
+							*(_apig8meb+(_b5p6od9s - 1)) = (*(_apig8meb+(_b5p6od9s - 1)) + ILNumerics.F2NET.Intrinsics.ABS(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)) ));
+Mark60:;
+							// continue
+						}
+												}					}
+Mark70:;
+					// continue
+				}
+								}			}
+			_lwoxlbje = _d0547bi2;
+			{
+				System.Int32 __81fgg2dlsvn910 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step910 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count910;
+				for (__81fgg2count910 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn910 + __81fgg2step910) / __81fgg2step910)), _b5p6od9s = __81fgg2dlsvn910; __81fgg2count910 != 0; __81fgg2count910--, _b5p6od9s += (__81fgg2step910)) {
+
+				{
+					
+					_1ajfmh55 = *(_apig8meb+(_b5p6od9s - 1));
+					if ((_lwoxlbje < _1ajfmh55) | _lilv8egi(ref _1ajfmh55 ))
+					_lwoxlbje = _1ajfmh55;
+Mark80:;
+					// continue
+				}
+								}			}
+		}
+		else
+		if ((_w8y2rzgy(_gq71rsgu ,"F" )) | (_w8y2rzgy(_gq71rsgu ,"E" )))
+		{
+			//* 
+			//*        Find normF(A). 
+			//*        SSQ(1) is scale 
+			//*        SSQ(2) is sum-of-squares 
+			//*        For better accuracy, sum each column separately. 
+			//* 
+			
+			*(_8l4yph2p+((int)1 - 1)) = _d0547bi2;
+			*(_8l4yph2p+((int)2 - 1)) = _kxg5drh2;
+			{
+				System.Int32 __81fgg2dlsvn911 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step911 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count911;
+				for (__81fgg2count911 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn911 + __81fgg2step911) / __81fgg2step911)), _znpjgsef = __81fgg2dlsvn911; __81fgg2count911 != 0; __81fgg2count911--, _znpjgsef += (__81fgg2step911)) {
+
+				{
+					
+					*(_70n56i0m+((int)1 - 1)) = _d0547bi2;
+					*(_70n56i0m+((int)2 - 1)) = _kxg5drh2;
+					_0mgnvelf(ref _ev4xhht5 ,(_vxfgpup9+((int)1 - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)),ref Unsafe.AsRef((int)1) ,ref Unsafe.AsRef(*(_70n56i0m+((int)1 - 1))) ,ref Unsafe.AsRef(*(_70n56i0m+((int)2 - 1))) );
+					_4hcafcgj(_8l4yph2p ,_70n56i0m );
+Mark90:;
+					// continue
+				}
+								}			}
+			_lwoxlbje = (*(_8l4yph2p+((int)1 - 1)) * ILNumerics.F2NET.Intrinsics.SQRT(*(_8l4yph2p+((int)2 - 1)) ));
+		}
+		//* 
+		
+		_f7jo0cle = _lwoxlbje;
+		return _f7jo0cle;//* 
+		//*     End of SLANGE 
+		//* 
+		
+	}
+	
+	return _f7jo0cle;
+	} finally { 
+if (lMemoryHandle4892347812399457sjkdflwerls9123lkuahleui != null) ILNumerics.Core.DeviceManagement.DeviceManager.GetDevice(0).MemoryPool.Free(lMemoryHandle4892347812399457sjkdflwerls9123lkuahleui); 
+}
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

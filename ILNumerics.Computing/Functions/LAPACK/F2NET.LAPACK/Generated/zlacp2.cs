@@ -1,0 +1,259 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b ZLACP2 copies all or part of a real two-dimensional array to a complex array. 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download ZLACP2 + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/zlacp2.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/zlacp2.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/zlacp2.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE ZLACP2( UPLO, M, N, A, LDA, B, LDB ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       CHARACTER          UPLO 
+//*       INTEGER            LDA, LDB, M, N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       DOUBLE PRECISION   A( LDA, * ) 
+//*       COMPLEX*16         B( LDB, * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> ZLACP2 copies all or part of a real two-dimensional matrix A to a 
+//*> complex matrix B. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] UPLO 
+//*> \verbatim 
+//*>          UPLO is CHARACTER*1 
+//*>          Specifies the part of the matrix A to be copied to B. 
+//*>          = 'U':      Upper triangular part 
+//*>          = 'L':      Lower triangular part 
+//*>          Otherwise:  All of the matrix A 
+//*> \endverbatim 
+//*> 
+//*> \param[in] M 
+//*> \verbatim 
+//*>          M is INTEGER 
+//*>          The number of rows of the matrix A.  M >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The number of columns of the matrix A.  N >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] A 
+//*> \verbatim 
+//*>          A is DOUBLE PRECISION array, dimension (LDA,N) 
+//*>          The m by n matrix A.  If UPLO = 'U', only the upper trapezium 
+//*>          is accessed; if UPLO = 'L', only the lower trapezium is 
+//*>          accessed. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDA 
+//*> \verbatim 
+//*>          LDA is INTEGER 
+//*>          The leading dimension of the array A.  LDA >= max(1,M). 
+//*> \endverbatim 
+//*> 
+//*> \param[out] B 
+//*> \verbatim 
+//*>          B is COMPLEX*16 array, dimension (LDB,N) 
+//*>          On exit, B = A in the locations specified by UPLO. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDB 
+//*> \verbatim 
+//*>          LDB is INTEGER 
+//*>          The leading dimension of the array B.  LDB >= max(1,M). 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup complex16OTHERauxiliary 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _nz2p9162(FString _9wyre9zc, ref Int32 _ev4xhht5, ref Int32 _dxpq0xkr, Double* _vxfgpup9, ref Int32 _ocv8fk5c, complex* _p9n405a5, ref Int32 _ly9opahg)
+	{
+#region variable declarations
+Int32 _b5p6od9s =  default;
+Int32 _znpjgsef =  default;
+string fLanavab = default;
+#endregion  variable declarations
+_9wyre9zc = _9wyre9zc.Convert(1);
+
+	{
+		//* 
+		//*  -- LAPACK auxiliary routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//*  ===================================================================== 
+		//* 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		if (_w8y2rzgy(_9wyre9zc ,"U" ))
+		{
+			
+			{
+				System.Int32 __81fgg2dlsvn1265 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step1265 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1265;
+				for (__81fgg2count1265 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1265 + __81fgg2step1265) / __81fgg2step1265)), _znpjgsef = __81fgg2dlsvn1265; __81fgg2count1265 != 0; __81fgg2count1265--, _znpjgsef += (__81fgg2step1265)) {
+
+				{
+					
+					{
+						System.Int32 __81fgg2dlsvn1266 = (System.Int32)((int)1);
+						const System.Int32 __81fgg2step1266 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count1266;
+						for (__81fgg2count1266 = System.Math.Max(0, (System.Int32)(((System.Int32)(ILNumerics.F2NET.Intrinsics.MIN(_znpjgsef ,_ev4xhht5 )) - __81fgg2dlsvn1266 + __81fgg2step1266) / __81fgg2step1266)), _b5p6od9s = __81fgg2dlsvn1266; __81fgg2count1266 != 0; __81fgg2count1266--, _b5p6od9s += (__81fgg2step1266)) {
+
+						{
+							
+							*(_p9n405a5+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ly9opahg)) = DCMPLX(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)));
+Mark10:;
+							// continue
+						}
+												}					}
+Mark20:;
+					// continue
+				}
+								}			}//* 
+			
+		}
+		else
+		if (_w8y2rzgy(_9wyre9zc ,"L" ))
+		{
+			
+			{
+				System.Int32 __81fgg2dlsvn1267 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step1267 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1267;
+				for (__81fgg2count1267 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1267 + __81fgg2step1267) / __81fgg2step1267)), _znpjgsef = __81fgg2dlsvn1267; __81fgg2count1267 != 0; __81fgg2count1267--, _znpjgsef += (__81fgg2step1267)) {
+
+				{
+					
+					{
+						System.Int32 __81fgg2dlsvn1268 = (System.Int32)(_znpjgsef);
+						const System.Int32 __81fgg2step1268 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count1268;
+						for (__81fgg2count1268 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn1268 + __81fgg2step1268) / __81fgg2step1268)), _b5p6od9s = __81fgg2dlsvn1268; __81fgg2count1268 != 0; __81fgg2count1268--, _b5p6od9s += (__81fgg2step1268)) {
+
+						{
+							
+							*(_p9n405a5+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ly9opahg)) = DCMPLX(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)));
+Mark30:;
+							// continue
+						}
+												}					}
+Mark40:;
+					// continue
+				}
+								}			}//* 
+			
+		}
+		else
+		{
+			
+			{
+				System.Int32 __81fgg2dlsvn1269 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step1269 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count1269;
+				for (__81fgg2count1269 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn1269 + __81fgg2step1269) / __81fgg2step1269)), _znpjgsef = __81fgg2dlsvn1269; __81fgg2count1269 != 0; __81fgg2count1269--, _znpjgsef += (__81fgg2step1269)) {
+
+				{
+					
+					{
+						System.Int32 __81fgg2dlsvn1270 = (System.Int32)((int)1);
+						const System.Int32 __81fgg2step1270 = (System.Int32)((int)1);
+						System.Int32 __81fgg2count1270;
+						for (__81fgg2count1270 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn1270 + __81fgg2step1270) / __81fgg2step1270)), _b5p6od9s = __81fgg2dlsvn1270; __81fgg2count1270 != 0; __81fgg2count1270--, _b5p6od9s += (__81fgg2step1270)) {
+
+						{
+							
+							*(_p9n405a5+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ly9opahg)) = DCMPLX(*(_vxfgpup9+(_b5p6od9s - 1) + (_znpjgsef - 1) * 1 * (_ocv8fk5c)));
+Mark50:;
+							// continue
+						}
+												}					}
+Mark60:;
+					// continue
+				}
+								}			}
+		}
+		//* 
+		
+		return;//* 
+		//*     End of ZLACP2 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

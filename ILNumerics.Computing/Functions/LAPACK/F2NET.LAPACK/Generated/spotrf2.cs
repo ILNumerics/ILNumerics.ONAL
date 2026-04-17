@@ -1,0 +1,300 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b SPOTRF2 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       RECURSIVE SUBROUTINE SPOTRF2( UPLO, N, A, LDA, INFO ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       CHARACTER          UPLO 
+//*       INTEGER            INFO, LDA, N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       REAL               A( LDA, * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> SPOTRF2 computes the Cholesky factorization of a real symmetric 
+//*> positive definite matrix A using the recursive algorithm. 
+//*> 
+//*> The factorization has the form 
+//*>    A = U**T * U,  if UPLO = 'U', or 
+//*>    A = L  * L**T,  if UPLO = 'L', 
+//*> where U is an upper triangular matrix and L is lower triangular. 
+//*> 
+//*> This is the recursive version of the algorithm. It divides 
+//*> the matrix into four submatrices: 
+//*> 
+//*>        [  A11 | A12  ]  where A11 is n1 by n1 and A22 is n2 by n2 
+//*>    A = [ -----|----- ]  with n1 = n/2 
+//*>        [  A21 | A22  ]       n2 = n-n1 
+//*> 
+//*> The subroutine calls itself to factor A11. Update and scale A21 
+//*> or A12, update A22 then call itself to factor A22. 
+//*> 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] UPLO 
+//*> \verbatim 
+//*>          UPLO is CHARACTER*1 
+//*>          = 'U':  Upper triangle of A is stored; 
+//*>          = 'L':  Lower triangle of A is stored. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The order of the matrix A.  N >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] A 
+//*> \verbatim 
+//*>          A is REAL array, dimension (LDA,N) 
+//*>          On entry, the symmetric matrix A.  If UPLO = 'U', the leading 
+//*>          N-by-N upper triangular part of A contains the upper 
+//*>          triangular part of the matrix A, and the strictly lower 
+//*>          triangular part of A is not referenced.  If UPLO = 'L', the 
+//*>          leading N-by-N lower triangular part of A contains the lower 
+//*>          triangular part of the matrix A, and the strictly upper 
+//*>          triangular part of A is not referenced. 
+//*> 
+//*>          On exit, if INFO = 0, the factor U or L from the Cholesky 
+//*>          factorization A = U**T*U or A = L*L**T. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDA 
+//*> \verbatim 
+//*>          LDA is INTEGER 
+//*>          The leading dimension of the array A.  LDA >= max(1,N). 
+//*> \endverbatim 
+//*> 
+//*> \param[out] INFO 
+//*> \verbatim 
+//*>          INFO is INTEGER 
+//*>          = 0:  successful exit 
+//*>          < 0:  if INFO = -i, the i-th argument had an illegal value 
+//*>          > 0:  if INFO = i, the leading minor of order i is not 
+//*>                positive definite, and the factorization could not be 
+//*>                completed. 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date November 2017 
+//* 
+//*> \ingroup realPOcomputational 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _6ke2g3op(FString _9wyre9zc, ref Int32 _dxpq0xkr, Single* _vxfgpup9, ref Int32 _ocv8fk5c, ref Int32 _gro5yvfo)
+	{
+#region variable declarations
+Single _kxg5drh2 =  1f;
+Single _d0547bi2 =  0f;
+Boolean _l08igmvf =  default;
+Int32 _4o1bt8b1 =  default;
+Int32 _tixk7d1h =  default;
+Int32 _itfnbz60 =  default;
+string fLanavab = default;
+#endregion  variable declarations
+_9wyre9zc = _9wyre9zc.Convert(1);
+
+	{
+		//* 
+		//*  -- LAPACK computational routine (version 3.8.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     November 2017 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//*  ===================================================================== 
+		//* 
+		//*     .. Parameters .. 
+		//*     .. 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		//*     .. External Subroutines .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		//*     Test the input parameters 
+		//* 
+		
+		_gro5yvfo = (int)0;
+		_l08igmvf = _w8y2rzgy(_9wyre9zc ,"U" );
+		if ((!(_l08igmvf)) & (!(_w8y2rzgy(_9wyre9zc ,"L" ))))
+		{
+			
+			_gro5yvfo = (int)-1;
+		}
+		else
+		if (_dxpq0xkr < (int)0)
+		{
+			
+			_gro5yvfo = (int)-2;
+		}
+		else
+		if (_ocv8fk5c < ILNumerics.F2NET.Intrinsics.MAX((int)1 ,_dxpq0xkr ))
+		{
+			
+			_gro5yvfo = (int)-4;
+		}
+		
+		if (_gro5yvfo != (int)0)
+		{
+			
+			_ut9qalzx("SPOTRF2" ,ref Unsafe.AsRef(-(_gro5yvfo)) );
+			return;
+		}
+		//* 
+		//*     Quick return if possible 
+		//* 
+		
+		if (_dxpq0xkr == (int)0)
+		return;//* 
+		//*     N=1 case 
+		//* 
+		
+		if (_dxpq0xkr == (int)1)
+		{
+			//* 
+			//*        Test for non-positive-definiteness 
+			//* 
+			
+			if ((*(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)) <= _d0547bi2) | _lilv8egi(ref Unsafe.AsRef(*(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c))) ))
+			{
+				
+				_gro5yvfo = (int)1;
+				return;
+			}
+			//* 
+			//*        Factor 
+			//* 
+			
+			*(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)) = ILNumerics.F2NET.Intrinsics.SQRT(*(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)) );//* 
+			//*     Use recursive code 
+			//* 
+			
+		}
+		else
+		{
+			
+			_4o1bt8b1 = (_dxpq0xkr / (int)2);
+			_tixk7d1h = (_dxpq0xkr - _4o1bt8b1);//* 
+			//*        Factor A11 
+			//* 
+			
+			_6ke2g3op(_9wyre9zc ,ref _4o1bt8b1 ,(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,ref _itfnbz60 );
+			if (_itfnbz60 != (int)0)
+			{
+				
+				_gro5yvfo = _itfnbz60;
+				return;
+			}
+			//* 
+			//*        Compute the Cholesky factorization A = U**T*U 
+			//* 
+			
+			if (_l08igmvf)
+			{
+				//* 
+				//*           Update and scale A12 
+				//* 
+				
+				_ieiywhin("L" ,"U" ,"T" ,"N" ,ref _4o1bt8b1 ,ref _tixk7d1h ,ref Unsafe.AsRef(_kxg5drh2) ,(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,(_vxfgpup9+((int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c );//* 
+				//*           Update and factor A22 
+				//* 
+				
+				_6r4stbkx(_9wyre9zc ,"T" ,ref _tixk7d1h ,ref _4o1bt8b1 ,ref Unsafe.AsRef(-(_kxg5drh2)) ,(_vxfgpup9+((int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,ref Unsafe.AsRef(_kxg5drh2) ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c );
+				_6ke2g3op(_9wyre9zc ,ref _tixk7d1h ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,ref _itfnbz60 );
+				if (_itfnbz60 != (int)0)
+				{
+					
+					_gro5yvfo = (_itfnbz60 + _4o1bt8b1);
+					return;
+				}
+				//* 
+				//*        Compute the Cholesky factorization A = L*L**T 
+				//* 
+				
+			}
+			else
+			{
+				//* 
+				//*           Update and scale A21 
+				//* 
+				
+				_ieiywhin("R" ,"L" ,"T" ,"N" ,ref _tixk7d1h ,ref _4o1bt8b1 ,ref Unsafe.AsRef(_kxg5drh2) ,(_vxfgpup9+((int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c );//* 
+				//*           Update and factor A22 
+				//* 
+				
+				_6r4stbkx(_9wyre9zc ,"N" ,ref _tixk7d1h ,ref _4o1bt8b1 ,ref Unsafe.AsRef(-(_kxg5drh2)) ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + ((int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,ref Unsafe.AsRef(_kxg5drh2) ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c );
+				_6ke2g3op(_9wyre9zc ,ref _tixk7d1h ,(_vxfgpup9+(_4o1bt8b1 + (int)1 - 1) + (_4o1bt8b1 + (int)1 - 1) * 1 * (_ocv8fk5c)),ref _ocv8fk5c ,ref _itfnbz60 );
+				if (_itfnbz60 != (int)0)
+				{
+					
+					_gro5yvfo = (_itfnbz60 + _4o1bt8b1);
+					return;
+				}
+				
+			}
+			
+		}
+		
+		return;//* 
+		//*     End of SPOTRF2 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

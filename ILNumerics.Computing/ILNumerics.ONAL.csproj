@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>$(NoWarn);CS9192;CS9193</NoWarn>
+    <Configurations>Debug;Release;Debug_ONAL;Release_ONAL</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Arrays\RetArray.cs" />
+    <Compile Remove="Arrays\RetCell.cs" />
+    <Compile Remove="Arrays\RetLogical.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+  </ItemGroup>
+
+</Project>

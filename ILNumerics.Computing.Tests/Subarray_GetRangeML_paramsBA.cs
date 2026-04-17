@@ -1,0 +1,117 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ILNumerics;
+using static ILNumerics.Globals;
+using static ILNumerics.ILMath;
+
+namespace ILNumerics.Core.Tests {
+    [TestClass]
+    public class Subarray_GetRangeML_paramsBA {
+        [TestMethod]
+        public void SubarrayML_ParamsBA8() {
+
+            Array<double> A = counter<double>(1.0, 1.0, 5, 4, 3, StorageOrders.ColumnMajor);
+            Assert.IsTrue((double)A.Subarray(zeros(1), 0, 0, 0, 0, 0, 0, 0) == 1.0); 
+            Assert.IsTrue((double)A.Subarray(-ones(1), -1, -1, -1, -1, -1, -1, -1) == 5*4*3);
+             
+            // ellipsis 
+            Array<double> B = A.Reshape(1, 1, 1, 1, 1, 5, 4, 3);
+            Assert.IsTrue((double)A.Subarray(zeros(1), ellipsis, 1,0,0) == 6);
+            Assert.IsTrue((double)B.Subarray(zeros(1), ellipsis, 1,0,0) == 2);
+
+
+        }
+
+        [TestMethod]
+        public void GetRange_ML_paramsBA_scalars() {
+            Array<double> A = counter<double>(1.0, 1.0, size(5, 4, 3, 1, 1, 1, 1, 1, 1));
+            Assert.IsTrue((double)A.Subarray(ones(1)) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+
+        }
+        [TestMethod]
+        public void GetRange_ML_paramsBA_ellipsis() {
+            Array<double> A = counter<double>(1.0, 1.0, size(5, 4, 3, 1, 1, 1, 1, 1, 1));
+            Assert.IsTrue(A.Subarray(ellipsis).Equals(A));
+            Assert.IsTrue(A.Subarray(ones(1),ellipsis).Equals(A[1,full,full].Reshape(1,4,3,1,1,1,1,1,1)));
+            Assert.IsTrue(A.Subarray(ones(1),0,ellipsis).Equals(A[1,0,full].Reshape(1,1,3,1,1,1,1,1,1)));
+
+            Assert.IsTrue((double)A.Subarray(ones(1),0,0,ellipsis) == 2.0);
+            Assert.IsTrue(A.Subarray(ones(1),0,0,ellipsis).shape.Equals(size(1,1,1,1,1,1,1,1,1)));
+
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, ellipsis) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, ellipsis) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, ellipsis) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, ellipsis) == 2.0);
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, ellipsis) == 2.0); // ellipsis being erased. 
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, ellipsis) == 2.0); // erased 
+            Assert.IsTrue((double)A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ellipsis) == 2.0); // erased 
+            Assert.IsTrue(A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis).S.NumberOfDimensions == 20); // erased 
+            Assert.IsTrue(A.Subarray(ones(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ellipsis).S.NumberOfDimensions == 32); // erased 
+
+
+        }
+
+        [TestMethod]
+        public void GetRange_ML_paramsBA_empty() {
+
+            Array<short> A = new short[0,1];
+            Assert.IsTrue(A.shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full).shape.Equals(size(0, 1))); 
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis).shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(full, ellipsis, ellipsis).shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis).shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis, ellipsis, ellipsis, ellipsis, ellipsis).shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis, ellipsis, ellipsis, full, ellipsis).shape.Equals(size(0, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis, ellipsis, full, full, ellipsis).shape.Equals(size(0, 1, 1)));
+            Assert.IsTrue(A.Subarray(ellipsis, full, ellipsis, ellipsis, full, full, ellipsis, 0, ellipsis).shape.Equals(size(0, 1, 1, 1)));
+
+        }
+
+        [TestMethod]
+        public void GetRange_ML_paramsLong_scalars() {
+            Array<double> A = counter<double>(1.0, 1.0, size(5, 4, 3, 1, 1, 1, 1, 1, 1));
+            Assert.IsTrue((double)A.Subarray(1L) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1L, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+
+        }
+        [TestMethod]
+        public void GetRange_ML_paramsUInt_scalars() {
+            Array<double> A = counter<double>(1.0, 1.0, size(5, 4, 3, 1, 1, 1, 1, 1, 1));
+            Assert.IsTrue((double)A.Subarray(1u) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+            Assert.IsTrue((double)A.Subarray(1u, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) == 2.0);
+
+        }
+
+    }
+}

@@ -1,0 +1,241 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b SLAS2 computes singular values of a 2-by-2 triangular matrix. 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download SLAS2 + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/slas2.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/slas2.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/slas2.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE SLAS2( F, G, H, SSMIN, SSMAX ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       REAL               F, G, H, SSMAX, SSMIN 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> SLAS2  computes the singular values of the 2-by-2 matrix 
+//*>    [  F   G  ] 
+//*>    [  0   H  ]. 
+//*> On return, SSMIN is the smaller singular value and SSMAX is the 
+//*> larger singular value. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] F 
+//*> \verbatim 
+//*>          F is REAL 
+//*>          The (1,1) element of the 2-by-2 matrix. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] G 
+//*> \verbatim 
+//*>          G is REAL 
+//*>          The (1,2) element of the 2-by-2 matrix. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] H 
+//*> \verbatim 
+//*>          H is REAL 
+//*>          The (2,2) element of the 2-by-2 matrix. 
+//*> \endverbatim 
+//*> 
+//*> \param[out] SSMIN 
+//*> \verbatim 
+//*>          SSMIN is REAL 
+//*>          The smaller singular value. 
+//*> \endverbatim 
+//*> 
+//*> \param[out] SSMAX 
+//*> \verbatim 
+//*>          SSMAX is REAL 
+//*>          The larger singular value. 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup OTHERauxiliary 
+//* 
+//*> \par Further Details: 
+//*  ===================== 
+//*> 
+//*> \verbatim 
+//*> 
+//*>  Barring over/underflow, all output quantities are correct to within 
+//*>  a few units in the last place (ulps), even in the absence of a guard 
+//*>  digit in addition/subtraction. 
+//*> 
+//*>  In IEEE arithmetic, the code works correctly if one matrix element is 
+//*>  infinite. 
+//*> 
+//*>  Overflow will not occur unless the largest singular value itself 
+//*>  overflows, or is within a few ulps of overflow. (On machines with 
+//*>  partial overflow, like the Cray, overflow may occur if the largest 
+//*>  singular value is within a factor of 2 of overflow.) 
+//*> 
+//*>  Underflow is harmless if underflow is gradual. Otherwise, results 
+//*>  may correspond to a matrix modified by perturbations of size near 
+//*>  the underflow threshold. 
+//*> \endverbatim 
+//*> 
+//*  ===================================================================== 
+
+	 
+	public static void _2ul9qzme(ref Single _8plnuphw, ref Single _mu73se41, ref Single _ogkjl6gu, ref Single _b7jlbaxv, ref Single _c5hmpmkx)
+	{
+#region variable declarations
+Single _d0547bi2 =  0f;
+Single _kxg5drh2 =  1f;
+Single _5m0mjfxm =  2f;
+Single _j9zcc7cu =  default;
+Single _w0m19i3q =  default;
+Single _8zlj2uvh =  default;
+Single _3crf0qn3 =  default;
+Single _d5yxxwr2 =  default;
+Single _wwhduize =  default;
+Single _5zyly5w3 =  default;
+Single _c0nzba5y =  default;
+Single _nr9hio6a =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- LAPACK auxiliary routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//* 
+		//*  ==================================================================== 
+		//* 
+		//*     .. Parameters .. 
+		//*     .. 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		_d5yxxwr2 = ILNumerics.F2NET.Intrinsics.ABS(_8plnuphw );
+		_c0nzba5y = ILNumerics.F2NET.Intrinsics.ABS(_mu73se41 );
+		_nr9hio6a = ILNumerics.F2NET.Intrinsics.ABS(_ogkjl6gu );
+		_wwhduize = ILNumerics.F2NET.Intrinsics.MIN(_d5yxxwr2 ,_nr9hio6a );
+		_5zyly5w3 = ILNumerics.F2NET.Intrinsics.MAX(_d5yxxwr2 ,_nr9hio6a );
+		if (_wwhduize == _d0547bi2)
+		{
+			
+			_b7jlbaxv = _d0547bi2;
+			if (_5zyly5w3 == _d0547bi2)
+			{
+				
+				_c5hmpmkx = _c0nzba5y;
+			}
+			else
+			{
+				
+				_c5hmpmkx = (ILNumerics.F2NET.Intrinsics.MAX(_5zyly5w3 ,_c0nzba5y ) * ILNumerics.F2NET.Intrinsics.SQRT(_kxg5drh2 + __POW2((ILNumerics.F2NET.Intrinsics.MIN(_5zyly5w3 ,_c0nzba5y ) / ILNumerics.F2NET.Intrinsics.MAX(_5zyly5w3 ,_c0nzba5y ))) ));
+			}
+			
+		}
+		else
+		{
+			
+			if (_c0nzba5y < _5zyly5w3)
+			{
+				
+				_j9zcc7cu = (_kxg5drh2 + (_wwhduize / _5zyly5w3));
+				_w0m19i3q = ((_5zyly5w3 - _wwhduize) / _5zyly5w3);
+				_8zlj2uvh = __POW2((_c0nzba5y / _5zyly5w3));
+				_3crf0qn3 = (_5m0mjfxm / (ILNumerics.F2NET.Intrinsics.SQRT((_j9zcc7cu * _j9zcc7cu) + _8zlj2uvh ) + ILNumerics.F2NET.Intrinsics.SQRT((_w0m19i3q * _w0m19i3q) + _8zlj2uvh )));
+				_b7jlbaxv = (_wwhduize * _3crf0qn3);
+				_c5hmpmkx = (_5zyly5w3 / _3crf0qn3);
+			}
+			else
+			{
+				
+				_8zlj2uvh = (_5zyly5w3 / _c0nzba5y);
+				if (_8zlj2uvh == _d0547bi2)
+				{
+					//* 
+					//*              Avoid possible harmful underflow if exponent range 
+					//*              asymmetric (true SSMIN may not underflow even if 
+					//*              AU underflows) 
+					//* 
+					
+					_b7jlbaxv = ((_wwhduize * _5zyly5w3) / _c0nzba5y);
+					_c5hmpmkx = _c0nzba5y;
+				}
+				else
+				{
+					
+					_j9zcc7cu = (_kxg5drh2 + (_wwhduize / _5zyly5w3));
+					_w0m19i3q = ((_5zyly5w3 - _wwhduize) / _5zyly5w3);
+					_3crf0qn3 = (_kxg5drh2 / (ILNumerics.F2NET.Intrinsics.SQRT(_kxg5drh2 + __POW2((_j9zcc7cu * _8zlj2uvh)) ) + ILNumerics.F2NET.Intrinsics.SQRT(_kxg5drh2 + __POW2((_w0m19i3q * _8zlj2uvh)) )));
+					_b7jlbaxv = ((_wwhduize * _3crf0qn3) * _8zlj2uvh);
+					_b7jlbaxv = (_b7jlbaxv + _b7jlbaxv);
+					_c5hmpmkx = (_c0nzba5y / (_3crf0qn3 + _3crf0qn3));
+				}
+				
+			}
+			
+		}
+		
+		return;//* 
+		//*     End of SLAS2 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

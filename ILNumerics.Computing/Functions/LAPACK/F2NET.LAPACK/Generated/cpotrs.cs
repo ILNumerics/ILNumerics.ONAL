@@ -1,0 +1,254 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b CPOTRS 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download CPOTRS + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/cpotrs.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/cpotrs.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/cpotrs.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE CPOTRS( UPLO, N, NRHS, A, LDA, B, LDB, INFO ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       CHARACTER          UPLO 
+//*       INTEGER            INFO, LDA, LDB, N, NRHS 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       COMPLEX            A( LDA, * ), B( LDB, * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> CPOTRS solves a system of linear equations A*X = B with a Hermitian 
+//*> positive definite matrix A using the Cholesky factorization 
+//*> A = U**H*U or A = L*L**H computed by CPOTRF. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] UPLO 
+//*> \verbatim 
+//*>          UPLO is CHARACTER*1 
+//*>          = 'U':  Upper triangle of A is stored; 
+//*>          = 'L':  Lower triangle of A is stored. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The order of the matrix A.  N >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] NRHS 
+//*> \verbatim 
+//*>          NRHS is INTEGER 
+//*>          The number of right hand sides, i.e., the number of columns 
+//*>          of the matrix B.  NRHS >= 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] A 
+//*> \verbatim 
+//*>          A is COMPLEX array, dimension (LDA,N) 
+//*>          The triangular factor U or L from the Cholesky factorization 
+//*>          A = U**H*U or A = L*L**H, as computed by CPOTRF. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDA 
+//*> \verbatim 
+//*>          LDA is INTEGER 
+//*>          The leading dimension of the array A.  LDA >= max(1,N). 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] B 
+//*> \verbatim 
+//*>          B is COMPLEX array, dimension (LDB,NRHS) 
+//*>          On entry, the right hand side matrix B. 
+//*>          On exit, the solution matrix X. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] LDB 
+//*> \verbatim 
+//*>          LDB is INTEGER 
+//*>          The leading dimension of the array B.  LDB >= max(1,N). 
+//*> \endverbatim 
+//*> 
+//*> \param[out] INFO 
+//*> \verbatim 
+//*>          INFO is INTEGER 
+//*>          = 0:  successful exit 
+//*>          < 0:  if INFO = -i, the i-th argument had an illegal value 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup complexPOcomputational 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _og4szj00(FString _9wyre9zc, ref Int32 _dxpq0xkr, ref Int32 _3nayvi7h, fcomplex* _vxfgpup9, ref Int32 _ocv8fk5c, fcomplex* _p9n405a5, ref Int32 _ly9opahg, ref Int32 _gro5yvfo)
+	{
+#region variable declarations
+fcomplex _kxg5drh2 =   new fcomplex(1f,0f);
+Boolean _l08igmvf =  default;
+string fLanavab = default;
+#endregion  variable declarations
+_9wyre9zc = _9wyre9zc.Convert(1);
+
+	{
+		//* 
+		//*  -- LAPACK computational routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//*  ===================================================================== 
+		//* 
+		//*     .. Parameters .. 
+		//*     .. 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		//*     .. External Subroutines .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		//*     Test the input parameters. 
+		//* 
+		
+		_gro5yvfo = (int)0;
+		_l08igmvf = _w8y2rzgy(_9wyre9zc ,"U" );
+		if ((!(_l08igmvf)) & (!(_w8y2rzgy(_9wyre9zc ,"L" ))))
+		{
+			
+			_gro5yvfo = (int)-1;
+		}
+		else
+		if (_dxpq0xkr < (int)0)
+		{
+			
+			_gro5yvfo = (int)-2;
+		}
+		else
+		if (_3nayvi7h < (int)0)
+		{
+			
+			_gro5yvfo = (int)-3;
+		}
+		else
+		if (_ocv8fk5c < ILNumerics.F2NET.Intrinsics.MAX((int)1 ,_dxpq0xkr ))
+		{
+			
+			_gro5yvfo = (int)-5;
+		}
+		else
+		if (_ly9opahg < ILNumerics.F2NET.Intrinsics.MAX((int)1 ,_dxpq0xkr ))
+		{
+			
+			_gro5yvfo = (int)-7;
+		}
+		
+		if (_gro5yvfo != (int)0)
+		{
+			
+			_ut9qalzx("CPOTRS" ,ref Unsafe.AsRef(-(_gro5yvfo)) );
+			return;
+		}
+		//* 
+		//*     Quick return if possible 
+		//* 
+		
+		if ((_dxpq0xkr == (int)0) | (_3nayvi7h == (int)0))
+		return;//* 
+		
+		if (_l08igmvf)
+		{
+			//* 
+			//*        Solve A*X = B where A = U**H *U. 
+			//* 
+			//*        Solve U**H *X = B, overwriting B with X. 
+			//* 
+			
+			_goj1gzmg("Left" ,"Upper" ,"Conjugate transpose" ,"Non-unit" ,ref _dxpq0xkr ,ref _3nayvi7h ,ref Unsafe.AsRef(_kxg5drh2) ,_vxfgpup9 ,ref _ocv8fk5c ,_p9n405a5 ,ref _ly9opahg );//* 
+			//*        Solve U*X = B, overwriting B with X. 
+			//* 
+			
+			_goj1gzmg("Left" ,"Upper" ,"No transpose" ,"Non-unit" ,ref _dxpq0xkr ,ref _3nayvi7h ,ref Unsafe.AsRef(_kxg5drh2) ,_vxfgpup9 ,ref _ocv8fk5c ,_p9n405a5 ,ref _ly9opahg );
+		}
+		else
+		{
+			//* 
+			//*        Solve A*X = B where A = L*L**H. 
+			//* 
+			//*        Solve L*X = B, overwriting B with X. 
+			//* 
+			
+			_goj1gzmg("Left" ,"Lower" ,"No transpose" ,"Non-unit" ,ref _dxpq0xkr ,ref _3nayvi7h ,ref Unsafe.AsRef(_kxg5drh2) ,_vxfgpup9 ,ref _ocv8fk5c ,_p9n405a5 ,ref _ly9opahg );//* 
+			//*        Solve L**H *X = B, overwriting B with X. 
+			//* 
+			
+			_goj1gzmg("Left" ,"Lower" ,"Conjugate transpose" ,"Non-unit" ,ref _dxpq0xkr ,ref _3nayvi7h ,ref Unsafe.AsRef(_kxg5drh2) ,_vxfgpup9 ,ref _ocv8fk5c ,_p9n405a5 ,ref _ly9opahg );
+		}
+		//* 
+		
+		return;//* 
+		//*     End of CPOTRS 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

@@ -1,0 +1,225 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b ZLASSQ updates a sum of squares represented in scaled form. 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*> \htmlonly 
+//*> Download ZLASSQ + dependencies 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/zlassq.f"> 
+//*> [TGZ]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/zlassq.f"> 
+//*> [ZIP]</a> 
+//*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/zlassq.f"> 
+//*> [TXT]</a> 
+//*> \endhtmlonly 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE ZLASSQ( N, X, INCX, SCALE, SUMSQ ) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       INTEGER            INCX, N 
+//*       DOUBLE PRECISION   SCALE, SUMSQ 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       COMPLEX*16         X( * ) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*> ZLASSQ returns the values scl and ssq such that 
+//*> 
+//*>    ( scl**2 )*ssq = x( 1 )**2 +...+ x( n )**2 + ( scale**2 )*sumsq, 
+//*> 
+//*> where x( i ) = abs( X( 1 + ( i - 1 )*INCX ) ). The value of sumsq is 
+//*> assumed to be at least unity and the value of ssq will then satisfy 
+//*> 
+//*>    1.0 <= ssq <= ( sumsq + 2*n ). 
+//*> 
+//*> scale is assumed to be non-negative and scl returns the value 
+//*> 
+//*>    scl = max( scale, abs( real( x( i ) ) ), abs( aimag( x( i ) ) ) ), 
+//*>           i 
+//*> 
+//*> scale and sumsq must be supplied in SCALE and SUMSQ respectively. 
+//*> SCALE and SUMSQ are overwritten by scl and ssq respectively. 
+//*> 
+//*> The routine makes only one pass through the vector X. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>          The number of elements to be used from the vector X. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] X 
+//*> \verbatim 
+//*>          X is COMPLEX*16 array, dimension (1+(N-1)*INCX) 
+//*>          The vector x as described above. 
+//*>             x( i )  = X( 1 + ( i - 1 )*INCX ), 1 <= i <= n. 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCX 
+//*> \verbatim 
+//*>          INCX is INTEGER 
+//*>          The increment between successive values of the vector X. 
+//*>          INCX > 0. 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] SCALE 
+//*> \verbatim 
+//*>          SCALE is DOUBLE PRECISION 
+//*>          On entry, the value  scale  in the equation above. 
+//*>          On exit, SCALE is overwritten with the value  scl . 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] SUMSQ 
+//*> \verbatim 
+//*>          SUMSQ is DOUBLE PRECISION 
+//*>          On entry, the value  sumsq  in the equation above. 
+//*>          On exit, SUMSQ is overwritten with the value  ssq . 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date December 2016 
+//* 
+//*> \ingroup complex16OTHERauxiliary 
+//* 
+//*  ===================================================================== 
+
+	 
+	public static void _s6ao1et5(ref Int32 _dxpq0xkr, complex* _ta7zuy9k, ref Int32 _1eqjusqc, ref Double _1m44vtuk, ref Double _juhpuov6)
+	{
+#region variable declarations
+Double _d0547bi2 =  0d;
+Int32 _b69ritwm =  default;
+Double _yc8h372p =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- LAPACK auxiliary routine (version 3.7.0) -- 
+		//*  -- LAPACK is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     December 2016 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//* ===================================================================== 
+		//* 
+		//*     .. Parameters .. 
+		//*     .. 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. External Functions .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		//*     .. Executable Statements .. 
+		//* 
+		
+		if (_dxpq0xkr > (int)0)
+		{
+			
+			{
+				System.Int32 __81fgg2dlsvn1353 = (System.Int32)((int)1);
+				System.Int32 __81fgg2step1353 = (System.Int32)(_1eqjusqc);
+				System.Int32 __81fgg2count1353;
+				for (__81fgg2count1353 = System.Math.Max(0, (System.Int32)(((System.Int32)((int)1 + ((_dxpq0xkr - (int)1) * _1eqjusqc)) - __81fgg2dlsvn1353 + __81fgg2step1353) / __81fgg2step1353)), _b69ritwm = __81fgg2dlsvn1353; __81fgg2count1353 != 0; __81fgg2count1353--, _b69ritwm += (__81fgg2step1353)) {
+
+				{
+					
+					_yc8h372p = ILNumerics.F2NET.Intrinsics.ABS(ILNumerics.F2NET.Intrinsics.DBLE(*(_ta7zuy9k+(_b69ritwm - 1)) ) );
+					if ((_yc8h372p > _d0547bi2) | _fk98jwhi(ref _yc8h372p ))
+					{
+						
+						if (_1m44vtuk < _yc8h372p)
+						{
+							
+							_juhpuov6 = ((int)1 + (_juhpuov6 * __POW2((_1m44vtuk / _yc8h372p))));
+							_1m44vtuk = _yc8h372p;
+						}
+						else
+						{
+							
+							_juhpuov6 = (_juhpuov6 + __POW2((_yc8h372p / _1m44vtuk)));
+						}
+						
+					}
+					
+					_yc8h372p = ILNumerics.F2NET.Intrinsics.ABS(ILNumerics.F2NET.Intrinsics.DIMAG(*(_ta7zuy9k+(_b69ritwm - 1)) ) );
+					if ((_yc8h372p > _d0547bi2) | _fk98jwhi(ref _yc8h372p ))
+					{
+						
+						if (_1m44vtuk < _yc8h372p)
+						{
+							
+							_juhpuov6 = ((int)1 + (_juhpuov6 * __POW2((_1m44vtuk / _yc8h372p))));
+							_1m44vtuk = _yc8h372p;
+						}
+						else
+						{
+							
+							_juhpuov6 = (_juhpuov6 + __POW2((_yc8h372p / _1m44vtuk)));
+						}
+						
+					}
+					
+Mark10:;
+					// continue
+				}
+								}			}
+		}
+		//* 
+		
+		return;//* 
+		//*     End of ZLASSQ 
+		//* 
+		
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

@@ -1,0 +1,207 @@
+//////////////////////////////////////////////////////////////////
+//                                                              //
+//  This is an auto - manipulated source file.                  //
+//  Edits inside regions of HYCALPER AUTO GENERATED CODE        //
+//  will be lost and overwritten on the next build!             //
+//                                                              //
+//////////////////////////////////////////////////////////////////
+using ILNumerics.Core.Arrays;
+using ILNumerics.Core.Functions.Builtin.InnerLoops;
+using ILNumerics.Core.Global;
+using ILNumerics.Core.StorageLayer;
+using System;
+using System.Security;
+using System.Threading;
+
+namespace ILNumerics.Core.Functions.Builtin {
+
+    /// <summary>
+    /// Accumulating operator template for reduction operations. No index retrieval. Potentially varying output types.
+    /// </summary>
+    /// <typeparam name="T">Element type.</typeparam>
+    /// <typeparam name="LocalT"></typeparam>
+    /// <typeparam name="InT"></typeparam>
+    /// <typeparam name="OutT"></typeparam>
+    /// <typeparam name="RetT"></typeparam>
+    /// <typeparam name="StorageT"></typeparam>
+    /// <typeparam name="outT">Element type.</typeparam>
+    /// <typeparam name="outLocalT"></typeparam>
+    /// <typeparam name="outInT"></typeparam>
+    /// <typeparam name="outOutT"></typeparam>
+    /// <typeparam name="outRetT"></typeparam>
+    /// <typeparam name="outStorageT"></typeparam>
+    internal abstract unsafe class ReduceOtherTypeBase<T, LocalT, InT, OutT, RetT, StorageT, 
+              outT, outLocalT, outInT, outOutT, outRetT, outStorageT>
+
+            where StorageT : BaseStorage<T, LocalT, InT, OutT, RetT, StorageT>, new()
+            where LocalT : Mutable<T, LocalT, InT, OutT, RetT, StorageT>
+            where InT : Immutable<T, LocalT, InT, OutT, RetT, StorageT>
+            where OutT : Mutable<T, LocalT, InT, OutT, RetT, StorageT>
+            where RetT : Mutable<T, LocalT, InT, OutT, RetT, StorageT>
+            where outStorageT : BaseStorage<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>, new()
+            where outLocalT : Mutable<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>
+            where outInT : Immutable<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>
+            where outOutT : Mutable<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>
+            where outRetT : Mutable<outT, outLocalT, outInT, outOutT, outRetT, outStorageT> {
+
+        #region named constants
+        public readonly uint m_sizeOfT = Storage<T>.SizeOfT;
+        public readonly uint m_sizeOfoutT = Storage<outT>.SizeOfT;
+        #endregion
+
+        /// <summary>
+        /// Reduction operator over elements of <paramref name="A"/>.
+        /// </summary>
+        /// <param name="A">Input array.</param>
+        /// <param name="keepdim">[Optional] True: reduced singleton dimension is not removed from the output (default). False: the new singleton dimension is removed.</param>
+        /// <param name="dim">The dimension to operate along. This is expected to be a valid dimension index.</param>
+        /// <returns>New logical array with the same size as <paramref name="A"/> except the dimension <paramref name="dim"/> which is reduced to 1 (even for empty A!).</returns>
+        /// <remarks><para>The storage order of the array returned depends on the order of <paramref name="A"/>.</para>
+        /// <para>The operation is performed in multiple threads, according to the current settings of <see cref="Settings.MaxNumberThreads"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe outRetT operate(ConcreteArray<T, LocalT, InT, OutT, RetT, StorageT> A, int dim, bool keepdim = true) {
+            
+            if (object.Equals(A, null)) {
+                return null;
+            }
+
+            using var _1 = ReaderLock.Create(A, out var storage);
+
+            if (dim < 0) {
+                dim = (int)storage.S.WorkingDimension(); // always dim >= 0
+            }
+            System.Diagnostics.Debug.Assert(dim >= 0);
+            // don't release A! it might be a RetT!
+            
+            outStorageT ret = BaseStorage<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>.Create();
+
+            var ctx = BaseStorage<outT, outLocalT, outInT, outOutT, outRetT, outStorageT>.Context;
+            long* buffer = ctx.TmpBuffer1000;
+            long* inBSD = (long*)0, outBSD = (long*)0;
+            long outLen = prepareBSDs(storage, ret, &buffer, ref inBSD, ref outBSD, (uint)dim, keepdim);
+
+            if (outLen == 0 || storage.S.NumberOfElements == 0) {
+                // outLen == 0: input has at least one empty dimension which is not the working dim. Output is also empty: 
+                // storage.S.NumberOfElements == 0: input was empty, but the only 0-length dim is the working dim, hence it comes out as singleton:
+                System.Diagnostics.Debug.Assert(outLen >= 0, $"outLen:{outLen}");
+                ret.Handles[0] = ret.New((ulong)Math.Max(outLen, 1), true);
+                (ret as LogicalStorage)?.SetNumberTrues(0);
+                return ret.RetArray;
+            } else {
+                ret.Handles[0] = ret.New((ulong)outLen, false);
+            }
+
+            // strides are ulong* 
+            long dummy; 
+
+            Strided64(
+                (byte*)storage.Handles[0].Pointer, (byte*)ret.Handles[0].Pointer,
+                0, outLen, inBSD, outBSD, &dummy);
+
+            (ret as LogicalStorage)?.SetNumberTrues(-1); 
+
+            return ret.RetArray;
+        }
+
+        /// <summary>
+        /// Prepares the BSDs of the output array and the working bsds for iteration. See Strided64() for the format specification.
+        /// </summary>
+        /// <param name="inStorage">Input storage.</param>
+        /// <param name="outStorage">Output storage.</param>
+        /// <param name="keepdim">Whether the new, reduced, singleton dimension is to be kept from the output. False: remove.</param>
+        /// <param name="buffer">temp buffer with long elements for both temp. working BSDs.</param>
+        /// <param name="inBSD">[Out] the working bsd for the input array.</param>
+        /// <param name="outBSD">[Out] the working bsd for the output array.</param>
+        /// <param name="dim">Index of the accumulating dimension.</param>
+        /// <returns>Number of elements required for the output array.</returns>
+        /// <remarks><para>This operator allows empty dimensions to be 'reduced' to a singleton dimension!</para></remarks>
+        private long prepareBSDs(StorageT inStorage, outStorageT outStorage, long** buffer, ref long* inBSD, ref long* outBSD, uint dim, bool keepdim) {
+            long ret = 1;
+            // prepare out BSD
+            var outStorageBSD = outStorage.S.GetBSD(true);
+            var inStorageBSD = inStorage.S.GetBSD(false);
+            inBSD = *buffer;
+            uint ndims = inStorage.S.NumberOfDimensions;
+            if (dim >= ndims && ndims > 0) {
+                throw new ArgumentException($"This reduction operation requires the index 'dim' of the working dimension to lay inside the range 0 <= dim < S.NumberOfDimensions. Found: {dim}.");
+            }
+            outBSD = inBSD + 2 * ndims + 3;
+            *buffer += 4 * ndims + 6; 
+
+            if (inStorage.S.StorageOrder == StorageOrders.ColumnMajor) {
+                uint workBSDpos = 3;
+                for (int i = 0; i < ndims; i++) {
+                    if (i == dim) {
+                        outStorageBSD[3 + i] = 1;
+                        outStorageBSD[3 + ndims + i] = 0;
+                    } else {
+                        outStorageBSD[3 + i] = inStorageBSD[3 + i];
+                        outStorageBSD[3 + ndims + i] = (outStorageBSD[3 + i] == 1 ? 0 : ret);
+                    }
+                    ret *= outStorageBSD[3 + i];
+                    // bsds for iteration: we copy all 'real' BSDs but sort the axis working dim to the end
+                    if (i == dim) {
+                        inBSD[2 + ndims] = inStorageBSD[3 + i] - 1;
+                        inBSD[2 + 2 * ndims] = inStorageBSD[3 + ndims + i] * m_sizeOfT;
+                        outBSD[2 + ndims] = outStorageBSD[3 + i] - 1;
+                        outBSD[2 + 2 * ndims] = outStorageBSD[3 + ndims + i] * m_sizeOfoutT;
+                    } else {
+                        inBSD[workBSDpos] = inStorageBSD[3 + i] - 1;
+                        inBSD[workBSDpos + ndims] = inStorageBSD[3 + ndims + i] * m_sizeOfT;
+                        outBSD[workBSDpos] = outStorageBSD[3 + i] - 1;
+                        outBSD[workBSDpos + ndims] = outStorageBSD[3 + ndims + i] * m_sizeOfoutT;
+                        workBSDpos++;
+                    }
+                }
+            } else {
+                // row major and other storage orders
+                uint workBSDpos = 3;
+                for (int i = 0; i < ndims; i++) {
+                    if (dim == ndims - 1 - i) {
+                        outStorageBSD[2 + ndims - i] = 1;
+                        outStorageBSD[2 + 2 * ndims - i] = 0;  // singleton dim!!
+                    } else {
+                        outStorageBSD[2 + ndims - i] = inStorageBSD[2 + ndims - i];
+                        outStorageBSD[2 + 2 * ndims - i] = (outStorageBSD[2 + ndims - i] == 1 ? 0 : ret);  // might be singleton dim!
+                    }
+                    ret *= outStorageBSD[2 + ndims - i];
+                    // bsds for iteration: we copy all 'real' BSDs but sort the axis working dim to the end
+                    if (dim == ndims - 1 - i) {
+                        inBSD[2 + ndims] = inStorageBSD[2 + ndims - i] - 1;
+                        inBSD[2 + 2 * ndims] = inStorageBSD[2 + 2 * ndims - i] * m_sizeOfT;
+                        outBSD[2 + ndims] = outStorageBSD[2 + ndims - i] - 1;
+                        outBSD[2 + 2 * ndims] = outStorageBSD[2 + 2 * ndims - i] * m_sizeOfoutT;
+                    } else {
+                        inBSD[workBSDpos] = inStorageBSD[2 + ndims - i] - 1;
+                        inBSD[workBSDpos + ndims] = inStorageBSD[2 + 2 * ndims - i] * m_sizeOfT;
+                        outBSD[workBSDpos] = outStorageBSD[2 + ndims - i] - 1;
+                        outBSD[workBSDpos + ndims] = outStorageBSD[2 + 2 * ndims - i] * m_sizeOfoutT;
+                        workBSDpos++;
+                    }
+                }
+            }
+            outStorageBSD[0] = ndims;
+            outStorageBSD[1] = ret;
+            outStorageBSD[2] = 0;
+            outBSD[0] = ndims;
+            outBSD[1] = ret;
+            outBSD[2] = 0;
+            inBSD[0] = ndims;
+            inBSD[1] = inStorageBSD[1];
+            inBSD[2] = inStorageBSD[2] * m_sizeOfT;
+            if (!keepdim) {
+                outStorage.S.RemoveDimension(dim); 
+            }
+            return ret; 
+        }
+
+        #region abstract interface to be defined by (derived) unary inner functions
+
+        public abstract void Strided64(byte* pSrc, byte* pDest, long start, long len, long* bsdIn, long* bsdOut, long* nrTrues);
+
+        #endregion
+
+    }
+}
+

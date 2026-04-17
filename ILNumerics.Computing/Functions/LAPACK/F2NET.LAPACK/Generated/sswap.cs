@@ -1,0 +1,224 @@
+
+#pragma warning disable CS0164, CS0219, CS0162
+#if !OBSOLETE
+using System;
+using System.Security;
+using System.IO;
+using System.Collections.Generic;
+using ILNumerics.F2NET.Formatting;
+using ILNumerics.Core.MemoryLayer;
+using ILNumerics.Core.Runtime;
+using static ILNumerics.F2NET.Intrinsics; 
+using static ILNumerics.F2NET.Array.Intrinsics; 
+using System.Runtime.CompilerServices; 
+using static ILNumerics.Globals;
+using ILNumerics.F2NET.Array; 
+
+namespace ILNumerics.F2NET { 
+public static unsafe partial class LAPACK {
+//*> \brief \b SSWAP 
+//* 
+//*  =========== DOCUMENTATION =========== 
+//* 
+//* Online html documentation available at 
+//*            http://www.netlib.org/lapack/explore-html/ 
+//* 
+//*  Definition: 
+//*  =========== 
+//* 
+//*       SUBROUTINE SSWAP(N,SX,INCX,SY,INCY) 
+//* 
+//*       .. Scalar Arguments .. 
+//*       INTEGER INCX,INCY,N 
+//*       .. 
+//*       .. Array Arguments .. 
+//*       REAL SX(*),SY(*) 
+//*       .. 
+//* 
+//* 
+//*> \par Purpose: 
+//*  ============= 
+//*> 
+//*> \verbatim 
+//*> 
+//*>    SSWAP interchanges two vectors. 
+//*>    uses unrolled loops for increments equal to 1. 
+//*> \endverbatim 
+//* 
+//*  Arguments: 
+//*  ========== 
+//* 
+//*> \param[in] N 
+//*> \verbatim 
+//*>          N is INTEGER 
+//*>         number of elements in input vector(s) 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] SX 
+//*> \verbatim 
+//*>          SX is REAL array, dimension ( 1 + ( N - 1 )*abs( INCX ) ) 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCX 
+//*> \verbatim 
+//*>          INCX is INTEGER 
+//*>         storage spacing between elements of SX 
+//*> \endverbatim 
+//*> 
+//*> \param[in,out] SY 
+//*> \verbatim 
+//*>          SY is REAL array, dimension ( 1 + ( N - 1 )*abs( INCY ) ) 
+//*> \endverbatim 
+//*> 
+//*> \param[in] INCY 
+//*> \verbatim 
+//*>          INCY is INTEGER 
+//*>         storage spacing between elements of SY 
+//*> \endverbatim 
+//* 
+//*  Authors: 
+//*  ======== 
+//* 
+//*> \author Univ. of Tennessee 
+//*> \author Univ. of California Berkeley 
+//*> \author Univ. of Colorado Denver 
+//*> \author NAG Ltd. 
+//* 
+//*> \date November 2017 
+//* 
+//*> \ingroup single_blas_level1 
+//* 
+//*> \par Further Details: 
+//*  ===================== 
+//*> 
+//*> \verbatim 
+//*> 
+//*>     jack dongarra, linpack, 3/11/78. 
+//*>     modified 12/3/93, array(1) declarations changed to array(*) 
+//*> \endverbatim 
+//*> 
+//*  ===================================================================== 
+
+	 
+	public static void _ahhuglvd(ref Int32 _dxpq0xkr, Single* _s66poh0u, ref Int32 _1eqjusqc, Single* _bljg4w68, ref Int32 _bbrxgmj7)
+	{
+#region variable declarations
+Single _chiot9on =  default;
+Int32 _b5p6od9s =  default;
+Int32 _b69ritwm =  default;
+Int32 _821h5yui =  default;
+Int32 _ev4xhht5 =  default;
+Int32 _97on0doo =  default;
+string fLanavab = default;
+#endregion  variable declarations
+
+	{
+		//* 
+		//*  -- Reference BLAS level1 routine (version 3.8.0) -- 
+		//*  -- Reference BLAS is a software package provided by Univ. of Tennessee,    -- 
+		//*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..-- 
+		//*     November 2017 
+		//* 
+		//*     .. Scalar Arguments .. 
+		//*     .. 
+		//*     .. Array Arguments .. 
+		//*     .. 
+		//* 
+		//*  ===================================================================== 
+		//* 
+		//*     .. Local Scalars .. 
+		//*     .. 
+		//*     .. Intrinsic Functions .. 
+		//*     .. 
+		
+		if (_dxpq0xkr <= (int)0)
+		return;
+		if ((_1eqjusqc == (int)1) & (_bbrxgmj7 == (int)1))
+		{
+			//* 
+			//*       code for both increments equal to 1 
+			//* 
+			//* 
+			//*       clean-up loop 
+			//* 
+			
+			_ev4xhht5 = ILNumerics.F2NET.Intrinsics.MOD(_dxpq0xkr ,(int)3 );
+			if (_ev4xhht5 != (int)0)
+			{
+				
+				{
+					System.Int32 __81fgg2dlsvn732 = (System.Int32)((int)1);
+					const System.Int32 __81fgg2step732 = (System.Int32)((int)1);
+					System.Int32 __81fgg2count732;
+					for (__81fgg2count732 = System.Math.Max(0, (System.Int32)(((System.Int32)(_ev4xhht5) - __81fgg2dlsvn732 + __81fgg2step732) / __81fgg2step732)), _b5p6od9s = __81fgg2dlsvn732; __81fgg2count732 != 0; __81fgg2count732--, _b5p6od9s += (__81fgg2step732)) {
+
+					{
+						
+						_chiot9on = *(_s66poh0u+(_b5p6od9s - 1));
+						*(_s66poh0u+(_b5p6od9s - 1)) = *(_bljg4w68+(_b5p6od9s - 1));
+						*(_bljg4w68+(_b5p6od9s - 1)) = _chiot9on;
+					}
+										}				}
+				if (_dxpq0xkr < (int)3)
+				return;
+			}
+			
+			_97on0doo = (_ev4xhht5 + (int)1);
+			{
+				System.Int32 __81fgg2dlsvn733 = (System.Int32)(_97on0doo);
+				System.Int32 __81fgg2step733 = (System.Int32)((int)3);
+				System.Int32 __81fgg2count733;
+				for (__81fgg2count733 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn733 + __81fgg2step733) / __81fgg2step733)), _b5p6od9s = __81fgg2dlsvn733; __81fgg2count733 != 0; __81fgg2count733--, _b5p6od9s += (__81fgg2step733)) {
+
+				{
+					
+					_chiot9on = *(_s66poh0u+(_b5p6od9s - 1));
+					*(_s66poh0u+(_b5p6od9s - 1)) = *(_bljg4w68+(_b5p6od9s - 1));
+					*(_bljg4w68+(_b5p6od9s - 1)) = _chiot9on;
+					_chiot9on = *(_s66poh0u+(_b5p6od9s + (int)1 - 1));
+					*(_s66poh0u+(_b5p6od9s + (int)1 - 1)) = *(_bljg4w68+(_b5p6od9s + (int)1 - 1));
+					*(_bljg4w68+(_b5p6od9s + (int)1 - 1)) = _chiot9on;
+					_chiot9on = *(_s66poh0u+(_b5p6od9s + (int)2 - 1));
+					*(_s66poh0u+(_b5p6od9s + (int)2 - 1)) = *(_bljg4w68+(_b5p6od9s + (int)2 - 1));
+					*(_bljg4w68+(_b5p6od9s + (int)2 - 1)) = _chiot9on;
+				}
+								}			}
+		}
+		else
+		{
+			//* 
+			//*       code for unequal increments or equal increments not equal 
+			//*         to 1 
+			//* 
+			
+			_b69ritwm = (int)1;
+			_821h5yui = (int)1;
+			if (_1eqjusqc < (int)0)
+			_b69ritwm = ((((-(_dxpq0xkr)) + (int)1) * _1eqjusqc) + (int)1);
+			if (_bbrxgmj7 < (int)0)
+			_821h5yui = ((((-(_dxpq0xkr)) + (int)1) * _bbrxgmj7) + (int)1);
+			{
+				System.Int32 __81fgg2dlsvn734 = (System.Int32)((int)1);
+				const System.Int32 __81fgg2step734 = (System.Int32)((int)1);
+				System.Int32 __81fgg2count734;
+				for (__81fgg2count734 = System.Math.Max(0, (System.Int32)(((System.Int32)(_dxpq0xkr) - __81fgg2dlsvn734 + __81fgg2step734) / __81fgg2step734)), _b5p6od9s = __81fgg2dlsvn734; __81fgg2count734 != 0; __81fgg2count734--, _b5p6od9s += (__81fgg2step734)) {
+
+				{
+					
+					_chiot9on = *(_s66poh0u+(_b69ritwm - 1));
+					*(_s66poh0u+(_b69ritwm - 1)) = *(_bljg4w68+(_821h5yui - 1));
+					*(_bljg4w68+(_821h5yui - 1)) = _chiot9on;
+					_b69ritwm = (_b69ritwm + _1eqjusqc);
+					_821h5yui = (_821h5yui + _bbrxgmj7);
+				}
+								}			}
+		}
+		
+		return;
+	}
+	
+	} // 177
+
+} // end class 
+} // end namespace
+#endif

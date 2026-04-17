@@ -1,0 +1,26 @@
+﻿A simple, convenient and stable way to implement and run arbitrary numerical algorithms on .NET. 
+
+Functionality included: 
+* multi-dimensional array classes with full semantical compatibility to the well known MATLAB and numpy arrays, including all special dense array kinds (nd-arrays, cells, logicals).
+* the common set of low-level elementary array operations and functions offered in these languages.
+* stable transformations of state-of the art linear algebra packages (fully managed LAPACK) and FFT functionality (DFFTPACK). 
+
+License:
+ILNumerics.ONAL is open source and can be used for free on any platform .NET runs on, under the terms of the MIT license.
+
+Performance: 
+This library focuses on functionality and semantics. Not on performance! All performance considerations and features are explicitly excluded from the language / implementation. Algorithms developed with ILNumerics.ONAL automatically conform to the ONAL specification (https://github.com/onal-lang/ONAL) and therefore are subject of a set of novel automatic optimizations, including auto-parallelization, auto-vectorization, and auto-offloading. See: ILNumerics.Accelerator (license terms apply, commercial and non-commercial license plans available). 
+
+Design objectives:
+1. Simplicity over speed
+2. Focus on functionality and semantic
+3. Be robust and future-proof
+4. Allow debug and run everywhere
+
+Properties and characteristics
+While not focussing on performance, ILNumerics.ONAL brings a well defined memory model: 
+* No aliasing in views.
+* Transparent copy-on-write for shared data. 
+* Thread safety. 
+* No size limit for data arrays. 
+* Memory management is hidden from the user (here, this means: 'is left to the GC'). 

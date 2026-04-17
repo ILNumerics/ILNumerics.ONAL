@@ -1,0 +1,834 @@
+//////////////////////////////////////////////////////////////////
+//                                                              //
+//  This is an auto - manipulated source file.                  //
+//  Edits inside regions of HYCALPER AUTO GENERATED CODE        //
+//  will be lost and overwritten on the next build!             //
+//                                                              //
+//////////////////////////////////////////////////////////////////
+using ILNumerics.Core.Arrays;
+using ILNumerics.Core.Global;
+using ILNumerics.Core.StorageLayer;
+using System;
+using System.Security;
+using System.Threading;
+
+/*!HC:TYPELIST:
+<hycalper>
+    <type>
+    <source locate="here">
+        double
+    </source>
+        <destination>double</destination>
+        <destination>float</destination>
+        <destination>long</destination>
+        <destination>ulong</destination>
+        <destination>int</destination>
+        <destination>uint</destination>
+        <destination>short</destination>
+        <destination>ushort</destination>
+        <destination>sbyte</destination>
+        <destination>byte</destination>
+        <destination>complex</destination>
+        <destination>fcomplex</destination>
+    </type>
+    <type>
+    <source locate="after">
+        outArr
+    </source>
+        <destination>double</destination>
+        <destination>float</destination>
+        <destination>long</destination>
+        <destination>ulong</destination>
+        <destination>int</destination>
+        <destination>uint</destination>
+        <destination>short</destination>
+        <destination>ushort</destination>
+        <destination>sbyte</destination>
+        <destination>byte</destination>
+        <destination>complex</destination>
+        <destination>fcomplex</destination>
+    </type>
+    <type>
+    <source locate="here">
+        Double
+    </source>
+        <destination>Double</destination>
+        <destination>Single</destination>
+        <destination>Int64</destination>
+        <destination>UInt64</destination>
+        <destination>Int32</destination>
+        <destination>UInt32</destination>
+        <destination>Int16</destination>
+        <destination>UInt16</destination>
+        <destination>SByte</destination>
+        <destination>Byte</destination>
+        <destination>Complex</destination>
+        <destination>FComplex</destination>
+    </type>
+    <type>
+        <source locate="after">
+            funcname
+        </source>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+        <destination>squared</destination>
+    </type>
+    <type>
+        <source locate="after" endmark=" ()">
+            operatorfunc
+        </source>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+        <destination>PrivateHelper.squared</destination>
+    </type>
+    <type>
+        <source locate="after" endmark=" :,*.()">
+            innerloopname
+        </source>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+        <destination>Squared</destination>
+    </type>
+    <type>
+        <source locate="nextline">
+            implacedisabled
+        </source>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+        <destination><![CDATA[#if IMPLACE_DISABLED]]></destination>
+    </type>
+    <type>
+        <source locate="comment">
+            summary
+        </source>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+        <destination>For input array A calculates A * A.</destination>
+    </type>
+    <type>
+        <source locate="comment">
+            returns
+        </source>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+        <destination><![CDATA[Array of the same shape as <paramref name="A"/>]]>.</destination>
+    </type>
+</hycalper>
+*/
+
+namespace ILNumerics.Core.Functions.Builtin {
+
+    #region HYCALPER LOOPSTART UNARY_OPERATOR_TEMPLATE@Functions\Builtin\UnaryOperators\Sin.cs
+
+    #endregion HYCALPER LOOPEND
+#region HYCALPER AUTO GENERATED CODE
+// DO NOT EDIT INSIDE THIS REGION !! CHANGES WILL BE LOST !! 
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<fcomplex> squared(BaseArray<fcomplex> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.FComplex.Instance.operate(A as ConcreteArray<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class FComplex :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>>
+#else
+            UnaryBaseOutOfPlace<fcomplex, Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>, 
+                               
+                               fcomplex , Array<fcomplex>, InArray<fcomplex>, OutArray<fcomplex>, Array<fcomplex>, Storage<fcomplex>
+            >
+#endif
+            {
+
+                internal static FComplex Instance = new FComplex();
+
+                
+                public unsafe override void Strided64(Storage<fcomplex> A, Storage<fcomplex> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    fcomplex* outP = (fcomplex*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    fcomplex* inP = (fcomplex*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<complex> squared(BaseArray<complex> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Complex.Instance.operate(A as ConcreteArray<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Complex :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>>
+#else
+            UnaryBaseOutOfPlace<complex, Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>, 
+                               
+                               complex , Array<complex>, InArray<complex>, OutArray<complex>, Array<complex>, Storage<complex>
+            >
+#endif
+            {
+
+                internal static Complex Instance = new Complex();
+
+                
+                public unsafe override void Strided64(Storage<complex> A, Storage<complex> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    complex* outP = (complex*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    complex* inP = (complex*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<byte> squared(BaseArray<byte> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Byte.Instance.operate(A as ConcreteArray<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Byte :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>>
+#else
+            UnaryBaseOutOfPlace<byte, Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>, 
+                               
+                               byte , Array<byte>, InArray<byte>, OutArray<byte>, Array<byte>, Storage<byte>
+            >
+#endif
+            {
+
+                internal static Byte Instance = new Byte();
+
+                
+                public unsafe override void Strided64(Storage<byte> A, Storage<byte> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    byte* outP = (byte*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    byte* inP = (byte*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<sbyte> squared(BaseArray<sbyte> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.SByte.Instance.operate(A as ConcreteArray<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class SByte :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>>
+#else
+            UnaryBaseOutOfPlace<sbyte, Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>, 
+                               
+                               sbyte , Array<sbyte>, InArray<sbyte>, OutArray<sbyte>, Array<sbyte>, Storage<sbyte>
+            >
+#endif
+            {
+
+                internal static SByte Instance = new SByte();
+
+                
+                public unsafe override void Strided64(Storage<sbyte> A, Storage<sbyte> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    sbyte* outP = (sbyte*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    sbyte* inP = (sbyte*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ushort> squared(BaseArray<ushort> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.UInt16.Instance.operate(A as ConcreteArray<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class UInt16 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>>
+#else
+            UnaryBaseOutOfPlace<ushort, Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>, 
+                               
+                               ushort , Array<ushort>, InArray<ushort>, OutArray<ushort>, Array<ushort>, Storage<ushort>
+            >
+#endif
+            {
+
+                internal static UInt16 Instance = new UInt16();
+
+                
+                public unsafe override void Strided64(Storage<ushort> A, Storage<ushort> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ushort* outP = (ushort*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    ushort* inP = (ushort*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<short> squared(BaseArray<short> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Int16.Instance.operate(A as ConcreteArray<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Int16 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>>
+#else
+            UnaryBaseOutOfPlace<short, Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>, 
+                               
+                               short , Array<short>, InArray<short>, OutArray<short>, Array<short>, Storage<short>
+            >
+#endif
+            {
+
+                internal static Int16 Instance = new Int16();
+
+                
+                public unsafe override void Strided64(Storage<short> A, Storage<short> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    short* outP = (short*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    short* inP = (short*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<uint> squared(BaseArray<uint> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.UInt32.Instance.operate(A as ConcreteArray<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class UInt32 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>>
+#else
+            UnaryBaseOutOfPlace<uint, Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>, 
+                               
+                               uint , Array<uint>, InArray<uint>, OutArray<uint>, Array<uint>, Storage<uint>
+            >
+#endif
+            {
+
+                internal static UInt32 Instance = new UInt32();
+
+                
+                public unsafe override void Strided64(Storage<uint> A, Storage<uint> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    uint* outP = (uint*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    uint* inP = (uint*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<int> squared(BaseArray<int> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Int32.Instance.operate(A as ConcreteArray<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Int32 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>>
+#else
+            UnaryBaseOutOfPlace<int, Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>, 
+                               
+                               int , Array<int>, InArray<int>, OutArray<int>, Array<int>, Storage<int>
+            >
+#endif
+            {
+
+                internal static Int32 Instance = new Int32();
+
+                
+                public unsafe override void Strided64(Storage<int> A, Storage<int> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    int* outP = (int*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    int* inP = (int*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<ulong> squared(BaseArray<ulong> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.UInt64.Instance.operate(A as ConcreteArray<ulong, Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class UInt64 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<ulong, Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>>
+#else
+            UnaryBaseOutOfPlace<ulong, Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>, 
+                               
+                               ulong , Array<ulong>, InArray<ulong>, OutArray<ulong>, Array<ulong>, Storage<ulong>
+            >
+#endif
+            {
+
+                internal static UInt64 Instance = new UInt64();
+
+                
+                public unsafe override void Strided64(Storage<ulong> A, Storage<ulong> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    ulong* outP = (ulong*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    ulong* inP = (ulong*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<long> squared(BaseArray<long> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Int64.Instance.operate(A as ConcreteArray<long, Array<long>, InArray<long>, OutArray<long>, Array<long>, Storage<long>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Int64 :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<long, Array<long>, InArray<long>, OutArray<long>, Array<long>, Storage<long>>
+#else
+            UnaryBaseOutOfPlace<long, Array<long>, InArray<long>, OutArray<long>, Array<long>, Storage<long>, 
+                               
+                               long , Array<long>, InArray<long>, OutArray<long>, Array<long>, Storage<long>
+            >
+#endif
+            {
+
+                internal static Int64 Instance = new Int64();
+
+                
+                public unsafe override void Strided64(Storage<long> A, Storage<long> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    long* outP = (long*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    long* inP = (long*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<float> squared(BaseArray<float> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Single.Instance.operate(A as ConcreteArray<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Single :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>>
+#else
+            UnaryBaseOutOfPlace<float, Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>, 
+                               
+                               float , Array<float>, InArray<float>, OutArray<float>, Array<float>, Storage<float>
+            >
+#endif
+            {
+
+                internal static Single Instance = new Single();
+
+                
+                public unsafe override void Strided64(Storage<float> A, Storage<float> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    float* outP = (float*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    float* inP = (float*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+   
+    internal static partial class MathInternal {
+
+        /// <summary>For input array A calculates A * A.</summary>
+        /// <param name="A">Input array.</param>
+        /// <returns>Array of the same shape as <paramref name="A"/>.</returns>
+        /// <remarks><para>The operation is efficiently performed on all elements of the input array <paramref name="A"/>.</para>
+        /// <para>The input array <paramref name="A"/> is not altered.</para></remarks>
+        
+        internal unsafe static Array<double> squared(BaseArray<double> A) {
+
+            if (object.Equals(A, null)) {
+                return null;
+            }
+            var ret = InnerLoops.Squared.Double.Instance.operate(A as ConcreteArray<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>>);
+            return ret; 
+        }
+    }
+    namespace InnerLoops {
+
+        namespace Squared {
+
+            
+            internal sealed class Double :
+            #if IMPLACE_DISABLED
+            UnaryBaseInPlace<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>>
+#else
+            UnaryBaseOutOfPlace<double, Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>, 
+                               
+                               double , Array<double>, InArray<double>, OutArray<double>, Array<double>, Storage<double>
+            >
+#endif
+            {
+
+                internal static Double Instance = new Double();
+
+                
+                public unsafe override void Strided64(Storage<double> A, Storage<double> Out) {
+
+                    // Out is iterated continously, A may be strided. We use long indices, no inplace, no cache awareness, no unrolling. 
+                    var outI = 0;
+                   
+                    double* outP = (double*)Out.Handles[0].Pointer + Out.S.BaseOffset;
+                    double* inP = (double*)A.Handles[0].Pointer;  // base offset is included in Size.Iterator! 
+                    System.Diagnostics.Debug.Assert(Out.S.IsContinuous); 
+                    foreach (var i in A.S.Iterator(Out.S.StorageOrder)) { 
+                        outP[outI] = PrivateHelper.squared(inP[i])  /**/; outI++; 
+                    }
+
+                }
+            }
+        }
+    }
+
+#endregion HYCALPER AUTO GENERATED CODE
+    internal static partial class PrivateHelper {
+
+        internal static double squared(double a) => a * a;
+        internal static float squared(float a) => a * a;
+        internal static long squared(long a) => a * a;
+        internal static ulong squared(ulong a) => a * a;
+        internal static short squared(short a) => (short)(a * a);
+        internal static ushort squared(ushort a) => (ushort)(a * a);
+        internal static sbyte squared(sbyte a) => (sbyte)(a * a);
+        internal static byte squared(byte a) => (byte)(a * a);
+        internal static fcomplex squared(fcomplex a) => a * a;
+        internal static complex squared(complex a) => a * a;
+        internal static int squared(int a) => a * a;
+        internal static uint squared(uint a) => a * a;
+
+    }
+}
