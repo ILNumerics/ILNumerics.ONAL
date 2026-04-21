@@ -50,7 +50,7 @@ jobs:
           
           FILES_MODIFIED=0
           
-          find . -name "*.cs" -type f | while read file; do
+          while IFS= read -r file; do
             # Skip files that already have a license header
             if grep -q "MIT License\|Copyright.*ILNumerics" "$file"; then
               echo "Skipping $file - already has license header"
@@ -64,7 +64,7 @@ jobs:
               echo "Added license header to $file"
               ((FILES_MODIFIED++))
             fi
-          done
+          done < <(find . -name "*.cs" -type f)
           
           echo "Modified $FILES_MODIFIED files"
 
