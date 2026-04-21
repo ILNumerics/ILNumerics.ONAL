@@ -23,53 +23,50 @@ jobs:
           git checkout -b add-mit-license-headers
 
       - name: Add MIT license headers
-        shell: pwsh
         run: |
-          $licenseHeader = @'
-// MIT License
-// 
-// Copyright (c) 2026 ILNumerics GmbH
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-'@
-
-          $filesModified = 0
-          $csharpFiles = Get-ChildItem -Path . -Filter "*.cs" -Recurse -ErrorAction SilentlyContinue
+          #!/bin/bash
+          LICENSE_HEADER="// MIT License
+          //
+          // Copyright (c) 2026 ILNumerics GmbH
+          //
+          // Permission is hereby granted, free of charge, to any person obtaining a copy
+          // of this software and associated documentation files (the \"Software\"), to deal
+          // in the Software without restriction, including without limitation the rights
+          // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+          // copies of the Software, and to permit persons to whom the Software is
+          // furnished to do so, subject to the following conditions:
+          //
+          // The above copyright notice and this permission notice shall be included in all
+          // copies or substantial portions of the Software.
+          //
+          // THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+          // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+          // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+          // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+          // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+          // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+          // SOFTWARE.
+          "
           
-          foreach ($file in $csharpFiles) {
-              $content = Get-Content -Path $file.FullName -Raw
-              
-              # Skip files that already have a license header
-              if ($content -match "MIT License|Copyright.*ILNumerics") {
-                  Write-Host "Skipping $($file.FullName) - already has license header"
-                  continue
-              }
-              
-              # Add license header to the beginning of the file
-              $newContent = $licenseHeader + $content
-              Set-Content -Path $file.FullName -Value $newContent -NoNewline
-              $filesModified++
-              Write-Host "Added license header to $($file.FullName)"
-          }
+          FILES_MODIFIED=0
           
-          Write-Host "Modified $filesModified files"
+          find . -name "*.cs" -type f | while read file; do
+            # Skip files that already have a license header
+            if grep -q "MIT License\|Copyright.*ILNumerics" "$file"; then
+              echo "Skipping $file - already has license header"
+            else
+              # Create temporary file with license header prepended
+              temp_file=$(mktemp)
+              echo "$LICENSE_HEADER" > "$temp_file"
+              echo "" >> "$temp_file"
+              cat "$file" >> "$temp_file"
+              mv "$temp_file" "$file"
+              echo "Added license header to $file"
+              ((FILES_MODIFIED++))
+            fi
+          done
+          
+          echo "Modified $FILES_MODIFIED files"
 
       - name: Commit changes
         run: |
@@ -85,9 +82,8 @@ jobs:
           git push origin add-mit-license-headers --force-with-lease
 
       - name: Create Pull Request
-        uses: actions/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Add MIT license headers to all C# source files
           title: Add MIT license headers to all C# source files
           body: |
