@@ -1,3 +1,24 @@
+﻿// MIT License
+// 
+// Copyright (c) 2026 ILNumerics GmbH
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //////////////////////////////////////////////////////////////////
 //                                                              //
 //  This is an auto - manipulated source file.                  //
@@ -27,7 +48,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <remarks><para>This creates and initializes a new array in undefined element storage order. 
         /// The size of the new array corresponds to <paramref name="size"/>. Each entry in <paramref name="size"/> 
         /// provides the lengths of the corresponding dimension in the new array. Note, that this overload does 
-        /// not create a square matrix � even if <paramref name="size"/> contains a single element only.</para>
+        /// not create a square matrix – even if <paramref name="size"/> contains a single element only.</para>
         /// </remarks>
         /// <seealso cref="zeros{T}(long, long, StorageOrders)"/>
         /// <seealso cref="array{T}(T, long, StorageOrders)"/>

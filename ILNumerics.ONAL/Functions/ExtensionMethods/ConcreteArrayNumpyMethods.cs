@@ -1,3 +1,24 @@
+﻿// MIT License
+// 
+// Copyright (c) 2026 ILNumerics GmbH
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //////////////////////////////////////////////////////////////////
 //                                                              //
 //  This is an auto - manipulated source file.                  //
@@ -825,9 +846,9 @@ namespace ILNumerics {
          *  Return a copy of the array collapsed into one dimension.
             Parameters:	
 
-            order : �C�, �F�, �A�, �K�, optional
+            order : ï¿½Cï¿½, ï¿½Fï¿½, ï¿½Aï¿½, ï¿½Kï¿½, optional
 
-            �C� means to flatten in row-major (C-style) order. �F� means to flatten in column-major (Fortran- style) order. �A� means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise. �K� means to flatten a in the order the elements occur in memory. The default is �C�.
+            ï¿½Cï¿½ means to flatten in row-major (C-style) order. ï¿½Fï¿½ means to flatten in column-major (Fortran- style) order. ï¿½Aï¿½ means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise. ï¿½Kï¿½ means to flatten a in the order the elements occur in memory. The default is ï¿½Cï¿½.
 
             Returns:	
 

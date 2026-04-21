@@ -1,3 +1,24 @@
+﻿// MIT License
+// 
+// Copyright (c) 2026 ILNumerics GmbH
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 
 using System; 
 using System.Globalization;
@@ -6332,7 +6353,7 @@ public static Logical logical(InArray<Int64> size, Nullable<StorageOrders> order
 /// <param name="end">Last exponent value.</param>
 /// <returns>Row vector with 50 elements logarithmically spaced between 10<sup>start</sup> and 10<sup>end</sup>.</returns>
 /// <remarks><para>If <paramref name="end" /> equals <see cref="F:ILNumerics.Globals.pi" /> than the upper interval for the
-/// values returned is π and the range is: [10^start...π]</para></remarks>
+/// values returned is Ï€ and the range is: [10^start...Ï€]</para></remarks>
 public static Array<Double> logspace(InArray<Double> start, InArray<Double> end) { return ILNumerics.Core.Functions.Builtin.MathInternal.logspace(start, end);}
 /// <summary>
 /// Create logarithmically spaced row vector.
@@ -6342,7 +6363,7 @@ public static Array<Double> logspace(InArray<Double> start, InArray<Double> end)
 /// <param name="length">Number of elements to create.</param>
 /// <returns>Row vector with 'length' elements logarithmically spaced between 10<sup>start</sup> and 10<sup>end</sup>.</returns>
 /// <remarks><para>If <paramref name="end" /> equals <see cref="F:ILNumerics.Globals.pi" /> than the upper interval for the
-/// values returned is π and the range is: [10^start...π].</para><para>If <paramref name="length" /> is 1 than a single value of 10<sup>end</sup> is returned.</para></remarks>
+/// values returned is Ï€ and the range is: [10^start...Ï€].</para><para>If <paramref name="length" /> is 1 than a single value of 10<sup>end</sup> is returned.</para></remarks>
 public static Array<Double> logspace(InArray<Double> start, InArray<Double> end, InArray<Double> length) { return ILNumerics.Core.Functions.Builtin.MathInternal.logspace(start, end, length);}
 /// <summary>
 /// Binary, elementwise, broadcasting operation: BitShiftLeft.
@@ -12950,7 +12971,7 @@ public static Logical xor(BaseArray<Boolean> A, BaseArray<Boolean> B) { return I
 /// <remarks><para>This creates and initializes a new array in undefined element storage order.
 /// The size of the new array corresponds to <paramref name="size" />. Each entry in <paramref name="size" />
 /// provides the lengths of the corresponding dimension in the new array. Note, that this overload does
-/// not create a square matrix – even if <paramref name="size" /> contains a single element only.</para></remarks>
+/// not create a square matrix â€“ even if <paramref name="size" /> contains a single element only.</para></remarks>
 /// <seealso cref="M:ILNumerics.Core.Functions.Builtin.MathInternal.zeros``1(System.Int64,System.Int64,ILNumerics.StorageOrders)" />
 /// <seealso cref="M:ILNumerics.Core.Functions.Builtin.MathInternal.array``1(``0,System.Int64,ILNumerics.StorageOrders)" />
 /// <seealso cref="M:ILNumerics.Core.Functions.Builtin.MathInternal.vector``1(``0,``0,``0,``0,``0,``0,``0,``0,``0,``0)" />

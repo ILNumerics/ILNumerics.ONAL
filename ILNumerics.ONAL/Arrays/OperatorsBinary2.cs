@@ -1,3 +1,24 @@
+﻿// MIT License
+// 
+// Copyright (c) 2026 ILNumerics GmbH
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //////////////////////////////////////////////////////////////////
 //                                                              //
 //  This is an auto - manipulated source file.                  //
@@ -56,8 +77,8 @@ namespace ILNumerics.Core.Arrays {
                 returns
             </source>
             <destination><![CDATA[Logical array with the result of performing A &lt; B.]]></destination>
-            <destination><![CDATA[Logical array with the result of performing A ≥ B.]]></destination>
-            <destination><![CDATA[Logical array with the result of performing A ≤ B.]]></destination>
+            <destination><![CDATA[Logical array with the result of performing A â‰¥ B.]]></destination>
+            <destination><![CDATA[Logical array with the result of performing A â‰¤ B.]]></destination>
             <destination><![CDATA[Logical array with the result of performing A &gt; B.]]></destination>
             <destination><![CDATA[Logical array with the result of performing A != B.]]></destination>
         </type>
@@ -400,7 +421,7 @@ namespace ILNumerics.Core.Arrays {
         /// <summary>Elementwise 'lower or equal'  operator on two arrays.</summary>
         /// <param name="A">The first array.</param>
         /// <param name="B">The second array.</param>
-        /// <returns>Logical array with the result of performing A ≤ B.</returns>
+        /// <returns>Logical array with the result of performing A â‰¤ B.</returns>
         /// <remarks><para>General notes on binary broadcasting operators: The operation is performed 
         /// elementwise on corresponding elements of <paramref name="A"/> and <paramref name="B"/>. The sizes of both 
         /// input arrays must be broadcastable and determine the size of the resulting array. Note, that 
@@ -496,7 +517,7 @@ namespace ILNumerics.Core.Arrays {
         /// <summary>Elementwise 'greater or equal'  operator on two arrays.</summary>
         /// <param name="A">The first array.</param>
         /// <param name="B">The second array.</param>
-        /// <returns>Logical array with the result of performing A ≥ B.</returns>
+        /// <returns>Logical array with the result of performing A â‰¥ B.</returns>
         /// <remarks><para>General notes on binary broadcasting operators: The operation is performed 
         /// elementwise on corresponding elements of <paramref name="A"/> and <paramref name="B"/>. The sizes of both 
         /// input arrays must be broadcastable and determine the size of the resulting array. Note, that 

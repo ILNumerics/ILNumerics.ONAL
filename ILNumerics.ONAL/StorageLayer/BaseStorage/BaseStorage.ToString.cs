@@ -1,3 +1,24 @@
+﻿// MIT License
+// 
+// Copyright (c) 2026 ILNumerics GmbH
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //////////////////////////////////////////////////////////////////
 //                                                              //
 //  This is an auto - manipulated source file.                  //
@@ -137,7 +158,7 @@ namespace ILNumerics.Core.StorageLayer {
         
         unsafe string BoolGetElement(IntPtr acc, uint len, double scaling, int columnWidth) {
             byte element = *((byte*)Handles[0].Pointer + Size.GetSeqIndex((uint*)acc, Size.NumberOfDimensions));
-            var sElement = (element != 0) ? " ▮" : " ▯";
+            var sElement = (element != 0) ? " â–®" : " â–¯";
             return sElement; 
         }
         #endregion
@@ -1146,7 +1167,7 @@ namespace ILNumerics.Core.StorageLayer {
                 if (element == null) {
                     sElement = "[null]";
                 } else if (element.Length > 25) {
-                    sElement = element.Substring(0, 24) + "…";
+                    sElement = element.Substring(0, 24) + "â€¦";
                 } else {
                     sElement = element;
                 }
@@ -1174,7 +1195,7 @@ namespace ILNumerics.Core.StorageLayer {
                 // show this for 2 leading dimensions
                 for (uint d0 = 0; d0 < Size[0]; d0++) {
                     if (++rowsCount > maxRows) {
-                        s.Append(Environment.NewLine + "(… more rows exist!)");
+                        s.Append(Environment.NewLine + "(â€¦ more rows exist!)");
                         return s;
                     }
                     if (s.Length > 0) s.Append(Environment.NewLine);
@@ -1186,13 +1207,13 @@ namespace ILNumerics.Core.StorageLayer {
                         if (element == null) {
                             sElement = "[null]".PadLeft(15); 
                         } else if (element.Length > 13) {
-                            sElement = "  " + element.Substring(0, 12) + "…"; 
+                            sElement = "  " + element.Substring(0, 12) + "â€¦"; 
                         } else {
                             sElement = element.PadLeft(15); 
                         }
                         curLineLength += (uint)sElement.Length;
-                        if (curLineLength > maxCharsPerRow - " …".Length) {
-                            s.Append(" …");
+                        if (curLineLength > maxCharsPerRow - " â€¦".Length) {
+                            s.Append(" â€¦");
                             break;
                         } else {
                             s.Append(sElement);
@@ -1275,7 +1296,7 @@ namespace ILNumerics.Core.StorageLayer {
                 for (uint d0 = 0; d0 < Size[0]; d0++) {
                     if (++rowsCount > maxRows) {
                         ret.Add(s.ToString()); s.Clear();
-                        ret.Add("(… more rows exist!)");
+                        ret.Add("(â€¦ more rows exist!)");
                         return ret;
                     }
                     if (s.Length > 0) {
@@ -1292,8 +1313,8 @@ namespace ILNumerics.Core.StorageLayer {
                             sElement = $"{{{element}}}".PadLeft(25); 
                         }
                         curLineLength += (uint)sElement.Length;
-                        if (curLineLength > maxCharsPerRow - " …".Length) {
-                            s.Append(" …");
+                        if (curLineLength > maxCharsPerRow - " â€¦".Length) {
+                            s.Append(" â€¦");
                             break;
                         } else {
                             s.Append(sElement);
