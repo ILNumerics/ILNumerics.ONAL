@@ -1,0 +1,57 @@
+name: Build test and publish NuGet package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+
+      # Fails workflow immediately if any unit test fails
+      - name: Run unit tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+
+      # Only reached if tests passed
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build --output artifacts
+
+
+      - name: NuGet login (OIDC → temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ILNumerics
+
+
+      # Only reached if all previous steps succeeded
+      - name: Publish package
+        shell: bash
+        run: |
+          dotnet nuget push "artifacts/ILNumerics.ONAL.*.nupkg" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
