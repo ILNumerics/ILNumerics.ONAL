@@ -77,8 +77,8 @@ namespace ILNumerics.Core.Arrays {
                 returns
             </source>
             <destination><![CDATA[Logical array with the result of performing A &lt; B.]]></destination>
-            <destination><![CDATA[Logical array with the result of performing A â‰¥ B.]]></destination>
-            <destination><![CDATA[Logical array with the result of performing A â‰¤ B.]]></destination>
+            <destination><![CDATA[Logical array with the result of performing A &gt;= B.]]></destination>
+            <destination><![CDATA[Logical array with the result of performing A &lt;= B.]]></destination>
             <destination><![CDATA[Logical array with the result of performing A &gt; B.]]></destination>
             <destination><![CDATA[Logical array with the result of performing A != B.]]></destination>
         </type>
@@ -439,7 +439,7 @@ namespace ILNumerics.Core.Arrays {
         /// precautions exist and the result of the binary operation is exactly the same as for operating the elements as System types (just like in numpy itself).</item>
         /// </list>
         /// </para>
-        /// <para>The input element type T1 must be a <i>numeric</i> value type, including <see cref="complex"/> and <see cref="fcomplex"/>. Some binary operations are also defined for string elements: equals '<=' and not-equals '!='.</para>
+        /// <para>The input element type T1 must be a <i>numeric</i> value type, including <see cref="complex"/> and <see cref="fcomplex"/>. Some binary operations are also defined for string elements: equals '&lt;=' and not-equals '!='.</para>
         /// </remarks>
         /// <seealso href="https://ilnumerics.net/array-operators_v5.html"/>
         public static Logical operator  <= (ConcreteArray<T1, LocalT, InT, OutT, RetT, StorageT> A, ConcreteArray<T1, LocalT, InT, OutT, RetT, StorageT> B) {

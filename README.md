@@ -1,181 +1,248 @@
-# ILNumerics.ONAL
+# ILNumerics.ONAL  
+### Open Numerical Algorithm Language (ONAL) for .NET
 
-## Numerical computing done right in .NET
+[![NuGet](https://img.shields.io/nuget/v/ILNumerics.ONAL.svg)](https://www.nuget.org/packages/ILNumerics.ONAL)
+[![Build](https://img.shields.io/github/actions/workflow/status/ILNumerics/ILNumerics.ONAL/build.yml)](...)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-ILNumerics.ONAL is a numerical computing library for .NET that brings full MATLAB and NumPy semantics into C#, Visual Basic, and F#.
+### Write serious numerical algorithms in .NET: NumPy/MATLAB semantic, proven industrial reliability, and no vendor lock-in.
 
-It is not a “NumPy-like” API.
-It is a **complete numerical language embedded in .NET**.
+Open-sourced from the proven, mature core of [ILNumerics Computing](https://ilnumerics.net).
+
+#### Your algorithms.   Your IP.   Your language.
+
+---
+## Why ILNumerics.ONAL ? 
+Because serious numerical software needs more than wrapping NumPy:
+
+| Requirement | How ILNumerics.ONAL addresses it |
+|---|---|
+| ✓ Expressive numerical language | Dense n-dimensional arrays, logicals, cells and complex numbers with MATLAB and NumPy compatible semantics let algorithms be expressed as high-level  mathematics rather than low-level optimization code. |
+| ✓ Complete numerical foundation | Broad support for elementary functions, linear algebra, transforms and the core building blocks expected from a modern numerical language. |
+| ✓ Maintainable algorithm IP | Open-source language core enables long-term maintainability and protects algorithm IP from vendor dependency. |
+| ✓ Compatibility and portability | State-of-the-art numerical kernels such as LAPACK are made available through automated .NET translations — enabling true *write once, run everywhere* across the .NET ecosystem. |
+| ✓ Production-grade maturity | Grown and hardened over 15 years alongside .NET, the codebase has been proven in industrial and academic applications since 2011. |
+| ✓ Tooling and debuggability | Visual Studio integration, array visualizers, large team support and standard workflows for professional development, maintenance and deployment. |
+| ✓ Competitive execution speed | Standard .NET execution delivers practical performance for serious numerical workloads. |
+| ✓ Optional path to additional performance | When needed, the same algorithms can optionally run on ILNumerics Computing for [runtime optimizations](https://ilnumerics.net/ilnumerics-autonomous-computing.html), without changing the algorithm code. |
+
+
+ILNumerics.ONAL is the open-sourced language core of [ILNumerics](https://ilnumerics.net),
+providing multidimensional array programming and the fundamental tools
+for building maintainable numerical algorithm IP in .NET. Write serious numerical algorithms in .NET — with Matlab/NumPy-like semantics, industrial robustness, and no vendor lock-in.
+
+
+
+## Prototype like MATLAB. Deploy like HPC software.
+
+ILNumerics.ONAL combines:
+
+- N-dimensional arrays
+- Mathematical array programming
+- Numerical algorithms and transforms
+- Developer tooling and visual debugging
+- Drop-in migration path to ILNumerics Computing Engine
+
+Inspired by:
+
+- MATLAB
+- NumPy
+- Julia
+
+but built for .NET.
 
 ---
 
-## Write MATLAB / NumPy code. In .NET. Exactly.
+# Features
 
-ILNumerics.ONAL provides:
+## N-Dimensional Arrays
 
-* n-dimensional arrays with **100% MATLAB and NumPy semantics**
-* identical indexing, slicing, broadcasting behavior
-* consistent and predictable numerical results
+```csharp
+using ILNumerics;
+using static ILNumerics.ILMath;
 
-No approximations. No surprises. No re-learning.
+var A = rand(4,4);
+var B = sin(A) + 2*A;
 
----
+Console.WriteLine(B);
+```
 
-## Complete, tested numerical foundation
+Supports:
 
-All linear algebra functionality is based on Netlib LAPACK:
+- Scalars
+- Vectors
+- Matrices
+- Tensors
+- Logical arrays
+- Cell arrays
 
-* full LAPACK coverage
-* translated from original FORTRAN using ILNumerics compiler technology
-* **millions of lines of Netlib tests — all passing**
-
-This results in a **fully managed, production-grade LAPACK implementation for .NET**.
-
-Optional native LAPACK backends are available via NuGet if required.
-
----
-
-## Numerical DSL for .NET
-
-ILNumerics.ONAL is a domain-specific language embedded directly into .NET:
-
-* natural expression of numerical algorithms in C#
-* usable from Visual Basic and F#
-* no external runtimes or language bridges
-
-You write algorithms — not wrappers.
+MATLAB / NumPy-like semantics included.
 
 ---
 
-## Debug numbers like code
+## Array Expressions
 
-Numerical development becomes interactive with built-in Visual Studio integration:
+Write mathematics naturally:
 
-* graphical Array Visualizer
-* inspect arrays during debugging
-* IntelliSense and tooltips showing array contents
+```csharp
+var x = linspace(0,10,1000);
 
-You don’t print numbers.
-You **see your data**.
+var y =
+    exp(-x/5) *
+    sin(4*x)
+    + cos(x);
+```
 
----
-
-## Write the algorithm. Skip the optimization nightmare.
-
-Traditional numerical optimization requires:
-
-* low-level code
-* manual parallelization
-* hardware-specific tuning
-* significant maintenance effort
-
-ILNumerics.ONAL removes this complexity:
-
-* write clear, high-level array code
-* ignore memory layout, threading, and hardware
+Broadcasting, indexing, slicing and vectorized expressions included.
 
 ---
 
-## Faster than manual optimization
+## Linear Algebra
 
-With the optional ILNumerics Accelerator:
+```csharp
+var A = rand(500,500);
 
-* automatic analysis and transformation of array code
-* advanced parallelization and optimization
-* no code changes required
+Array<double> U = 0.0, V = 0.0; 
+var S = svd(A, U, V);
+// work with S, U, V...
 
-Result:
 
-> execution speeds that exceed hand-optimized implementations
+```
 
-Even expert-level manual optimization cannot reliably achieve the same results without sacrificing maintainability.
+Includes:
 
----
-
-## Managed by default. Native when needed.
-
-* fully managed implementation out of the box
-* optional native LAPACK integration via NuGet
-
-Choose portability or native integration — without changing your code.
+- LU
+- QR
+- SVD
+- Eigendecomposition
+- Solvers
+- Matrix products
 
 ---
 
-## Thread-safe by design
+## Fast Fourier Transform
 
-* safe for concurrent execution
-* integrates into custom execution models
-* no hidden global state
+```csharp
+var signal = sin(20*t) + .4*sin(90*t);
 
----
+var spectrum = fft(signal);
+```
 
-## Replace fragile in-house math libraries
-
-Many teams maintain internal numerical codebases that are:
-
-* incomplete
-* inconsistent
-* slow
-* difficult to validate
-
-ILNumerics.ONAL provides a stable, proven alternative:
-
-* complete numerical functionality
-* validated algorithms
-* long-term maintainability
-
-Your algorithms are your IP — not the math infrastructure underneath.
+Built-in signal processing foundations.
 
 ---
 
-## Why this exists
+## Debugging Visualizers
 
-Because too many numerical systems are built on fragile foundations.
+Numerical code should be inspectable.
 
-We have spent over a decade building and refining a complete numerical computing engine for .NET.
+Features include:
 
-We have also seen how easily such foundations are:
+- Visual Studio tooltips  
+- Graphical array watch window  
+- Interactive debugging support
 
-* reimplemented poorly
-* copied incompletely
-* or locked away in proprietary systems
-
-The result is always the same:
-
-* inconsistent behavior
-* slow execution
-* and code that becomes impossible to maintain
-
-We decided to change that.
-
-ILNumerics.ONAL is released as a **fully functional, production-grade numerical foundation** — so you don’t have to build your own.
-
-Your algorithms are your IP.
-
-The math underneath should not be your problem.
+![visualizer](https://ilnumerics.net/media/photos/VisualStudioDebugging_L.jpg)
 
 ---
 
-## Summary
+# Performance Philosophy
 
-ILNumerics.ONAL provides:
+ONAL prioritizes:
 
-* a complete numerical language for .NET
-* full MATLAB and NumPy semantics
-* a fully managed LAPACK implementation
-* deep Visual Studio integration
-* optional high-performance optimization
+- Correct semantics  
+- Stable APIs  
+- Expressive algorithms
 
-It allows you to write numerical algorithms once — correctly, clearly, and future-proof.
+while still delivering competitive speed among .NET numerical DSLs.
 
 ---
 
-## Links
+# Installation
 
-* Array Visualizer: https://ilnumerics.net/array-visualizer-c.html
-* Performance / Accelerator: https://ilnumerics.net/faster-array-codes.html
+```bash
+dotnet add package ILNumerics.ONAL
+```
+
+NuGet:
+
+https://www.nuget.org/packages/ILNumerics.ONAL
 
 ---
 
-## License
+# Quick Start
+
+## Matrix Example
+
+```csharp
+using ILNumerics;
+
+var A = rand(3,3);
+
+var B = A.T * A;
+
+```
+
+---
+
+## Solve Linear System
+
+```csharp
+var A = rand(100,100);
+var b = rand(100,1);
+
+var x = linsolve(A,b);
+```
+
+---
+
+## Signal Processing Example
+
+```csharp
+var fs = 1000;
+
+var t =
+    linspace(
+      0,
+      1,
+      fs);
+
+var signal =
+      sin(2*pi*50*t)
+    + .5*sin(2*pi*120*t);
+
+var spectrum = fft(signal);
+```
+
+---
+
+# Contributing
+
+Contributions welcome.
+
+```bash
+git clone https://github.com/ILNumerics/ILNumerics.ONAL
+```
+
+Open an issue or PR.
+
+---
+
+# License
+
 MIT
+
+---
+
+## Citation
+
+If you use ONAL in research:
+
+```bibtex
+@software{ilnumerics_onal,
+ title={ILNumerics.ONAL},
+ author={ILNumerics GmbH},
+ year={2026},
+ url={https://github.com/ILNumerics/ILNumerics.ONAL}
+}
+```
