@@ -19,13 +19,10 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 using System.Diagnostics;
 using System.Globalization;
 using static ILNumerics.Globals;
-using static ILNumerics.ILMath; 
+using static ILNumerics.ILMath;
 
 
 namespace ILNumerics.UnitTests.Legacy_Tests {
@@ -43,6 +40,10 @@ namespace ILNumerics.UnitTests.Legacy_Tests {
             var other = obj as GeoCoordinate;
             if (other == null) return false;
             return other.A == A && other.B == B && other.C == C; 
+        }
+
+        public override int GetHashCode() {
+            throw new NotImplementedException();
         }
     }
     [TestClass]

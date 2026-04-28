@@ -483,8 +483,6 @@ Example. INT (–3.7) has the value –3.
         public static float TINY(float a) {
             // use 'LAPACK-save' value: 1.17549435e-38 (ifort)
             return BitConverter.ToSingle(BitConverter.GetBytes(8388608), 0); 
-
-            return float.Epsilon; 
         }
         public static long MAXEXPONENT(double a) {
             // See: https://software.intel.com/content/dam/develop/external/us/en/documents/oneapi_fortran_compiler.pdf

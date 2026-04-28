@@ -72,7 +72,7 @@ namespace Core_Tests_small {
         [TestMethod]
         public void ToString_simple() {
 
-            Array<double> A = counter(5, 6, 7);
+            Array<double> A = counter<double>(5, 6, 7);
 
             var s = A.ToString(maxNumberElementsPerDimension: 6, maxNumberElements: 1000, style: StorageOrders.ColumnMajor);
         }

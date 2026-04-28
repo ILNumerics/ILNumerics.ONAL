@@ -29,6 +29,7 @@ namespace ILNumerics.F2NET {
         /// Fortran CHARACTER assignment semantic for FString. 
         /// </summary>
         /// <param name="length">Target length.</param>
+        /// <param name="fstring">The string instance.</param>
         /// <returns>A new instance of FString, as a deep copy of this FString, with a length of 'length'.</returns>
         public static FString AssignTo(this FString fstring, int length) {
             if (object.Equals(fstring, null)) {
@@ -61,6 +62,7 @@ namespace ILNumerics.F2NET {
         /// Converts current FString instance into different length instance, keeping the same reference. 
         /// </summary>
         /// <param name="length"></param>
+        /// <param name="val"></param>
         /// <returns></returns>
         public static FString Convert(this FString val, int length) {
             if (length < 0 || length == val.Length) {

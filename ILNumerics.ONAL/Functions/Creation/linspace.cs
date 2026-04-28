@@ -47,8 +47,8 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <param name="length">Number of elements to create, scalar, numeric</param>
         /// <returns>Row vector with 'length' elements linearly spaced between start and end</returns>
         /// <remarks>
-        /// <para><see cref="F:linspace{T}(InArray{T}, InArray{T}, InArray{T})"/> returns an empty array if <paramref name="length"/> is 0.</para>
-        /// <para><see cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/> returns a scalar array with the value of <paramref name="end"/> if <paramref name="length"/> is 1.</para>
+        /// <para><see cref="linspace{T}(Array{T}, Array{T}, Array{T})"/> returns an empty array if <paramref name="length"/> is 0.</para>
+        /// <para><seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/> returns a scalar array with the value of <paramref name="end"/> if <paramref name="length"/> is 1.</para>
         /// </remarks>
         internal static Array<T> linspace<T>(Array<T> start, Array<T> end, Array<T> length)
             where T : struct, IConvertible {

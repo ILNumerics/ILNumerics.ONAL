@@ -47,18 +47,18 @@ namespace SpecialFunctionsTest
         public void LogFactorialTestInputArrayCounter()
         {
             Array<int> B = counter<int>(1, 1, 5, 2);
-            Array<double> FactB = array<double>(new double[] { (double)factorialLog(1), (double)factorialLog(2), 
+            Array<double> FactB = vector((double)factorialLog(1), (double)factorialLog(2), 
                 (double)factorialLog(3), (double)factorialLog(4), 
                 (double)factorialLog(5), (double)factorialLog(6), 
                 (double)factorialLog(7), (double)factorialLog(8), 
-                (double)factorialLog(9), (double)factorialLog(10) }, 5, 2);
+                (double)factorialLog(9), (double)factorialLog(10)).Reshape(5, 2);
             Assert.IsTrue(floor(exp(factorialLog(B))).Equals(floor(exp(FactB))), "Should return componentwise logFactorials");
         }
         [TestMethod]
         public void LogFactorialTestInputNegativewithNAN()
         {
             Array<int> C = counter<int>(-30, 1, 5, 5);
-            Array<double> FactC = vector<double>((double)factorialLog(C[0, 0]), (double)factorialLog(C[1, 0]),
+            Array<double> FactC = vector((double)factorialLog(C[0, 0]), (double)factorialLog(C[1, 0]),
                 (double)factorialLog(C[2, 0]), (double)factorialLog(C[3, 0]),
                 (double)factorialLog(C[4, 0]), (double)factorialLog(C[0, 1]), 
                 (double)factorialLog(C[1, 1]), (double)factorialLog(C[2, 1]), 

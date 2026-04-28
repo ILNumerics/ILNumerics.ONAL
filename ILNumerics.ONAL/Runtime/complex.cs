@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2026 ILNumerics GmbH
 // 
@@ -37,6 +37,7 @@ using System.Runtime.InteropServices;
 using System.Text;     
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
+#pragma warning disable 162, CS8981
 
 namespace ILNumerics {
     /// <summary>

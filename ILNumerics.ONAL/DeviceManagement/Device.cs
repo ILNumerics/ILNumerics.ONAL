@@ -147,6 +147,7 @@ namespace ILNumerics.Core.DeviceManagement {
         /// Informs about the current system health, memory related. Derived classes implement device specific measures. This base implementation always returns false. 
         /// </summary>
         /// <returns>true if there is high memory pressure. Allocations should be limited.</returns>
+        [Obsolete("Performance related API. Will be removed in a future release.")]
         public virtual bool IsLowMemory() {
             return false;
         }
@@ -238,7 +239,7 @@ namespace ILNumerics.Core.DeviceManagement {
                 // allocate on the host, use EnsureBuffer then
                 System.Diagnostics.Debug.Assert(A.IsOnDevice(0) == false || A[0].IsInvalid);
                 A[0] = DeviceManager.GetDevice(0).New<T>(numberOfElements, clear: false, policy: policy, numElemsTyped);
-                EnsureBuffer(A);
+                // EnsureBuffer(A); -> ONAL: removed. We only have the Host device.
             } else {
                 A[(uint)Index] = this.New<T>(numberOfElements, clear: false, policy: policy, numElemsTyped);
             }
@@ -269,6 +270,7 @@ namespace ILNumerics.Core.DeviceManagement {
         public override string ToString() {
             return Name;
         }
+        [Obsolete("Performance related API. Will be removed in a future release.")]
         public abstract void EnsureBuffer(CountableArray array);
 
         public virtual void ReleaseHandle(MemoryHandle handle) {

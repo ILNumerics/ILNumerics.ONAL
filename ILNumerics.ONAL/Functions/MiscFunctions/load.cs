@@ -41,10 +41,9 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <returns>The array read from matfile.</returns>
         /// <remarks><para>If <paramref name="arrayname"/> is ommited, the first array is returned.</para>
         /// <para>This function is based on <see cref="MatFile"/> which works with Matlab mat files version 6 only. 
-        /// In order to access Matlab mat files of a newer version, use the <see cref="ILNumerics.IO.HDF5"/> API.</para>
+        /// In order to access Matlab mat files of a newer version, use the ILNumerics.IO.HDF5 API.</para>
         /// <para>The typeparameter <typeparamref name="T"/> must match the type of elements stored in the mat file.</para></remarks>
         /// <seealso cref="MatFile"/>
-        /// <seealso cref="ILNumerics.IO.HDF5"/>
         internal static Array<T> loadArray<T>(string filename, string arrayname = "") {
             using (Scope.Enter()) {
                 using (MatFile matfile = new MatFile(filename)) {

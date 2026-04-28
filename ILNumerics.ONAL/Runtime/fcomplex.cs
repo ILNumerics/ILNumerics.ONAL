@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2026 ILNumerics GmbH
 // 
@@ -27,7 +27,7 @@
 //                                                              //
 //////////////////////////////////////////////////////////////////
 
-#pragma warning disable 162 
+#pragma warning disable 162, CS8981
 #define ROBUST_COMPLEX_DIVISION
 using System;
 using System.Collections.Generic;

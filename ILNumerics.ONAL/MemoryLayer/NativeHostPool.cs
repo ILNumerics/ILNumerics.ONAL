@@ -78,6 +78,7 @@ namespace ILNumerics.Core.MemoryLayer
                     throw new OutOfMemoryException(); 
                 } 
 #endif
+#pragma warning disable CS0618
                 // on 64 bit we need to keep track of the systems health.
                 // It looks like the CLR uses CreateMemoryResourceNotification & Co. 
                 // to perform this monitoring. In this attempt we do the same.
@@ -89,6 +90,7 @@ namespace ILNumerics.Core.MemoryLayer
                                              // proactively careful on x86 also? 
                     throw new OutOfMemoryException(); 
                 }
+#pragma warning restore
                 var allocLength = length;
                 var adjustLength = length.ToUInt64() < MAX_ADJUSTABLE_SIZE; 
 

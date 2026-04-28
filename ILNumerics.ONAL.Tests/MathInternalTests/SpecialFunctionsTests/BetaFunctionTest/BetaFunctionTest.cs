@@ -77,7 +77,7 @@ namespace SpecialFunctionsTest
             B[2, 2] = 30;
             B[1, 1] = -10;
             B[0, 0] = -10;
-            Array<double> combiAB = array<double>(new double[] { double.NaN, (double)beta(todouble(A[1,0]),todouble(B[1, 0])), (double)beta(todouble(A[2,0]),todouble(B[2, 0])),
+            Array<double> combiAB = vector(double.NaN, (double)beta(todouble(A[1,0]),todouble(B[1, 0])), (double)beta(todouble(A[2,0]),todouble(B[2, 0])),
                 (double)beta(todouble(A[3,0]),todouble(B[3, 0])), (double)beta(todouble(A[4,0]),todouble(B[4, 0])),
                 (double)beta(todouble(A[0, 1]),todouble(B[0, 1])), double.NaN, (double)beta(todouble(A[2, 1]),todouble(B[2, 1])),
                 (double)beta(todouble(A[3, 1]),todouble(B[3, 1])), (double)beta(todouble(A[4, 1]),todouble(B[4, 1])),
@@ -87,7 +87,7 @@ namespace SpecialFunctionsTest
                 (double)beta(todouble(A[2, 3]),todouble(B[2, 3])), double.NaN, 
                 (double)beta(todouble(A[4, 3]),todouble(B[4, 3])),(double)beta(todouble(A[0, 4]),todouble(B[0, 4])),
                 (double)beta(todouble(A[1, 4]),todouble(B[1, 4])), (double)beta(todouble(A[2, 4]),todouble(B[2, 4])),
-                (double)beta(todouble(A[3, 4]),todouble(B[3, 4])), double.NaN}, 5, 5);
+                (double)beta(todouble(A[3, 4]),todouble(B[3, 4])), double.NaN).Reshape(5, 5);
             Assert.IsTrue(isequalwithequalnans(beta(todouble(A), todouble(B)), combiAB), "Should return  the componentwise beta inccluding NaN");
         }
 

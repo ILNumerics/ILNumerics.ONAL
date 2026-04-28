@@ -34,7 +34,7 @@ using ILNumerics.Core.StorageLayer;
 using ILNumerics.Core.Misc;
 using static ILNumerics.Globals;
 using static ILNumerics.Core.Functions.Builtin.numpyInternal;
-
+#pragma warning disable CS8981
 
 // THIS FILE WAS CREATED BY AN AUTOMATED TOOL: CEngPublicAPICreator.
 // MANUAL CHANGES TO THIS FILE WILL BE SILENTLY DISCARDED WITH THE NEXT BUILD!

@@ -86,8 +86,7 @@ namespace SpecialFunctionsTest
             B[2, 2] = 30;
             B[1, 1] = -10;
             B[0, 0] = -10;
-            Array<double> combiAB = array<double>(
-                new double[] { 
+            Array<double> combiAB = vector(
                     double.NaN, 
                     (double)binomialCoefficients(A[1,0],B[1, 0]), 
                     (double)binomialCoefficients(A[2,0],B[2, 0]), 
@@ -112,9 +111,7 @@ namespace SpecialFunctionsTest
                     (double)binomialCoefficients(A[1, 4],B[1, 4]), 
                     (double)binomialCoefficients(A[2, 4],B[2, 4]), 
                     (double)binomialCoefficients(A[3, 4],B[3, 4]), 
-                    double.NaN}, 
-                    5, 
-                    5);
+                    double.NaN).Reshape(5,5);
             Assert.IsTrue(isequalwithequalnans(binomialCoefficientsLog(A, B), log(combiAB)), "Should return  the componentwise binomial inccluding NaN");
         }
 

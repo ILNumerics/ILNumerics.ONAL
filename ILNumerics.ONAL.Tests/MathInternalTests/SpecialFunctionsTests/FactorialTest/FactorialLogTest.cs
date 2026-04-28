@@ -53,11 +53,11 @@ namespace SpecialFunctionsTest
         public void TestLogInputArrayCounter()
         {
             Array<int> B = counter<int>(1, 1, 5, 2);
-            Array<double> FactB = array<double>(new double[] { (double)factorialLog(1), (double)factorialLog(2), 
+            Array<double> FactB = vector((double)factorialLog(1), (double)factorialLog(2), 
                 (double)factorialLog(3), (double)factorialLog(4), 
                 (double)factorialLog(5), (double)factorialLog(6), 
                 (double)factorialLog(7), (double)factorialLog(8), 
-                (double)factorialLog(9), (double)factorialLog(10) }, 5, 2);
+                (double)factorialLog(9), (double)factorialLog(10)).Reshape(5, 2);
 
             Assert.IsTrue(isequalwithequalnans(factorialLog(B), FactB), "Should return componentwise factorials");
         }
@@ -71,7 +71,8 @@ namespace SpecialFunctionsTest
             B[2, 2] = -30;
             B[1, 1] = -10;
             B[0, 0] = -10;
-            Array<double> FactB = array<double>(new double[] { double.NaN, (double)factorialLog(B[0, 1]),
+            Array<double> FactB = vector(
+                 double.NaN, (double)factorialLog(B[0, 1]),
                 (double)factorialLog(B[0, 2]), (double)factorialLog(B[0, 3]), 
                 (double)factorialLog(B[0, 4]),
                 (double)factorialLog(B[1, 0]), double.NaN, 
@@ -82,7 +83,7 @@ namespace SpecialFunctionsTest
                 (double)factorialLog(B[3, 0]), (double)factorialLog(B[3, 1]), 
                 (double)factorialLog(B[3, 2]), double.NaN, (double)factorialLog(B[3, 4]),
                 (double)factorialLog(B[4, 0]), (double)factorialLog(B[4, 1]), 
-                (double)factorialLog(B[4, 2]), (double)factorialLog(B[4, 3]), double.NaN}, 5, 5);
+                (double)factorialLog(B[4, 2]), (double)factorialLog(B[4, 3]), double.NaN).Reshape(5, 5);
             Assert.IsTrue(isequalwithequalnans(factorialLog(B), FactB), "Should return  the componentwise factorials with NaN");
         }
 
@@ -90,7 +91,7 @@ namespace SpecialFunctionsTest
         public void TestLogInputNegativeWithNaN()
         {
             Array<int> C = counter<int>(-30, 1, 5, 5);
-            Array<double> FactC = array<double>(new double[] { (double)factorialLog(C[0, 0]), (double)factorialLog(C[1, 0]),
+            Array<double> FactC = vector((double)factorialLog(C[0, 0]), (double)factorialLog(C[1, 0]),
                 (double)factorialLog(C[2, 0]), (double)factorialLog(C[3, 0]),
                 (double)factorialLog(C[4, 0]), (double)factorialLog(C[0, 1]), 
                 (double)factorialLog(C[1, 1]), (double)factorialLog(C[2, 1]), 
@@ -102,7 +103,7 @@ namespace SpecialFunctionsTest
                 (double)factorialLog(C[3, 3]), (double)factorialLog(C[4, 3]), 
                 (double)factorialLog(C[0, 4]), (double)factorialLog(C[1, 4]), 
                 (double)factorialLog(C[2, 4]), (double)factorialLog(C[3, 4]),
-                (double)factorialLog(C[4, 4]) }, 5, 5);
+                (double)factorialLog(C[4, 4])).Reshape(5, 5);
             Assert.IsTrue(isequalwithequalnans(factorialLog(C), FactC), "Should return  the componentwise factorials with NaN");
         }
     }

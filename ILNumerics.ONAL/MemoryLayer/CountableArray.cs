@@ -139,31 +139,25 @@ namespace ILNumerics.Core {
         }
 
         /// <summary>
-        /// Supports thread safe caching of CountableArray objects.
+        /// Supports caching of CountableArray objects.
         /// </summary>
         public ref CountableArray Previous { get { return ref m_previous; } }
-        //public ref int DeletionMark => ref m_deletionMark; 
 
         /// <summary>
         /// Gets the memory handle of the device referenced by <paramref name="i"/> or sets it. 
         /// </summary>
-        /// <param name="i">Device ID</param>
+        /// <param name="i">Device ID. ONAL: must always be equal to 0 (host device).</param>
         /// <returns>MemoryHandle of the specified device.</returns>
         public MemoryHandle this[uint i] {
             
             get {
-                lock (m_synch) {
-
-                    if (m_currentDeviceIdx != i && m_handles[i] == null) { // || !object.ReferenceEquals((m_handles[m_currentDeviceIdx] as ILNumerics.Core.Segments.OpenCL.Buffer)?.SVMHandle, m_handles[i]))) {
-                        var device = DeviceManagement.DeviceManager.GetDevice(i);
-                        device.EnsureBuffer(this);
-                    }
-                    //Finish(); 
-                    return m_handles[i];  // this handle might be pending the completion of element copy
-                }
+                System.Diagnostics.Debug.Assert(i == 0, "Invalid device index. ONAL supports host device memory only (index: #0). Requested i: " + i);
+                lock (m_synch)
+                    return m_handles[0]; 
             }
             
             internal set {
+                System.Diagnostics.Debug.Assert(i == 0, "Invalid device index. ONAL supports host device memory only (index: #0). Requested i: " + i);
                 lock (m_synch) {
                     // an externally provided handle is considered a 'new' value. Any existing handles 
                     // are released first and the new handle will be the only value for this array. 
@@ -253,7 +247,7 @@ namespace ILNumerics.Core {
         /// <summary>
         /// Copies the most up-to-date memory from this <see cref="CountableArray"/> to the <paramref name="targetDeviceIdx"/> of a new <see cref="CountableArray"/>. 
         /// </summary>
-        /// <param name="targetDeviceIdx">The 0-based index of the device which is going to hold the (only) reference to the copied memory.</param>
+        /// <param name="targetDeviceIdx">The 0-based index of the device which is going to hold the (only) reference to the copied memory. ONAL: always 0.</param>
         /// <param name="size">The size descriptor. Used to read the required region to copy.</param>
         /// <param name="elementSizeBytes">The number of bytes used to store a single element of type <typeparamref name="T"/>.</param>
         /// <remarks><para>The memory is copied from the 'current' handle, i.e.: from the device the data of this <see cref="CountableArray"/>
@@ -289,7 +283,8 @@ namespace ILNumerics.Core {
                         .CopyToHost(m_handles[CurrentDeviceIdx], hostHandle,
                                     new IntPtr(size.BaseOffset * elementSizeBytes), new IntPtr(lenBytes));
                     ret[0] = hostHandle;
-                    DeviceManager.GetDevice(targetDeviceIdx).EnsureBuffer(ret);
+                    System.Diagnostics.Debug.Assert(targetDeviceIdx == 0, "Invalid device index. ONAL supports host device memory only (index: #0). Requested index: " + targetDeviceIdx);
+                    //DeviceManager.GetDevice(targetDeviceIdx).EnsureBuffer(ret);
                 }
                 return ret;
             }

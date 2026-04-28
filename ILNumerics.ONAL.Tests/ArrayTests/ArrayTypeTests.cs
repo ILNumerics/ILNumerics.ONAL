@@ -41,7 +41,7 @@ namespace ILNumerics.Core.UnitTests {
                 var obj = A.GetItem(0);
                 Assert.IsTrue(obj.Equals(1.0));
 
-                Assert.IsTrue(A.GetValue(0) is double);
+                // always true: Assert.IsTrue(A.GetValue(0) is double);
                 Assert.IsTrue(A.GetValue(0) == 1.0);
 
                 Assert.IsTrue(A.S[0] == 1);

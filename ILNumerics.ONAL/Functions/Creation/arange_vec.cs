@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2026 ILNumerics GmbH
 // 
@@ -51,7 +51,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         [Obsolete("Use arange() instead!")]
         internal static Array<double> vec(double start, double end) {
             return arange<double,double>(start, 1, end);
@@ -77,7 +77,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="empty{T}(long, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         [Obsolete("Use arange<T,Ts>(T,TS,T) instead!")]
         internal static Array<double> vec(double start, double step, double end) {
             return arange<double,double>(start, step, end);
@@ -99,7 +99,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         [Obsolete("Use arange() instead!")]
         internal static Array<T> vec<T>(T start, T end) where T : IConvertible {
             return arange<T,double>(start, 1, end);
@@ -128,7 +128,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         [Obsolete("Use arange<T,TS>(T,TS,T) instead!")]
         internal static Array<T> vec<T>(T start, T step, T end) where T : IConvertible {
             using (Scope.Enter()) {
@@ -208,7 +208,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         internal static Array<double> arange(double start, double end) {
             return arange<double, double>(start, 1, end);
         }
@@ -227,7 +227,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         internal static Array<double> arange(double start, double step, double end) {
             return arange<double, double>(start, step, end);
         }
@@ -248,7 +248,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         internal static Array<T> arange<T>(T start, T end, int? axis = null) where T : IConvertible {
             return arange<T,double>(start, 1, end, axis);
         }
@@ -276,7 +276,7 @@ namespace ILNumerics.Core.Functions.Builtin {
         /// <seealso cref="counter{T}(T, T, long, long, StorageOrders)"/>
         /// <seealso cref="arange{T, Ts}(T, Ts, T, int?)"/>
         /// <seealso cref="vector{T}(T, T, T, T, T, T, T, T, T)"/>
-        /// <seealso cref="linspace{T}(InArray{T}, InArray{T}, InArray{T})"/>
+        /// <seealso cref="linspace{T}(Array{T}, Array{T}, Array{T})"/>
         internal static Array<T> arange<T, Ts>(T start, Ts step, T end, int? axis = null) where T : IConvertible where Ts : IConvertible {
             using (Scope.Enter()) {
                 double dStart = start.ToDouble(null);

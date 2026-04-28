@@ -1069,14 +1069,14 @@ namespace ILNumerics.Core.StorageLayer
         /// <summary>
         /// Makes sure that this storage uses a dedicated buffer set - not being shared with other storages. This is required but not sufficient for enabling writes to this storage!
         /// </summary>
-        /// <param name="targetDeviceID">[Optional] The device the current data of this storages device specific memory shall be copied onto.</param>
+        /// <param name="targetDeviceID">[Optional] The device the current data of this storages device specific memory shall be copied onto. (ONAL: not used)</param>
         /// <remarks>This function ensures that...
         /// <list type="bullet">
         /// <item>this storage uses memory which is not shared by other storages. If memory is currently shared, the 
         /// memorys data is copied to a new memory region which is then current to this storage.</item>
         /// </list>
         /// <para>Note that this function does not check whether this storage is shared by multiple arrays 
-        /// (InArray, local array, output arrays, return arrays). It does neither check if this storage is being used 
+        /// (InArray, local array, output arrays). It does neither check if this storage is being used 
         /// by (other) asynch operations! Both checks must be performed also, in order to prepare a storage for writing! </para>
         /// <para>While during common use and when accessing 
         /// a local array this local array will be the only array referencing the storage there are situations 
@@ -1086,7 +1086,6 @@ namespace ILNumerics.Core.StorageLayer
         /// to ensure that no other arrays currently exist which share this storage: <see cref="ReferenceCount"/> == 1 &amp;&amp; <see cref="GetAsynchReferencesCount()"/> == 1. 
         /// </para>
         /// </remarks>
-        /// <see cref="EnsureAsynchWritable()"/>
         public bool DetachBufferSetInplace(uint targetDeviceID = 0) {
             // Note, we cannot perform below check here! In a perfect threadsafe world the array counter could be 0 and the
             // asynch counter could be 2. But we do not live in such a world! At least asynch counter can be arbitrary now! 

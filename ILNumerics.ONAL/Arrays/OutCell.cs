@@ -45,10 +45,9 @@ namespace ILNumerics {
         /// Convert local array to output type array. 
         /// </summary>
         /// <param name="A">Local cell to be used as output argument.</param>
-        /// <remarks><para>Just like for <see cref="Array{T}"/> to <see cref="RetArray{T1}"/>
-        /// conversions the <see cref="OutCell"/> shares the same storage with <paramref name="A"/>
+        /// <remarks>The <see cref="OutCell"/> shares the same storage with <paramref name="A"/>
         /// and serves as a proxy to <paramref name="A"/>. Changing the output type cell in a function
-        /// changes the associated local cell <paramref name="A"/> in the calling scope.</para></remarks>
+        /// changes the associated local cell <paramref name="A"/> in the calling scope directly.</remarks>
         public static implicit operator OutCell(Cell A) {
             return A.Storage.OutArray;
         }

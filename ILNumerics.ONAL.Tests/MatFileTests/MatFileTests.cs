@@ -115,14 +115,14 @@ namespace ILNumerics.UnitTests.Legacy_Tests {
             Test_StreamMatlab("testarray1.mat", tological(rand(0, 1)));
             Test_StreamMatlab("testarray1.mat", tological(rand(10, 100, 4)));
 
-            Test_StreamMatlab("testarray1.mat", array<complex>(new complex[] { new complex(1.0, 2.0) }));
+            Test_StreamMatlab("testarray1.mat", vector(new complex(1.0, 2.0)));
             Test_StreamMatlab("testarray1.mat", tocomplex(empty<double>()));
             Test_StreamMatlab("testarray1.mat", tocomplex(rand(10, 1)));
             Test_StreamMatlab("testarray1.mat", tocomplex(rand(1, 10)));
             Test_StreamMatlab("testarray1.mat", tocomplex(rand(0, 1)));
             Test_StreamMatlab("testarray1.mat", tocomplex(rand(10, 100, 4)));
 
-            Test_StreamMatlab("testarray1.mat", array<fcomplex>(new fcomplex[] { new fcomplex(1.0f, 2.0f) }));
+            Test_StreamMatlab("testarray1.mat", vector(new fcomplex(1.0f, 2.0f)));
             Test_StreamMatlab("testarray1.mat", tofcomplex(empty<double>()));
             Test_StreamMatlab("testarray1.mat", tofcomplex(rand(10, 1)));
             Test_StreamMatlab("testarray1.mat", tofcomplex(rand(1, 10)));
@@ -224,7 +224,7 @@ namespace ILNumerics.UnitTests.Legacy_Tests {
             {
 
 
-                Array<double> A = counter(4, 5);
+                Array<double> A = counter(1.0, 1.0, 4, 5);
                 Array<float> B = zeros<float>(100, 200);
                 var matfile = new MatFile();
                 matfile["A"] = A;

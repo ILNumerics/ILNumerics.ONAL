@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2026 ILNumerics GmbH
 // 
@@ -158,7 +158,7 @@ namespace ILNumerics.Core.StorageLayer {
         
         unsafe string BoolGetElement(IntPtr acc, uint len, double scaling, int columnWidth) {
             byte element = *((byte*)Handles[0].Pointer + Size.GetSeqIndex((uint*)acc, Size.NumberOfDimensions));
-            var sElement = (element != 0) ? " â–®" : " â–¯";
+            var sElement = (element != 0) ? " ▮" : " ▯"; 
             return sElement; 
         }
         #endregion

@@ -150,7 +150,7 @@ namespace SpecialFunctionsTest
             {
                 Array<double> x = 7.0 * ones(1, 10);
                 Array<double> sol = gammaLog(x);
-                Assert.IsTrue((max(abs(exp(sol) - 720)) <= 1e-7), "The gamma Method failed to evaluate for a vectoe of ones");
+                Assert.IsTrue((max(abs(exp(sol) - 720)) <= 1e-7), "The gamma method failed to evaluate for a vector of ones");
             }
         }
 
@@ -163,7 +163,7 @@ namespace SpecialFunctionsTest
                 x[1] = 2.0;
                 x[2] = 3.0;
                 Array<double> sol = gammaLog(x);
-                Assert.IsTrue((max(abs(exp(sol) - row(1.0,1.0,2.0))) <= 1e-7), "The gamma Method failed to evaluate for a vectoe of ones");
+                Assert.IsTrue(max(abs(exp(sol) - vector(1.0,1.0,2.0).Reshape(1,3))) <= 1e-7, "The gamma method failed to evaluate for a vector of ones");
             }
         }
 
@@ -176,7 +176,7 @@ namespace SpecialFunctionsTest
                 x[1] = 2.0;
                 x[2] = 3.0;
                 Array<double> sol = gamma(x);
-                Assert.IsTrue((max(abs(sol) - row(1.0, 1.0, 2.0))) <= 1e-7, "The gamma Method failed to evaluate for a vectoe of ones");
+                Assert.IsTrue(max(abs(sol) - vector(1.0, 1.0, 2.0).Reshape(1,3)) <= 1e-7, "The gamma method failed to evaluate for a vector of ones");
             }
         }
 

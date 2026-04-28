@@ -51,8 +51,17 @@ namespace SpecialFunctionsTest
         {
             Array<int> A = counter<int>(1, 1, 5, 2);
             Array<int> B = counter<int>(-3, 1, 5, 2);
-            Array<double> conbiAB = array<double>(new double[] { (double)binomialCoefficients(A[0, 0], B[0, 0]), (double)binomialCoefficients(A[1, 0], B[1, 0]), (double)binomialCoefficients(A[2, 0], B[2, 0]), (double)binomialCoefficients(A[3, 0], B[3, 0]), (double)binomialCoefficients(A[4, 0], B[4, 0]),
-                 (double)binomialCoefficients(A[0, 1], B[0, 1]), (double)binomialCoefficients(A[1, 1], B[1, 1]), (double)binomialCoefficients(A[2, 1], B[2, 1]), (double)binomialCoefficients(A[3, 1], B[3, 1]), (double)binomialCoefficients(A[4, 1], B[4, 1]), }, 5, 2);
+            Array<double> conbiAB = vector(
+                 (double)binomialCoefficients(A[0, 0], B[0, 0]), 
+                 (double)binomialCoefficients(A[1, 0], B[1, 0]), 
+                 (double)binomialCoefficients(A[2, 0], B[2, 0]), 
+                 (double)binomialCoefficients(A[3, 0], B[3, 0]), 
+                 (double)binomialCoefficients(A[4, 0], B[4, 0]),
+                 (double)binomialCoefficients(A[0, 1], B[0, 1]), 
+                 (double)binomialCoefficients(A[1, 1], B[1, 1]), 
+                 (double)binomialCoefficients(A[2, 1], B[2, 1]), 
+                 (double)binomialCoefficients(A[3, 1], B[3, 1]), 
+                 (double)binomialCoefficients(A[4, 1], B[4, 1])).Reshape(5, 2);
             Assert.IsTrue(isequalwithequalnans(binomialCoefficients(A, B), conbiAB), "Should return matrix of binomials");
         }
         [TestMethod]
@@ -70,11 +79,11 @@ namespace SpecialFunctionsTest
             B[2, 2] = 30;
             B[1, 1] = -10;
             B[0, 0] = -10;
-            Array<double> combiAB = array<double>(new double[] { double.NaN, (double)binomialCoefficients(A[1,0],B[1, 0]), (double)binomialCoefficients(A[2,0],B[2, 0]), (double)binomialCoefficients(A[3,0],B[3, 0]), (double)binomialCoefficients(A[4,0],B[4, 0]),
+            Array<double> combiAB = vector(double.NaN, (double)binomialCoefficients(A[1,0],B[1, 0]), (double)binomialCoefficients(A[2,0],B[2, 0]), (double)binomialCoefficients(A[3,0],B[3, 0]), (double)binomialCoefficients(A[4,0],B[4, 0]),
                 (double)binomialCoefficients(A[0, 1],B[0, 1]), double.NaN, (double)binomialCoefficients(A[2, 1],B[2, 1]), (double)binomialCoefficients(A[3, 1],B[3, 1]), (double)binomialCoefficients(A[4, 1],B[4, 1]),
                 (double)binomialCoefficients(A[0, 2],B[0, 2]), (double)binomialCoefficients(A[1, 2],B[1, 2]), double.NaN, (double)binomialCoefficients(A[3, 2],B[3, 2]), (double)binomialCoefficients(A[4, 2],B[4, 2]),
                 (double)binomialCoefficients(A[0, 3],B[0, 3]), (double)binomialCoefficients(A[1, 3],B[1, 3]), (double)binomialCoefficients(A[2, 3],B[2, 3]), double.NaN, (double)binomialCoefficients(A[4, 3],B[4, 3]),
-                (double)binomialCoefficients(A[0, 4],B[0, 4]), (double)binomialCoefficients(A[1, 4],B[1, 4]), (double)binomialCoefficients(A[2, 4],B[2, 4]), (double)binomialCoefficients(A[3, 4],B[3, 4]), double.NaN}, 5, 5);
+                (double)binomialCoefficients(A[0, 4],B[0, 4]), (double)binomialCoefficients(A[1, 4],B[1, 4]), (double)binomialCoefficients(A[2, 4],B[2, 4]), (double)binomialCoefficients(A[3, 4],B[3, 4]), double.NaN).Reshape(5, 5);
             Assert.IsTrue(isequalwithequalnans(binomialCoefficients(A, B), combiAB), "Should return  the componentwise binomial inccluding NaN");
         }
 

@@ -289,8 +289,8 @@ namespace ILNumerics {
         /// <para>If 'method' is set to 'Matlab', the array will be written as Matfile version 5.0. No compression will be used. The internal 'Name' property will be used as 
         /// the array name for writing. This array instance will be the only array in the mat file. If you want to write several arrays bundled into one mat file, use the MatFile class to
         /// create a collection of arrays and write the MatFile to stream. Or use the classes in the 
-        /// <see cref="ILNumerics.IO.HDF5"/> namespace to create a HDF5 format file (recommended).</para></remarks>
-        [Obsolete("Use the classes in ILNumerics.IO.HDF5 or ILNumerics.ILMatFile instead!")]
+        /// ILNumerics.IO.HDF5 namespace to create a HDF5 format file (recommended).</para></remarks>
+        [Obsolete("Consider using ILNumerics.IO.HDF5 or ILNumerics.MatFile instead!")]
         public abstract void ToStream(Stream outStream, string format, ArrayStreamSerializationFlags method);
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace ILNumerics.Core.Arrays
     /// <typeparam name="LocalT">The type of the local arrays: one of <see cref="Array{T1}"/>, <see cref="Logical"/> or <see cref="Cell"/>.</typeparam>
     /// <typeparam name="InT">The type of the input arrays: <see cref="InArray{T1}"/>, <see cref="InLogical"/>, or <see cref="InCell"/> respectively.</typeparam>
     /// <typeparam name="OutT">The type of the output arrays: <see cref="OutArray{T1}"/>, <see cref="OutLogical"/>, or <see cref="OutCell"/> respectively.</typeparam>
-    /// <typeparam name="RetT">The type of the return arrays: <see cref="Array{T1}"/>, <see cref="RetLogical"/>, or <see cref="RetCell"/> respectively.</typeparam>
+    /// <typeparam name="RetT">The type of the return arrays: on ONAL this always equals to: <typeparamref name="LocalT"/>.</typeparam>
     /// <typeparam name="StorageT">The concrete type of the internal storage object, determining all array types involved. This is derived from <see cref="BaseStorage{T, LocalT, InT, OutT, RetT, StorageT}"/>.</typeparam>
     /// <remarks>This class implements most of the abstract base class <see cref="BaseArray"/> public API. It also implements the public (strongly typed) API for 
     /// mutable arrays and the non-volatile input array types (<see cref="InArray{T1}"/>, ...).</remarks>
@@ -70,8 +70,6 @@ namespace ILNumerics.Core.Arrays
         /// <para>During normal use accessing the storage object of the array is commonly
         /// not neccessary. The direct access and utilization of these objects is left to the experienced 
         /// user !!</para>
-        /// <para>For <see cref="RetArray{T}"/> this getter does not release the storage object!
-        /// In fact, this is a rare (the only?) exception of a public function not releasing this array!</para>
         /// </remarks>
         internal StorageT Storage {
             get {
@@ -438,26 +436,9 @@ namespace ILNumerics.Core.Arrays
         }
 
         /// <summary>
-        /// Releases this array after use. Cleans up on <see cref="RetArray{T1}"/>, <see cref="RetCell"/> and <see cref="RetLogical"/> arrays which are not otherwise 'utilized'.
+        /// Releases this array after use. Cleans up on arrays which are no longer 'utilized'.
         /// </summary>
-        /// <remarks>This method is used in rare situations where the return value from an ILNumerics method is not used or in the context of class attributes. Let's say: the user 
-        /// called a method with <see cref="OutArray{T}"/> parameters and only the output parameter value is needed. If the 
-        /// method has a regular return value (<see cref="RetArray{T1}"/>), too, this is not released automatically: return values are automatically 
-        /// released after they are used for the _first time_. In order to release the array and to reclaim its storage one can call <see cref="Dispose()"/> on it.
-        /// <para>Note: failing to call <see cref="Dispose"/> in such situations does not create a memory leak! But the array is only reclaimed 
-        /// by the garbage collector and its memory is only freed by the finalization thread during the next GC collection. While this 
-        /// is considered valid use, disposing the array manually may be profitable in situations where high performance execution and/or 
-        /// low memory consumption is required. </para>
-        /// <para>Calling <see cref="Dispose()"/> on local array variables which are subject of ILNumerics automatic memory management has no effect. If, for 
-        /// example, an Array&lt;double&gt; A is enclosed into a local <see cref="Scope"/> calling <see cref="Dispose"/> on A within the scope body will have 
-        /// no effect. The lifetime of such arrays are managed automatically by ILNumerics.</para>
-        /// <para>Note further, that <see cref="Dispose"/> is <b>not</b> required in 'common' array uses. I.e. when dealing with <see cref="Array{T1}"/> 
-        /// inside existing <see cref="Scope.Enter(BaseArray, ArrayStyles?)"/> scope blocks or when the return value is utilized in some way (for example by assignment to <see cref="Array{T1}"/>, 
-        /// calling member functions on the return value or giving the return value to other functions as input parameter).</para>
-        /// <para>Update, version 7.0: ILNumerics Accelerator automatically elides many unused return arrays in release mode (so that they are not computed to begin with).
-        /// Alternatively, it disposes the return array automatically. Thus, there is even less need for manually disposing arrays, except in debug mode. 
-        /// Eventually, this function will be deprecated in a future release.</para>
-        /// <para>Note, that consequences of accessing an array variable or instance after <see cref="Dispose()"/> was called on it are undefined. The array ('s storage) may 
+        /// <remarks><para>Note, that consequences of accessing an array variable or instance after <see cref="Dispose()"/> was called on it are undefined. The array ('s storage) may 
         /// immediately be reused for other arrays. It may be cleaned up, finalized, or reused in other computations. Hence, do not access the array after calling <see cref="Dispose()"/>!</para>
         /// </remarks>
         /// <example><code><![CDATA[
