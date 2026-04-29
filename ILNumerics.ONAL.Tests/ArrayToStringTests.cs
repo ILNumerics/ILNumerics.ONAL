@@ -414,7 +414,9 @@ namespace ILNumerics.Core.UnitTests {
                 + "    1.001129    0.056377         NaN    0.000179    0.000010    0.000001    0.000000    0.000000    0.000000    0.000000" + Environment.NewLine
                 + "   -0.750847   -0.042283   -0.002381   -0.000134           0   -0.000000   -0.000000   -0.000000   -0.000000   -0.000000";
 
-            Assert.IsTrue(s == res || s == res2, $"Invalid A.ToString() output: '{s}'.");
+            if (s != res && s != res2) {
+                Assert.Fail($"Comparison of A.ToString() with 'res' (NET8.0) gave: " + CompareWithLocation(s, res) + " Comparison with 'res2' (net461) gave: " + CompareWithLocation(s,res2));
+            }
 
             ////for (int i = 0; i < s.Length; i++) {
             ////    if (s[i] != res[i]) {
@@ -435,5 +437,50 @@ namespace ILNumerics.Core.UnitTests {
             //}
         }
 
+        public static string CompareWithLocation(string a, string b) {
+            int i = 0, j = 0, row = 0, col = 0;
+
+            while (i < a.Length && j < b.Length) {
+                var ca = ReadChar(a, ref i);
+                var cb = ReadChar(b, ref j);
+
+                if (ca != cb)
+                    return $"First difference at row {row}, column {col}: {Show(ca)} != {Show(cb)}";
+
+                if (ca == '\n') {
+                    row++;
+                    col = 0;
+                } else {
+                    col++;
+                }
+            }
+
+            if (i < a.Length || j < b.Length)
+                return $"First difference at row {row}, column {col}: " +
+                       $"{Show(i < a.Length ? ReadChar(a, ref i) : null)} != " +
+                       $"{Show(j < b.Length ? ReadChar(b, ref j) : null)}";
+
+            return String.Empty;
+        }
+
+        private static char ReadChar(string s, ref int i) {
+            if (s[i] == '\r') {
+                if (i + 1 < s.Length && s[i + 1] == '\n')
+                    i += 2;
+                else
+                    i++;
+
+                return '\n';
+            }
+
+            return s[i++];
+        }
+
+        private static string Show(char? c) => c switch {
+            null => "<end of string>",
+            '\n' => "\\n",
+            '\t' => "\\t",
+            _ => $"'{c}'"
+        };
     }
 }
