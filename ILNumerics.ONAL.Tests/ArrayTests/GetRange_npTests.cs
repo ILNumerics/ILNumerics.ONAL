@@ -1672,37 +1672,37 @@ namespace ILNumerics.Core.UnitTests {
             Array<int> I = new int[] { 0, 1, 2, 3, 4 };
             Array<uint> B = A[I];
 
-            var tempIndex1 = I[I]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
+            var tempIndex1 = I[I]; 
             B = A.C[tempIndex1];
 
             Assert.IsTrue(B.Equals(A));
 
             tempIndex1 = I[I, newaxis];
-            var tempIndex2 = I[newaxis, r(0, -2)]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
+            var tempIndex2 = I[newaxis, r(0, -2)]; 
             B = A.C[tempIndex1, tempIndex2];
 
             Assert.IsTrue(B.Equals(A));
 
             tempIndex1 = I[I, newaxis, newaxis];
-            tempIndex2 = I[newaxis, r(0, -2), newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            var tempIndex3 = I[newaxis, newaxis, r(0, -3)]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
+            tempIndex2 = I[newaxis, r(0, -2), newaxis]; 
+            var tempIndex3 = I[newaxis, newaxis, r(0, -3)]; 
             B = A.C[tempIndex1, tempIndex2, tempIndex3];
 
             Assert.IsTrue(B.Equals(A));
 
             tempIndex1 = I[I, newaxis, newaxis, newaxis];
-            tempIndex2 = I[newaxis, r(0, -2), newaxis, newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            tempIndex3 = I[newaxis, newaxis, r(0, -3), newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            var tempIndex4 = I[newaxis, newaxis, newaxis, r(0, -4)]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
+            tempIndex2 = I[newaxis, r(0, -2), newaxis, newaxis]; 
+            tempIndex3 = I[newaxis, newaxis, r(0, -3), newaxis]; 
+            var tempIndex4 = I[newaxis, newaxis, newaxis, r(0, -4)]; 
             B = A.C[tempIndex1, tempIndex2, tempIndex3, tempIndex4];
 
             Assert.IsTrue(B.Equals(A));
 
             tempIndex1 = I[I, newaxis, newaxis, newaxis, newaxis];
-            tempIndex2 = I[newaxis, r(0, -2), newaxis, newaxis, newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            tempIndex3 = I[newaxis, newaxis, r(0, -3), newaxis, newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            tempIndex4 = I[newaxis, newaxis, newaxis, r(0, -4), newaxis]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
-            var tempIndex5 = I[newaxis, newaxis, newaxis, newaxis, r(0, -5)]; // Mööööggg!! plain RetArray!!! Don't do this in real life!
+            tempIndex2 = I[newaxis, r(0, -2), newaxis, newaxis, newaxis]; 
+            tempIndex3 = I[newaxis, newaxis, r(0, -3), newaxis, newaxis]; 
+            tempIndex4 = I[newaxis, newaxis, newaxis, r(0, -4), newaxis]; 
+            var tempIndex5 = I[newaxis, newaxis, newaxis, newaxis, r(0, -5)]; 
             B = A.C[tempIndex1, tempIndex2, tempIndex3, tempIndex4, tempIndex5];
 
             Assert.IsTrue(B.Equals(A));

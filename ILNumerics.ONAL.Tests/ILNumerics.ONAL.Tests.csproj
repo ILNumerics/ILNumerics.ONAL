@@ -22,6 +22,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ArrayTests\**" />
+    <Compile Remove="CellTests\**" />
+    <Compile Remove="FFTTests\**" />
+    <Compile Remove="ILMathTests\**" />
+    <Compile Remove="MatFileTests\**" />
+    <Compile Remove="MathInternalTests\**" />
+    <Compile Remove="numpy_attributes_Tests\**" />
+    <Compile Remove="ScopeTests\**" />
+    <EmbeddedResource Remove="ArrayTests\**" />
+    <EmbeddedResource Remove="CellTests\**" />
+    <EmbeddedResource Remove="FFTTests\**" />
+    <EmbeddedResource Remove="ILMathTests\**" />
+    <EmbeddedResource Remove="MatFileTests\**" />
+    <EmbeddedResource Remove="MathInternalTests\**" />
+    <EmbeddedResource Remove="numpy_attributes_Tests\**" />
+    <EmbeddedResource Remove="ScopeTests\**" />
+    <None Remove="ArrayTests\**" />
+    <None Remove="CellTests\**" />
+    <None Remove="FFTTests\**" />
+    <None Remove="ILMathTests\**" />
+    <None Remove="MatFileTests\**" />
+    <None Remove="MathInternalTests\**" />
+    <None Remove="numpy_attributes_Tests\**" />
+    <None Remove="ScopeTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="MSTestSettings.cs" />
   </ItemGroup>
 

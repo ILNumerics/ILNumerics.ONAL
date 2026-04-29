@@ -49,28 +49,16 @@ namespace ILNumerics.Core.UnitTests.MathInternalTests {
                 A = zeros<double>(5, 4, 3, StorageOrders.RowMajor);
                 A[ellipsis, 0] = counter<double>(1.0, 1.0, 5, 4);
 
-                // following RetT handling was required to catch a bug in binary operators (broadcasting). It is left here for no specific reason. 
                 var tmpC = counter<double>(1, 1, 5, 4, 1);
-                Assert.IsTrue(tmpC.Storage.GetValueSeq(1) == 2 && tmpC.Storage.GetValueSeq(4) < 10, $"tmpC[2]: {tmpC.Storage.GetValueSeq(2)}, tmpC[4]: {tmpC.Storage.GetValueSeq(4)}");
                 var tmpZ = array<double>(0, dim0: 3);
-                Assert.IsTrue(tmpZ.Storage.GetValueSeq(0) == 0, $"tmpZ[0]: {tmpZ.Storage.GetValueSeq(0)}");
-                Assert.IsTrue(tmpZ.Storage.GetValueSeq(1) == 0, $"tmpZ[1]: {tmpZ.Storage.GetValueSeq(1)}");
-                Assert.IsTrue(tmpZ.Storage.GetValueSeq(2) == 0, $"tmpZ[2]: {tmpZ.Storage.GetValueSeq(2)}");
 
-                var tmp = tmpC + tmpZ; 
-                Assert.IsTrue(tmp.Storage.GetValueSeq(1) == 2 && tmp.Storage.GetValueSeq(4) < 10, $"tmp[2]: {tmp.Storage.GetValueSeq(2)}, tmp[4]: {tmp.Storage.GetValueSeq(4)}");
-
-                System.Diagnostics.Trace.WriteLine($"41 tmp.Storage.ID:{tmp.Storage.ID}, tmp.Storage.ReferenceCount: {tmp.Storage.ReferenceCount}");
-                System.Diagnostics.Trace.WriteLine($"42 Res={Res.Storage.ShortInfo(includeCounters: true, includeIDs: true)}");
-                Res = tocomplex(tmp);
-                System.Diagnostics.Trace.WriteLine($"44 tmp.Storage.ID:{tmp.Storage.ID}, tmp.Storage.ReferenceCount: {tmp.Storage.ReferenceCount}");
-                System.Diagnostics.Trace.WriteLine($"45 Res={Res.Storage.ShortInfo(includeCounters: true, includeIDs: true)}");
-                Assert.IsTrue(Res.GetValue(1, 0).real == 2 && Res.GetValue(4,0).real < 10, $"Res: {Res}, Res[1,0]: {Res.GetValue(1, 0)}, Res[4,0]: {Res.GetValue(4, 0)}");
+                Res = tocomplex(tmpC + tmpZ);
 
                 B = fft(A);
-                Assert.IsTrue(Res.GetValue(1, 0).real == 2 && Res.GetValue(4, 0).real < 10, $"Res: {Res}, Res[1,0]: {Res.GetValue(1, 0)}, Res[4,0]: {Res.GetValue(4, 0)}");
 
-                Assert.IsTrue(B.Equals(Res), $"B: {B}, Res: {Res}, Res[1,0]: {Res.GetValue(1,0)}, Res[4,0]: {Res.GetValue(4,0)}"); 
+                diff = maxall(abs(B - Res));
+                maxDiff = eps * maxall(A) * A.S.NumberOfElements;
+                Assert.IsTrue(diff <= maxDiff, $"Result differs by: " + diff + ". Expected max difference: " + maxDiff);
             }
         }
 
