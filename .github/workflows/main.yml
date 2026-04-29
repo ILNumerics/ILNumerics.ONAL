@@ -14,7 +14,7 @@ jobs:
       id-token: write
     
     env:
-      MSBUILDDEBUGPATH: ${{ runner.temp }}/msbuild-debug
+      MSBUILDDEBUGPATH: msbuild-debug
 
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Create MSBuild debug folder
-        run: mkdir -p "$MSBUILDDEBUGPATH"
+        run: mkdir -p msbuild-debug
 
       - name: Restore
         run: dotnet restore
@@ -44,9 +44,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: msbuild-crash-logs
-          path: ${{ runner.temp }}/msbuild-debug/**
-
+            name: msbuild-crash-logs
+            path: msbuild-debug/**
+      
       # Only reached if tests passed
       - name: Pack
         run: dotnet pack --configuration Release --no-build --output artifacts
