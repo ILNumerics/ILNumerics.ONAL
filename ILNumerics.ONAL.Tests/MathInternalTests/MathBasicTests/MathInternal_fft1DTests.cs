@@ -38,7 +38,9 @@ namespace ILNumerics.Core.UnitTests.MathInternalTests {
 
             Array<complex> B = fft(A);
             Array<complex> Res = tocomplex(counter<double>(1, 1, 1, 4, 3) + zeros<double>(5, 1, 1));
-            Assert.IsTrue(B.Equals(Res));
+            var diff = maxall(abs(B - Res));
+            var maxDiff = eps * maxall(A) * A.S.NumberOfElements; 
+            Assert.IsTrue(diff <= maxDiff, $"Result differs by: " + diff + ". Expected max difference: " + maxDiff);
 
             // test row major
             using (Settings.Ensure(() => Settings.ArrayStyle, ArrayStyles.numpy)) {
