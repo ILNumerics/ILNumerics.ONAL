@@ -174,7 +174,7 @@ namespace ILNumerics.Core.UnitTests {
             Array<double> A = new[] { 1.0, -0.0000000003, double.NaN, 400000000000.0000000002, double.NegativeInfinity, double.PositiveInfinity };
             var s = A.ToString();
             var exptd = "<Double> [6,1] 1e+011 * \r\n    0.000000\r\n   -0.000000\r\n         NaN\r\n    4.000000\r\n          -∞\r\n           ∞";
-            Assert.IsTrue(s == exptd, $"ToString gave: '{s}' Expected: '{exptd}'");
+            AssertEqual(s, exptd);
 
         }
 
@@ -188,7 +188,7 @@ namespace ILNumerics.Core.UnitTests {
             }; 
 
             var s = A.ToString();
-            Assert.IsTrue(s == "<UInt32> [3,6]\r\n           1           0          10     4000000  4294967295           0\r\n          10     4000000  4294967295           0           1           0\r\n           0          10     4000000  4294967295           0          99", $"ToString gave: '{s}'");
+            AssertEqual(s, "<UInt32> [3,6]\r\n           1           0          10     4000000  4294967295           0\r\n          10     4000000  4294967295           0           1           0\r\n           0          10     4000000  4294967295           0          99");
 
             A = new uint[] { };
             AssertEqual(A.ToString(), "<UInt32> [0,1] [empty]", "Empty array string failed");
