@@ -6,7 +6,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);CS9192;CS9193</NoWarn>
     <Configurations>Debug;Release;Debug_ONAL;Release_ONAL</Configurations>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Title>The Open Numerical Algorithm Language - reference implementation on .NET.</Title>
     <Description>A simple, robust, fully-featured numerical DSL for .NET (C#, Visual Basic, F#). Its built-in state of the art functionality (full semantical compatibility to Matlab and NumPy, full set of array functions, uniquely robust linear algebra, FFT, logical and cell types,...) secures your algorithmic IP for future use. Its integration into Visual Studios debugger helps finalizing and maintaining them faster. And when speed matters: the optional ILNumerics Accelerator optimizes your code with worlds first autonomous array JIT compiler / scheduler far beyond manual options.</Description>
     <PackageProjectUrl>https://github.com/ILNumerics/ILNumerics.ONAL</PackageProjectUrl>

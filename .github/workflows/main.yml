@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    
+    env:
+      MSBUILDDEBUGPATH: ${{ runner.temp }}/msbuild-debug
 
     steps:
       - name: Checkout
@@ -21,6 +24,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Create MSBuild debug folder
+        run: mkdir -p "$MSBUILDDEBUGPATH"
 
       - name: Restore
         run: dotnet restore
@@ -32,8 +38,14 @@ jobs:
 
       # Fails workflow immediately if any unit test fails
       - name: Run unit tests
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test --configuration Release --no-build -m:1 --blame-crash --logger "console;verbosity=detailed"
 
+      - name: Upload MSBuild crash logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: msbuild-crash-logs
+          path: ${{ runner.temp }}/msbuild-debug/**
 
       # Only reached if tests passed
       - name: Pack
