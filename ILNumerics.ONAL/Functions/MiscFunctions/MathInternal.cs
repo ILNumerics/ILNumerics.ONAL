@@ -87,16 +87,20 @@ namespace ILNumerics.Core.Functions.Builtin {
             #endregion
 
             #region initialize proc specific interfaces
-            // for now we rely on the existance of the Intel MKL! 
+            // for now we check for the existance of the Intel MKL
             // make sure that Globals is init first
             double dummy = Globals.eps + 1; 
             try {
                 using (Scope.Enter()) {
-                    MKLFFT mkl = new MKLFFT();
-                    FFTImplementation = mkl;
+                    if (!MKLFFT.TryCreate(out var mkl)) {
+                        System.Diagnostics.Trace.WriteLine($"ILNumerics.ONAL: MKL was not found."); 
+                        return; 
+                    }
+                    mkl.FFTForward1D( vector<float>(1.0f, 0f, 0f, 0f), 0).Dispose(); // fails if no MKL present
                     LapackMKL10_0 lapack = new LapackMKL10_0();
+                    // set Lapack and FFTImplementation only now! Otherwise other threads may already try to use it without failsafety
+                    FFTImplementation = mkl;
                     Lapack = lapack;
-                    mkl.FFTForward1D( vector<float>(1.0f, 0f, 0f, 0f), 0).Dispose();
                 }
                 System.Diagnostics.Trace.WriteLine($"ILNumerics.ONAL is initialized.");
                 return; 

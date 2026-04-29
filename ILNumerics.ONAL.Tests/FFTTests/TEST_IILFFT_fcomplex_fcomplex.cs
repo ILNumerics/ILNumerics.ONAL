@@ -19,12 +19,12 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ILNumerics;
 using ILNumerics.Core.Misc;
-using static ILNumerics.ILMath;
 using ILNumerics.Core.Native; 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using static ILNumerics.ILMath;
 
 namespace ILNumerics.UnitTests
 {
@@ -55,7 +55,7 @@ namespace ILNumerics.UnitTests
             TEST_FFT1d5_1_4_1__ALONG1_4(fft);
             TEST_FFT1d10_30_11__ALONG1_3(fft); 
             
-            fft = new MKLFFT();
+            fft = new F2NET.ManagedFFTPACK5();
             TEST_FFT1d1_1__ALONG1_2(fft);
             TEST_FFT1d5_1__ALONG1_2(fft);
             TEST_FFT1d1_5__ALONG1_2(fft);

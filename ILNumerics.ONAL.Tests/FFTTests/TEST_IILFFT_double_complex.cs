@@ -24,7 +24,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ILNumerics;
 using ILNumerics.Core.Misc;
 using static ILNumerics.ILMath;
-using ILNumerics.Core.Native; 
+using ILNumerics.Core.Native;
+using ILNumerics.F2NET;
 
 namespace ILNumerics.UnitTests
 {
@@ -34,7 +35,7 @@ namespace ILNumerics.UnitTests
         [TestMethod]
         public void TEST_IILFFT_double_complex_ALL()
         {
-            IFFT fft = new MKLFFT();
+            var fft = new ILNumerics.F2NET.ManagedFFTPACK5(); 
             TEST_FFT1d1_1__ALONG1_2(fft);
             TEST_FFT1d5_1__ALONG1_2(fft);
             TEST_FFT1d1_5__ALONG1_2(fft);

@@ -19,25 +19,19 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using static ILNumerics.ILMath;
-using static ILNumerics.Globals;
-using ILNumerics;
 //ILN(enabled=false)
 
 namespace ILNumerics.Core.UnitTests {
     [TestClass]
     public unsafe class ArrayToStringTests {
-        //ILN(enabled=false)
+
         [TestInitialize]
         public void TestInit() {
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-us"); 
         }
-
 
         [TestMethod]
         public void ToStringSimpleTest() {
@@ -46,7 +40,7 @@ namespace ILNumerics.Core.UnitTests {
             A = A.T; 
             string s = A.ToString();
             var res = "<Double> [1,4] 1e+005 * \r\n    1.020393   -0.000020    0.000030    0.000040"; 
-            Assert.IsTrue(s == res, $"Expected: {res}. Found: {s}"); 
+            AssertEqual(s, res); 
         }
 
         [TestMethod]
@@ -56,7 +50,7 @@ namespace ILNumerics.Core.UnitTests {
  
             string s = A.ToString();
             string res = "<Double> [11,10]\r\n           0          11          22          33          44          55          66          77          88          99\r\n           1          12          23          34          45          56          67          78          89         100\r\n           2          13          24          35          46          57          68          79          90         101\r\n           3          14          25          36          47          58          69          80          91         102\r\n           4          15          26          37          48          59          70          81          92         103\r\n           5          16          27          38          49          60          71          82          93         104\r\n           6          17          28          39          50          61          72          83          94         105\r\n           7          18          29          40          51          62          73          84          95         106\r\n           8          19          30          41          52          63          74          85          96         107\r\n           9          20          31          42          53          64          75          86          97         108\r\n          10          21          32          43          54          65          76          87          98         109"; 
-            Assert.IsTrue(s == res);
+            AssertEqual(s, res);
         }
 
         [TestMethod]
@@ -75,7 +69,7 @@ namespace ILNumerics.Core.UnitTests {
             using (Settings.Ensure(() => Settings.ToStringMaxNumberElementsPerDimension, 101u)) 
             using (Settings.Ensure(() => Settings.ToStringMaxNumberElements, 10000u)) {
                 var s = A.ToString();
-                Assert.IsTrue(s.StartsWith(@"<Double> [10,40,2]
+                var res = @"<Double> [10,40,2]
 (:,:,0)
            0           2           4           6           8          10          12          14          16          18          20          22          24          26          28          30          32          34          36          38          40          42          44          46          48          50          52          54          56          58          60          62          64          66          68          70          72          74          76          78
           80          82          84          86          88          90          92          94          96          98         100         102         104         106         108         110         112         114         116         118         120         122         124         126         128         130         132         134         136         138         140         142         144         146         148         150         152         154         156         158
@@ -97,8 +91,9 @@ namespace ILNumerics.Core.UnitTests {
          481         483         485         487         489         491         493         495         497         499         501         503         505         507         509         511         513         515         517         519         521         523         525         527         529         531         533         535         537         539         541         543         545         547         549         551         553         555         557         559
          561         563         565         567         569         571         573         575         577         579         581         583         585         587         589         591         593         595         597         599         601         603         605         607         609         611         613         615         617         619         621         623         625         627         629         631         633         635         637         639
          641         643         645         647         649         651         653         655         657         659         661         663         665         667         669         671         673         675         677         679         681         683         685         687         689         691         693         695         697         699         701         703         705         707         709         711         713         715         717         719
-         721         723         725         727         729         731         733         735         737         739         741         743         745         747         749         751         753         755         757         759         761         763         765         767         769         771         773         775         777         779         781         783         785         787         789         791         793         795         797         799"));
+         721         723         725         727         729         731         733         735         737         739         741         743         745         747         749         751         753         755         757         759         761         763         765         767         769         771         773         775         777         779         781         783         785         787         789         791         793         795         797         799";
 
+                AssertEqual(s, res);
             }
         }
 
@@ -125,16 +120,16 @@ namespace ILNumerics.Core.UnitTests {
             Array<double> A = new double[] { };
 
             string s = A.ToString();
-            Assert.IsTrue(s == "<Double> [0,1] [empty]");
+            AssertEqual(s, "<Double> [0,1] [empty]");
 
             s = A.ToString(2, 2000, showType: false, showSize: false);
-            Assert.IsTrue(s == "[empty]"); // no space before [empty]!
+            AssertEqual(s, "[empty]"); // no space before [empty]!
 
             s = A.ToString(2, 2000, showType: false, showSize: true);
-            Assert.IsTrue(s == "[0,1] [empty]"); // no space before [0 but space before [empty]!
+            AssertEqual(s, "[0,1] [empty]"); // no space before [0 but space before [empty]!
 
             s = A.ToString(2, 2000, showType: true, showSize: false);
-            Assert.IsTrue(s == "<Double> [empty]"); // no space at end!
+            AssertEqual(s, "<Double> [empty]"); // no space at end!
 
         }
 
@@ -147,17 +142,17 @@ namespace ILNumerics.Core.UnitTests {
 
                 s = A.ToString();
                 var exptd = "<Double> [1] 1e+011 * \r\n    3.000000";
-                Assert.IsTrue(s == exptd, $"Expected: {exptd}. found: {s}");
+                AssertEqual(s, exptd);
 
                 A = 300000000000.33300000000011;
                 s = A.ToString();
-                Assert.IsTrue(s == "<Double> [] 300000000000.333");
+                AssertEqual(s, "<Double> [] 300000000000.333");
 
                 using (Settings.Ensure(() => Settings.ArrayStyle, ArrayStyles.ILNumericsV4)) {
                     A = new double[] { 300000000000.33300000000011 };
 
                     s = A.ToString();
-                    Assert.IsTrue(s == "<Double> [1,1] 1e+011 * \r\n    3.000000");
+                    AssertEqual(s, "<Double> [1,1] 1e+011 * \r\n    3.000000");
 
                     s = A.ShortInfo();
                     Assert.IsTrue(s.StartsWith("<Double> [1,1] 300000000000.333")); // no space at end!
@@ -165,7 +160,7 @@ namespace ILNumerics.Core.UnitTests {
                     A = new double[] { -0.000000000033300000000011 };
 
                     s = A.ToString();
-                    Assert.IsTrue(s == "<Double> [1,1] 1e-011 * \r\n   -3.330000");
+                    AssertEqual(s, "<Double> [1,1] 1e-011 * \r\n   -3.330000");
 
                     s = A.ShortInfo();
                     Assert.IsTrue(s.StartsWith("<Double> [1,1] -3.3300000000011E-11")); // no space at end!
@@ -196,18 +191,18 @@ namespace ILNumerics.Core.UnitTests {
             Assert.IsTrue(s == "<UInt32> [3,6]\r\n           1           0          10     4000000  4294967295           0\r\n          10     4000000  4294967295           0           1           0\r\n           0          10     4000000  4294967295           0          99", $"ToString gave: '{s}'");
 
             A = new uint[] { };
-            Assert.IsTrue(A.ToString() == "<UInt32> [0,1] [empty]", "Empty array string failed");
+            AssertEqual(A.ToString(), "<UInt32> [0,1] [empty]", "Empty array string failed");
 
             A = new uint[] { uint.MaxValue };
-            Assert.IsTrue(A.ToString() == "<UInt32> [1,1]\r\n  4294967295", "Scalar array string failed");
+            AssertEqual(A.ToString(), "<UInt32> [1,1]\r\n  4294967295", "Scalar array string failed");
 
             using (Scope.Enter(ArrayStyles.numpy)) {
                 A = uint.MaxValue;
                 Assert.IsTrue(A.IsScalar && A.S.NumberOfDimensions == 0 && A.S.NumberOfElements == 1);
-                Assert.IsTrue(A.ToString() == "<UInt32> [] 4294967295", "Scalar array sbyte failed");
+                AssertEqual(A.ToString(), "<UInt32> [] 4294967295", "Scalar array sbyte failed");
 
                 A = uint.MinValue;
-                Assert.IsTrue(A.ToString() == "<UInt32> [] 0", "Scalar array sbyte failed");
+                AssertEqual(A.ToString(), "<UInt32> [] 0", "Scalar array sbyte failed");
 
             }
 
@@ -222,15 +217,15 @@ namespace ILNumerics.Core.UnitTests {
             };
 
             var s = A.ToString();
-            Assert.IsTrue(s == "<Int32> [3,6]\r\n           1           0          10     4000000  2147483647 -2147483648\r\n          10     4000000  2147483647 -2147483648           1           0\r\n           0          10     4000000  2147483647 -2147483648          99", $"ToString gave: '{s}'");
+            AssertEqual(s, "<Int32> [3,6]\r\n           1           0          10     4000000  2147483647 -2147483648\r\n          10     4000000  2147483647 -2147483648           1           0\r\n           0          10     4000000  2147483647 -2147483648          99");
 
             A = new int[] { };
-            Assert.IsTrue(A.ToString() == "<Int32> [0,1] [empty]", $"Empty array string failed. A.ToString():{A.ToString()}");
+            Assert.IsTrue(A.ToString() == "<Int32> [0,1] [empty]", $"Empty array ToString failed. A.ToString() gave:{A.ToString()}");
 
             A = new int[] { int.MaxValue };
-            Assert.IsTrue(A.ToString() == "<Int32> [1,1]\r\n  2147483647", "Scalar array string failed");
+            AssertEqual(A.ToString(), "<Int32> [1,1]\r\n  2147483647", "Scalar array string failed");
             A = new int[] { int.MinValue };
-            Assert.IsTrue(A.ToString() == "<Int32> [1,1]\r\n -2147483648", "Scalar array string failed");
+            AssertEqual(A.ToString(), "<Int32> [1,1]\r\n -2147483648", "Scalar array string failed");
 
         }
 
@@ -244,23 +239,23 @@ namespace ILNumerics.Core.UnitTests {
             };
 
             var s = A.ToString();
-            Assert.IsTrue(s == "<SByte> [3,6]\r\n           1           0          10         127         127        -128\r\n          10        -128         127        -128           1           0\r\n           0          10          40         127        -128          99", $"ToString gave: '{s}'");
+            AssertEqual(s, "<SByte> [3,6]\r\n           1           0          10         127         127        -128\r\n          10        -128         127        -128           1           0\r\n           0          10          40         127        -128          99");
 
             A = new sbyte[] { };
             Assert.IsTrue(A.ToString() == "<SByte> [0,1] [empty]", $"Empty array sbyte failed. A.ToString():{A.ToString()}");
 
             A = new sbyte[] { sbyte.MaxValue };
-            Assert.IsTrue(A.ToString() == "<SByte> [1,1]\r\n         127", "Scalar array sbyte failed");
+            AssertEqual(A.ToString(), "<SByte> [1,1]\r\n         127", "Scalar array sbyte failed");
             A = new sbyte[] { sbyte.MinValue };
-            Assert.IsTrue(A.ToString() == "<SByte> [1,1]\r\n        -128", "Scalar array sbyte failed");
+            AssertEqual(A.ToString(), "<SByte> [1,1]\r\n        -128", "Scalar array sbyte failed");
 
             using (Scope.Enter(ArrayStyles.numpy)) {
                 A = sbyte.MaxValue;
                 Assert.IsTrue(A.IsScalar && A.S.NumberOfDimensions == 0 && A.S.NumberOfElements == 1);
-                Assert.IsTrue(A.ToString() == "<SByte> [] 127", "Scalar array sbyte failed");
+                AssertEqual(A.ToString(), "<SByte> [] 127", "Scalar array sbyte failed");
 
                 A = sbyte.MinValue;
-                Assert.IsTrue(A.ToString() == "<SByte> [] -128", "Scalar array sbyte failed");
+                AssertEqual(A.ToString(), "<SByte> [] -128", "Scalar array sbyte failed");
 
             }
 
@@ -275,23 +270,23 @@ namespace ILNumerics.Core.UnitTests {
             };
 
             var s = A.ToString();
-            Assert.IsTrue(s == "<Boolean> [3,7]\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮", $"ToString gave: '{s}'");
+            AssertEqual(s,"<Boolean> [3,7]\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮\r\n ▮ ▮ ▯ ▮ ▯ ▯ ▮");
 
             A = new bool[] { };
-            Assert.IsTrue(A.ToString() == "<Boolean> [0,1] [empty]", $"Empty array string failed. A.ToString:{A.ToString()}");
+            AssertEqual(A.ToString(), "<Boolean> [0,1] [empty]", $"Empty array string failed. A.ToString:{A.ToString()}");
 
             A = new bool[] { true };
-            Assert.IsTrue(A.ToString() == "<Boolean> [1,1]\r\n ▮", "Scalar array string failed");
+            AssertEqual(A.ToString() , "<Boolean> [1,1]\r\n ▮", "Scalar array string failed");
             A = new bool[] { false };
-            Assert.IsTrue(A.ToString() == "<Boolean> [1,1]\r\n ▯", "Scalar array string failed");
+            AssertEqual(A.ToString(), "<Boolean> [1,1]\r\n ▯", "Scalar array string failed");
 
             using (Scope.Enter(ArrayStyles.numpy)) {
                 A = true;
                 Assert.IsTrue(A.IsScalar && A.S.NumberOfDimensions == 0 && A.S.NumberOfElements == 1);
-                Assert.IsTrue(A.ToString() == "<Boolean> [] True", "Scalar array string failed");
+                AssertEqual(A.ToString(), "<Boolean> [] True", "Scalar array string failed");
 
                 A = false;
-                Assert.IsTrue(A.ToString() == "<Boolean> [] False", "Scalar array string failed");
+                AssertEqual(A.ToString(), "<Boolean> [] False", "Scalar array string failed");
 
             }
 
@@ -310,7 +305,7 @@ namespace ILNumerics.Core.UnitTests {
             Assert.IsTrue(A.ShortInfo().StartsWith("<complex> [3,5] 1+i...1+i "), $"Expected: '<complex> [3,5] 1+i...1+i'. Found: '{A.ShortInfo()}'.");
             var s = A.ToString();
             var res = "<complex> [3,5] 1e+012 * \r\n  0.00000+i          -0.00000+i           0.00000-i          -0.00000-i          -0.00000+i8.76889  \r\n  1.00000-i1.00000    0.00000-i1.00000   -0.00000+ NaN             -∞+ NaN       -0.00000-i0.00000  \r\n        ∞+i1.00000          0+i0              NaN-i0.00000    0.00000+i           0.00000+i         "; 
-            Assert.IsTrue(s == res, $"Expected: '{res}'. Found: '{s}'.");
+            AssertEqual(s, res);
 
         }
         [TestMethod]
@@ -325,8 +320,14 @@ namespace ILNumerics.Core.UnitTests {
             Assert.IsTrue(A.ShortInfo().StartsWith("<fcomplex> [3,5] 1+i...1+i"));
             var s = A.ToString();
             var res = "<fcomplex> [3,5] 1e+011 * \r\n  0.00000+i          -0.00000+i           0.00000-i          -0.00000-i          -0.00000+i0.00001  \r\n 10.00000-i10.00000   0.00000-i10.00000  -0.00000+ NaN             -∞+ NaN       -0.00000-i0.00000  \r\n        ∞+i10.00000         0+i0              NaN-i0.00000    0.00000+i           0.00000+i         ";
-            Assert.IsTrue(s == res, s);
+            AssertEqual(s, res);
+        }
 
+        // helper for comparing and accepting cross platform line endings
+        void AssertEqual(string a, string b, string msg = null, [CallerMemberName] string caller = "") {
+            var compared = CompareWithLocation(a, b);
+            if (string.IsNullOrEmpty(compared)) return;
+            Assert.Fail($"{caller} failed ({msg ?? "-"}): {compared}. Expected: {b} Result was: {a}"); 
         }
 
         [TestMethod]
@@ -335,9 +336,8 @@ namespace ILNumerics.Core.UnitTests {
             Array<int> A = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             var s = A.ToString();
-            Assert.IsTrue(s == "<Int32> [10,1]\r\n           0\r\n           1\r\n           2\r\n           3\r\n           4\r\n           5\r\n           6\r\n           7\r\n           8\r\n           9",
-                $@"{nameof(Settings.MinNumberOfArrayDimensions)}:{Settings.MinNumberOfArrayDimensions}
-                   {nameof(Settings.DefaultStorageOrder)}:{Settings.DefaultStorageOrder}");
+            var compared = CompareWithLocation(s, "<Int32> [10,1]\r\n           0\r\n           1\r\n           2\r\n           3\r\n           4\r\n           5\r\n           6\r\n           7\r\n           8\r\n           9");
+            Assert.IsTrue(string.IsNullOrEmpty(compared), compared + " Current settings: " + $@"{nameof(Settings.MinNumberOfArrayDimensions)}:{Settings.MinNumberOfArrayDimensions}, {nameof(Settings.DefaultStorageOrder)}:{Settings.DefaultStorageOrder}");
 
             var bsd = A.S.GetBSD(true);
             bsd[0] = (1);
@@ -353,7 +353,8 @@ namespace ILNumerics.Core.UnitTests {
             Assert.IsTrue(s.StartsWith("<Int32> [8] 1...8"));
 
             s = A.ToString();
-            Assert.IsTrue(s == "<Int32> [8]\r\n           1\r\n           2\r\n           3\r\n           4\r\n           5\r\n           6\r\n           7\r\n           8");
+            compared = CompareWithLocation(s, "<Int32> [8]\r\n           1\r\n           2\r\n           3\r\n           4\r\n           5\r\n           6\r\n           7\r\n           8"); 
+            Assert.IsTrue(string.IsNullOrEmpty(compared), compared);
 
         }
 
@@ -387,7 +388,7 @@ namespace ILNumerics.Core.UnitTests {
             Assert.IsTrue(s.StartsWith("<Single> [10,10] NaN...-4.27627E-08 | Dev:0"), s);
 
             s = A.ToString();
-            var res = "<Single> [10,10] 1e+004 * \r\n"
+            var res = "<Single> [10,10] 1e+004 * " + Environment.NewLine
                 + "         NaN    0.563135    0.031712    0.001786    0.000101    0.000006    0.000000          -∞    0.000000    0.000000" + Environment.NewLine
                 + "   -7.500000   -0.422351           0   -0.001339   -0.000075   -0.000004   -0.000000   -0.000000   -0.000000           ∞" + Environment.NewLine
                 + "    5.625000    0.316763    0.017838    0.001005          -∞    0.000003    0.000000    0.000000    0.000000    0.000000" + Environment.NewLine
@@ -402,7 +403,7 @@ namespace ILNumerics.Core.UnitTests {
         // Element at [4,0]: 31640.625
         // Difference: 527->'3|2'
         // It looks ok in both cases, though! So we accept both floating point representations to be considered 'correct'! 
-            var res2 = "<Single> [10,10] 1e+004 * \r\n"
+            var res2 = "<Single> [10,10] 1e+004 * " + Environment.NewLine
                 + "         NaN    0.563135    0.031712    0.001786    0.000101    0.000006    0.000000          -∞    0.000000    0.000000" + Environment.NewLine
                 + "   -7.500000   -0.422351           0   -0.001339   -0.000075   -0.000004   -0.000000   -0.000000   -0.000000           ∞" + Environment.NewLine
                 + "    5.625000    0.316763    0.017838    0.001005          -∞    0.000003    0.000000    0.000000    0.000000    0.000000" + Environment.NewLine
@@ -414,9 +415,10 @@ namespace ILNumerics.Core.UnitTests {
                 + "    1.001129    0.056377         NaN    0.000179    0.000010    0.000001    0.000000    0.000000    0.000000    0.000000" + Environment.NewLine
                 + "   -0.750847   -0.042283   -0.002381   -0.000134           0   -0.000000   -0.000000   -0.000000   -0.000000   -0.000000";
 
-            if (s != res && s != res2) {
-                Assert.Fail($"Comparison of A.ToString() with 'res' (NET8.0) gave: " + CompareWithLocation(s, res) + " Comparison with 'res2' (net461) gave: " + CompareWithLocation(s,res2));
-            }
+            var compared = CompareWithLocation(s, res2);
+
+            Assert.IsTrue(string.IsNullOrEmpty(compared), $"Comparison of A.ToString() with 'res2' (net8.0) gave: " + compared); 
+            
 
             ////for (int i = 0; i < s.Length; i++) {
             ////    if (s[i] != res[i]) {

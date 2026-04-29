@@ -45,15 +45,18 @@ namespace ILNumerics.Core.Native {
     /// </summary>
     public class MKLFFT : IFFT {
 
-        public static void Init() {
+        public static bool Init() {
             try {
                 // ho: commented ...  // unless the user explicitely configured the number of threads, let omp configure it! 
                 //if (Settings.MaxNumberThreadsConfigured) {
                 SetNumThreads((int)Settings.MaxNumberThreads);
+                return true; 
                 //}
             } catch (System.IO.FileNotFoundException) {
             } catch (System.BadImageFormatException) {
+            } catch (DllNotFoundException) { 
             }
+            return false;
         }
 
         
@@ -77,8 +80,17 @@ namespace ILNumerics.Core.Native {
         }
 
         #region constructor 
-        public MKLFFT() {
-            Init();
+
+        public static bool TryCreate(out MKLFFT mkl) {
+            if (Init()) {
+                mkl = new MKLFFT();
+                return true; 
+            }
+            mkl = default; 
+            return false; 
+        }
+        private MKLFFT() {
+            
         }
         #endregion
 

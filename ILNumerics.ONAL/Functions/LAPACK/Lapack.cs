@@ -39,7 +39,6 @@ namespace ILNumerics {
     public partial class ILMath {
 
         static ILMath() {
-            System.ComponentModel.LicenseManager.Validate(typeof(ILMath)); 
 
             // causes intialization + detects for MKL
             if (MathInternal.Lapack == null) {
