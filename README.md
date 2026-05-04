@@ -2,7 +2,7 @@
 ### Open Numerical Algorithm Language (ONAL) for .NET
 
 [![NuGet](https://img.shields.io/nuget/v/ILNumerics.ONAL.svg)](https://www.nuget.org/packages/ILNumerics.ONAL)
-[![Build](https://img.shields.io/github/actions/workflow/status/ILNumerics/ILNumerics.ONAL/build.yml)](...)
+[![Build](https://img.shields.io/github/actions/workflow/status/ILNumerics/ILNumerics.ONAL/.github/workflows/publish_nuget.yml)](...)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ### Write serious numerical algorithms in .NET: NumPy/MATLAB semantic, proven industrial reliability, and no vendor lock-in.
