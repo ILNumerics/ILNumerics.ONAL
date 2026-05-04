@@ -19,6 +19,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Globalization;
 using static ILNumerics.Globals;
@@ -125,6 +126,17 @@ namespace ILNumerics.UnitTests.Legacy_Tests {
             return float.Parse(element);
         }
 
+        [TestMethod]
+        public void CSV_ComplexReadWriteDoubleSmall() {
+            Array<complex> A = new complex(0.5598834872058982, 1.186598092870134E-05);
+            if (File.Exists("test_cplxd.csv")) {
+                File.Delete("test_cplxd.csv");
+            }
+            csvwrite<complex>(A, "test_cplxd.csv");
+            Array<complex> readCplx = csvread<complex>(File.Open("test_cplxd.csv", FileMode.Open));
+            Assert.IsTrue(allall(abs(A - readCplx) < 0.001));
+
+        }
         [TestMethod]
         public void CSV_ComplexReadWriteDouble()
         {

@@ -29,7 +29,7 @@ Because serious numerical software needs more than wrapping NumPy:
 
 ILNumerics.ONAL is the open-sourced language core of [ILNumerics](https://ilnumerics.net),
 providing multidimensional array programming and the fundamental tools
-for building maintainable numerical algorithm IP in .NET. Write serious numerical algorithms in .NET — with Matlab/NumPy-like semantics, industrial robustness, and no vendor lock-in.
+for building maintainable numerical algorithm IP in .NET. Write serious numerical algorithms in .NET — with Matlab/NumPy semantics, industrial robustness, and ***no vendor lock-in***.
 
 
 
@@ -139,8 +139,8 @@ Numerical code should be inspectable.
 Features include:
 
 - Visual Studio tooltips  
-- Graphical array watch window  
-- Interactive debugging support
+- Graphical array watch window ([Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ILNumericsGmbH.ilnumericsVS600))
+- [Interactive debug session support](https://ilnumerics.net/visualstudio-extension.html)
 
 ![visualizer](https://ilnumerics.net/media/photos/VisualStudioDebugging_L.jpg)
 
@@ -148,13 +148,44 @@ Features include:
 
 # Performance Philosophy
 
-ONAL prioritizes:
+This project focuses strictly on **semantics and functionality**.  
+It represents the **core language layer** of ONAL and serves as its reference implementation.
 
-- Correct semantics  
-- Stable APIs  
-- Expressive algorithms
+Recent breakthroughs in the **automatic parallelization of array-based algorithms** make it possible to fully separate:
 
-while still delivering competitive speed among .NET numerical DSLs.
+- *what an algorithm does*  
+- *how it is executed efficiently*  
+
+All performance-related concerns — previously embedded in APIs and implementations — are delegated to **external compilers**.
+
+---
+
+### What This Means in Practice
+
+`ILNumerics.ONAL` provides:
+
+- a **complete, production-ready implementation** of numerical array semantics  
+- **robust and reliable execution** with solid baseline performance  
+- **no dependency on proprietary execution engines**  
+
+Advanced performance features such as:
+
+- Auto-parallelization  
+- Auto-vectorization
+- kernel fusion and graph optimization  
+- Array pipelining and autonomous scheduling
+
+are handled by **ONAL-compatible compilers**, such as the [ILNumerics Accelerator Compiler](https://ilnumerics.net/ilnumerics-accelerator-compiler.html), and can be dropped-in **optionally** when needed.
+
+---
+
+### Result
+
+The language core remains **stable, open, and vendor-neutral**, while performance can scale independently.
+
+Write algorithms once.  
+Run them with reliable baseline performance.  
+Run them optimized later — without changing the code.
 
 ---
 

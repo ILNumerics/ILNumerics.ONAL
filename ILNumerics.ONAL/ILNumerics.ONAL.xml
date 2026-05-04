@@ -74568,6 +74568,12 @@
             <param name="ndims"></param>
             <exception cref="T:System.ArgumentException">if this size is not broadcastable to the given size.</exception>
         </member>
+        <member name="M:ILNumerics.Size.CheckSizeBroadcastableStrides(ILNumerics.Size)">
+            <summary>
+            Check to make sure that all singleton dimensions have 0 strides assigned.
+            </summary>
+            <param name="size">Size of check.</param>
+        </member>
         <member name="M:ILNumerics.Size.IsBroadcastableTo(ILNumerics.IIndexIterator[],System.UInt32)">
             <summary>
             Determines if this size if broadcastable to the range specified by <paramref name="iterators"/>. Not the other way around!
