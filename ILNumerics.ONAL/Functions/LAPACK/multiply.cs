@@ -29,8 +29,6 @@
 
 using ILNumerics.Core.Native;
 using System;
-using static ILNumerics.Core.Functions.Builtin.MathInternal;
-using ILNumerics.Core.Functions.Builtin;
 
 /*!HC:TYPELIST:
 <hycalper>
@@ -132,6 +130,13 @@ namespace ILNumerics {
                         } else if ((_A.S.StorageOrder == StorageOrders.RowMajor || (_A.S.IsContinuous && _A.S.NonSingletonDimensions == 1))
                             && (_B.S.StorageOrder == StorageOrders.RowMajor || (_B.S.IsContinuous && _B.S.NonSingletonDimensions == 1))) {
 
+                            // handle numpy [n] 1-D vectors. T does not have any effect on them !
+                            if (_B.ndim == 1) {
+                                _B.a = _B.Reshape(_B.size_, 1);
+                            }
+                            if (_A.ndim == 1) {
+                                _A.a = _A.Reshape(_A.size_, 1);
+                            }
                             return multiply(_B.T, _A.T).T;
 
                         }
@@ -246,6 +251,13 @@ namespace ILNumerics {
                         } else if ((_A.S.StorageOrder == StorageOrders.RowMajor || (_A.S.IsContinuous && _A.S.NonSingletonDimensions == 1))
                             && (_B.S.StorageOrder == StorageOrders.RowMajor || (_B.S.IsContinuous && _B.S.NonSingletonDimensions == 1))) {
 
+                            // handle numpy [n] 1-D vectors. T does not have any effect on them !
+                            if (_B.ndim == 1) {
+                                _B.a = _B.Reshape(_B.size_, 1);
+                            }
+                            if (_A.ndim == 1) {
+                                _A.a = _A.Reshape(_A.size_, 1);
+                            }
                             return multiply(_B.T, _A.T).T;
 
                         }
@@ -357,6 +369,13 @@ namespace ILNumerics {
                         } else if ((_A.S.StorageOrder == StorageOrders.RowMajor || (_A.S.IsContinuous && _A.S.NonSingletonDimensions == 1))
                             && (_B.S.StorageOrder == StorageOrders.RowMajor || (_B.S.IsContinuous && _B.S.NonSingletonDimensions == 1))) {
 
+                            // handle numpy [n] 1-D vectors. T does not have any effect on them !
+                            if (_B.ndim == 1) {
+                                _B.a = _B.Reshape(_B.size_, 1);
+                            }
+                            if (_A.ndim == 1) {
+                                _A.a = _A.Reshape(_A.size_, 1);
+                            }
                             return multiply(_B.T, _A.T).T;
 
                         }
@@ -468,6 +487,13 @@ namespace ILNumerics {
                         } else if ((_A.S.StorageOrder == StorageOrders.RowMajor || (_A.S.IsContinuous && _A.S.NonSingletonDimensions == 1))
                             && (_B.S.StorageOrder == StorageOrders.RowMajor || (_B.S.IsContinuous && _B.S.NonSingletonDimensions == 1))) {
 
+                            // handle numpy [n] 1-D vectors. T does not have any effect on them !
+                            if (_B.ndim == 1) {
+                                _B.a = _B.Reshape(_B.size_, 1);
+                            }
+                            if (_A.ndim == 1) {
+                                _A.a = _A.Reshape(_A.size_, 1);
+                            }
                             return multiply(_B.T, _A.T).T;
 
                         }

@@ -19,13 +19,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ILNumerics.Core.Native;
+using static ILNumerics.Core.UnitTests.Helper;
 using static ILNumerics.ILMath;
-using static ILNumerics.Globals;
-using static ILNumerics.Core.UnitTests.Helper; 
 
 namespace ILNumerics.Core.UnitTests.MathInternalTests {
     /// <summary>
@@ -33,6 +29,48 @@ namespace ILNumerics.Core.UnitTests.MathInternalTests {
     /// </summary>
     [TestClass]
     public class MathInternal_multiplyTests {
+
+        [TestMethod]
+        public void Multiply1DNumPyVectorsMKL() {
+            // fix for: 
+            // https://github.com/ILNumerics/ILNumerics.ONAL/issues/4
+
+            var oldLapack = Lapack;
+            try {
+                Lapack = new LapackMKL10_0();
+                using (Scope.Enter(arrayStyle: ArrayStyles.numpy)) {
+                    var O = counter(1.0, 1.0, 2, 2, StorageOrders.RowMajor);
+                    var R = vector(-1.0, 3.5);
+                    var result = multiply(O, R); // failed with exception. Workaround was: multiply(O, R.Reshape(2,1))
+                    Assert.IsTrue(result.Equals(vector(6.0, 11)));
+                }
+            } catch {
+                Assert.Fail();
+            } finally {
+                Lapack = oldLapack;
+            }
+        }
+
+        [TestMethod]
+        public void Multiply1DNumPyVectorsMKLCmplx() {
+            // fix for: 
+            // https://github.com/ILNumerics/ILNumerics.ONAL/issues/4
+
+            var oldLapack = Lapack;
+            try {
+                Lapack = new LapackMKL10_0();
+                using (Scope.Enter(arrayStyle: ArrayStyles.numpy)) {
+                    var O = ccomplex(counter(1.0, 1.0, 2, 2, StorageOrders.RowMajor), 0.0);
+                    var R = ccomplex(vector(-1.0, 3.5), 0.0);
+                    var result = abs(multiply(O, R)); // failed with exception. Workaround was: multiply(O, R.Reshape(2,1))
+                    Assert.IsTrue(result.Equals(vector(6.0, 11)));
+                }
+            } catch {
+                Assert.Fail();
+            } finally {
+                Lapack = oldLapack;
+            }
+        }
 
         [TestMethod]
         public void MathInternal_multiply_CM_CM() {

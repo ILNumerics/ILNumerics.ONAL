@@ -151,12 +151,12 @@ Features include:
 This project focuses strictly on **semantics and functionality**.  
 It represents the **core language layer** of ONAL and serves as its reference implementation.
 
-Recent breakthroughs in the **automatic parallelization of array-based algorithms** make it possible to fully separate:
+Recent breakthroughs in the [automatic parallelization of array-based algorithms](https://ilnumerics.net/ilnumerics-accelerator-compiler.html) make it possible to fully separate:
 
 - *what an algorithm does*  
 - *how it is executed efficiently*  
 
-All performance-related concerns — previously embedded in APIs and implementations — are delegated to **external compilers**.
+All performance-related concerns — previously deeply embedded in APIs and implementation — are delegated to **external compilers**.
 
 ---
 
@@ -203,6 +203,8 @@ https://www.nuget.org/packages/ILNumerics.ONAL
 
 # Quick Start
 
+A comprehensive ['LearnILNumericsInYMinutes' guide](ilnumerics.md) is available, too. 
+
 ## Matrix Example
 
 ```csharp
@@ -210,7 +212,8 @@ using ILNumerics;
 
 var A = rand(3,3);
 
-var B = A.T * A;
+var B = multiply(A.T, A); // matrix multiply
+var C = A.T * A;          // elementwise
 
 ```
 
@@ -225,10 +228,11 @@ var b = rand(100,1);
 var x = linsolve(A,b);
 ```
 
+All linear algebra uses machine-translations of the original netlib LAPACK, being more robust than manual re-implementations.
+
 ---
 
 ## Signal Processing Example
-
 ```csharp
 var fs = 1000;
 
@@ -245,11 +249,20 @@ var signal =
 var spectrum = fft(signal);
 ```
 
+Array variables are easily [inspected](https://ilnumerics.net/visualstudio-extension.html) and changes followed while debugging: 
+
+| Signal Plot | Spectr.|
+|-|-|
+|![signal line plot](https://ilnumerics.net/media/png/ILNumerics_SignalVisualizedComplex.png)|![spectrum line plot](https://ilnumerics.net/media/png/ILNumerics_SpectrumVisualizedComplex.png)|
+
+Learn more in Y minutes: ['LearnILNumericsInYMinutes' guide](ilnumerics.md).  
+Full documentation: [ilnumerics online documentation](https://ilnumerics.net/docs.html) (but make sure to ignore their 'function rules' ;)) 
+
 ---
 
 # Contributing
 
-Contributions welcome.
+Docu missing ? Feature missing ? Odd behavior ? Contributions welcome! 
 
 ```bash
 git clone https://github.com/ILNumerics/ILNumerics.ONAL

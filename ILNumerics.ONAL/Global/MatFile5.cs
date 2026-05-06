@@ -3242,7 +3242,7 @@ namespace ILNumerics {
         /// ]]></code></example>
         public MatFile(string file2open) {
 
-            using (Scope.Enter()) {
+            using (Scope.Enter(arrayStyle: ArrayStyles.ILNumericsV4)) {  
                 m_filename = file2open;
                 using (FileStream fs = File.OpenRead(file2open)) {
                     BinaryReader br = new BinaryReader(fs);
@@ -3319,6 +3319,8 @@ namespace ILNumerics {
         /// <seealso cref="MatFile.MatFile(InCell)"/>
             /// <seealso cref="AddArray{T}(BaseArray{T}, string)"/>
         public MatFile() {
+            // ensure that we start with an empty array, but having two dimensions: [0,1]
+            using var _1 = Settings.Ensure(() => Settings.ArrayStyle, ArrayStyles.ILNumericsV4);
             m_data = cell();
         }
         #endregion

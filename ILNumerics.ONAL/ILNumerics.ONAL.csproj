@@ -1,23 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Version>0.9.3</Version>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);CS9192;CS9193;CS1591</NoWarn>
     <Configurations>Debug;Release;Debug_ONAL;Release_ONAL</Configurations>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <!--<GenerateAssemblyInfo>False</GenerateAssemblyInfo>-->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Title>The Open Numerical Algorithm Language - reference implementation on .NET.</Title>
     <Description>A simple, robust, fully-featured numerical DSL for .NET (C#, Visual Basic, F#). Its built-in state of the art functionality (full semantical compatibility to Matlab and NumPy, full set of array functions, uniquely robust linear algebra, FFT, logical and cell types,...) secures your algorithmic IP for future use. Its integration into Visual Studios debugger helps finalizing and maintaining them faster. And when speed matters: the optional ILNumerics Accelerator optimizes your code with worlds first autonomous array JIT compiler / scheduler far beyond manual options.</Description>
     <PackageProjectUrl>https://ilnumerics.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ILNumerics/ILNumerics.ONAL</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>math; numeric; n-d array; numpy; matlab; ILNumerics; fft; lapack; elmat; </PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>0.9.1</PackageVersion>
+    <PackageVersion>$(Version)</PackageVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>ILNumerics.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_ONAL|AnyCPU'">
@@ -25,10 +29,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\AssemblyVersion.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="ILNumerics.png" pack="true" PackagePath="\"></None>
   </ItemGroup>
 
   <ItemGroup>
