@@ -1,13 +1,4 @@
-﻿---
-name: ILNumerics Open Numerical Algorithm Language (ONAL)
-filename: learnILNumerics.cs
-contributors:
-    - ["Haymo Kutschbach", "https://ilnumerics.net"]
-    - ["Jonas Nordholt", "https://ilnumerics.net"]
-    - ["Kai C. Meyer", "https://ilnumerics.net"]
----
-
-# Learn ILNumerics.ONAL in Y Minutes
+﻿# Learn ILNumerics.ONAL in Y Minutes
 
 ILNumerics.ONAL is the free and open source (MIT) reference implementation of the ONAL (Open Numerical Algorithm Language) standard for .NET. 
 
