@@ -7,9 +7,10 @@
 
 ### Write serious numerical algorithms in .NET: NumPy/MATLAB semantic, proven industrial reliability, and no vendor lock-in.
 
-Open-sourced from the proven, mature core of [ILNumerics Computing](https://ilnumerics.net).
+Open-sourced from the proven, mature core of [ILNumerics Computing](https://ilnumerics.net).  
+-> *Your algorithms. Your IP. Your language.* <-
 
-#### Your algorithms.   Your IP.   Your language.
+**Learn [ILNumerics.ONAL in Y minutes](ilnumerics.md) !**
 
 ---
 ## Why ILNumerics.ONAL ? 
@@ -82,7 +83,7 @@ MATLAB / NumPy-like semantics included.
 
 ## Array Expressions
 
-Write mathematics naturally:
+Write mathematics naturally, use all common functions expected from an array language:
 
 ```csharp
 var x = linspace(0,10,1000);
@@ -142,7 +143,7 @@ Features include:
 - Graphical array watch window ([Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ILNumericsGmbH.ilnumericsVS600))
 - [Interactive debug session support](https://ilnumerics.net/visualstudio-extension.html)
 
-![visualizer](https://ilnumerics.net/media/photos/VisualStudioDebugging_L.jpg)
+![visualizer](https://raw.githubusercontent.com/ilnumerics/ILNumerics.ONAL/main/Resources/VisualStudioDebugging_L.jpg)
 
 ---
 
@@ -203,7 +204,7 @@ https://www.nuget.org/packages/ILNumerics.ONAL
 
 # Quick Start
 
-A comprehensive ['LearnILNumericsInYMinutes' guide](ilnumerics.md) is available, too. 
+=> Learn [ILNumerics in Y minutes](ilnumerics.md)  guide. 
 
 ## Matrix Example
 
@@ -253,7 +254,7 @@ Array variables are easily [inspected](https://ilnumerics.net/visualstudio-exten
 
 | Signal Plot | Spectr.|
 |-|-|
-|![signal line plot](https://ilnumerics.net/media/png/ILNumerics_SignalVisualizedComplex.png)|![spectrum line plot](https://ilnumerics.net/media/png/ILNumerics_SpectrumVisualizedComplex.png)|
+|![signal line plot](https://raw.githubusercontent.com/ilnumerics/ILNumerics.ONAL/main/Resources/ILNumerics_SignalVisualizedComplex.png)|![spectrum line plot](https://raw.githubusercontent.com/ilnumerics/ILNumerics.ONAL/main/Resources/ILNumerics_SpectrumVisualizedComplex.png)|
 
 Learn more in Y minutes: ['LearnILNumericsInYMinutes' guide](ilnumerics.md).  
 Full documentation: [ilnumerics online documentation](https://ilnumerics.net/docs.html) (but make sure to ignore their 'function rules' ;)) 
