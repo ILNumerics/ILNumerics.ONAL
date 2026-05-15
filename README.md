@@ -10,7 +10,7 @@
 Open-sourced from the proven, mature core of [ILNumerics Computing](https://ilnumerics.net).  
 -> *Your algorithms. Your IP. Your language.* <-
 
-**Learn [ILNumerics.ONAL in Y minutes](ilnumerics.md) !**
+**Learn [ILNumerics.ONAL in Y minutes](https://github.com/ILNumerics/ILNumerics.ONAL/blob/main/ilnumerics.md) !**
 
 ---
 ## Why ILNumerics.ONAL ? 
@@ -204,7 +204,7 @@ https://www.nuget.org/packages/ILNumerics.ONAL
 
 # Quick Start
 
-=> Learn [ILNumerics in Y minutes](ilnumerics.md)  guide. 
+=> Learn [ILNumerics in Y minutes](https://github.com/ILNumerics/ILNumerics.ONAL/blob/main/ilnumerics.md)  guide. 
 
 ## Matrix Example
 
