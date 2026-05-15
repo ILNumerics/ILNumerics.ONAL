@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.9.3</Version>
+    <Version>0.9.4</Version>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\terrain.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -42,6 +46,10 @@
 
   <ItemGroup>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\terrain.bin" />
   </ItemGroup>
 
 </Project>

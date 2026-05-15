@@ -37,7 +37,7 @@ namespace ILNumerics {
         /// </summary>
         public static Array<short> terrain {
             get {
-                using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("ILNumerics.Core.Resources.terrain.bin")) {
+                using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("ILNumerics.ONAL.Resources.terrain.bin")) {
                     Array<short> ret = loadBinary<short>(s,401,401,401); 
                     return ret; 
                 }
