@@ -25,7 +25,7 @@ Because serious numerical software needs more than wrapping NumPy:
 | ✓ Production-grade maturity | Grown and hardened over 15 years alongside .NET, the codebase has been proven in industrial and academic applications since 2011. |
 | ✓ Tooling and debuggability | Visual Studio integration, array visualizers, large team support and standard workflows for professional development, maintenance and deployment. |
 | ✓ Competitive execution speed | Standard .NET execution delivers practical performance for serious numerical workloads. |
-| ✓ Optional path to additional performance | When needed, the same algorithms can optionally run on ILNumerics Computing for [runtime optimizations](https://ilnumerics.net/ilnumerics-autonomous-computing.html), without changing the algorithm code. |
+| ✓ Optional path to additional performance | When needed, the same algorithms can optionally run on ILNumerics Computing for [runtime optimizations](https://ilnumerics.net/ilnumerics-accelerator-compiler.html), without changing the algorithm code. |
 
 
 ILNumerics.ONAL is the open-sourced language core of [ILNumerics](https://ilnumerics.net),
